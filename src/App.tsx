@@ -10,6 +10,8 @@ import LogbookService from "./pages/LogbookService";
 import Diagnostics from "./pages/Diagnostics";
 import BrakeSuspension from "./pages/BrakeSuspension";
 import AirConditioning from "./pages/AirConditioning";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/diagnostics" element={<Diagnostics />} />
           <Route path="/brake-suspension" element={<BrakeSuspension />} />
           <Route path="/air-conditioning" element={<AirConditioning />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

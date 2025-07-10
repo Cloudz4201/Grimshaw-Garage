@@ -132,8 +132,8 @@ const Footer = () => {
             © 2024 Grimshaw Automotive. All rights reserved.
           </p>
           <div className="flex space-x-6 text-slate-400 text-sm">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
             <a href="#" className="hover:text-white transition-colors">ABN: 89853435816</a>
           </div>
         </div>
