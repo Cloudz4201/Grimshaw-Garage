@@ -1,73 +1,56 @@
-# Welcome to your Lovable project
+# Grimshaw Automotive - Premium Auto Service
 
-## Project info
+Professional automotive website for Grimshaw Automotive, specializing in premium vehicle servicing and Porsche retrofitting in Bundoora, Melbourne.
 
-**URL**: https://lovable.dev/projects/bf6b44b5-3333-413e-992e-e26a34973ffa
+## About Grimshaw Automotive
 
-## How can I edit this code?
+Led by Satnam Singh Dhillon, former Head Technician at prestigious dealerships including Dutton One and Dutton Garage. We provide:
 
-There are several ways of editing your application.
+- **European Performance Specialists** - Expert service for Porsche, BMW, Mercedes, and all premium vehicles
+- **All Vehicles Welcome** - From Honda Civics to McLaren supercars
+- **No Fix, No Charge Guarantee** - If we can't fix it, you don't pay
+- **Porsche Factory Retrofitting** - 360° cameras, adaptive cruise control, lane change assist, blind spot detection
 
-**Use Lovable**
+## Services
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/bf6b44b5-3333-413e-992e-e26a34973ffa) and start prompting.
+- Full Vehicle Servicing
+- Logbook Servicing
+- Diagnostics & Fault Finding
+- Brake & Suspension
+- Air Conditioning
+- Pre-Purchase Inspections
+- Porsche OEM Retrofitting
 
-Changes made via Lovable will be committed automatically to this repo.
+## Tech Stack
 
-**Use your preferred IDE**
+- React 18 with TypeScript
+- Vite for fast development
+- Tailwind CSS for styling
+- Shadcn/ui component library
+- React Router for navigation
+- Lucide React for icons
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Development
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+# Install dependencies
+npm install
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+## Contact
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+**Grimshaw Automotive**
+- Phone: (03) 9467 6328
+- Location: Bundoora, Melbourne
+- Specialties: European Performance, Porsche Retrofitting, All Vehicle Service
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/bf6b44b5-3333-413e-992e-e26a34973ffa) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+*"Every vehicle deserves the precision and care of a prestige dealership, regardless of make, model, or price point."*
