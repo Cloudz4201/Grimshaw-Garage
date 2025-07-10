@@ -1,5 +1,5 @@
 
-import { Award, CheckCircle, Star, Users } from "lucide-react";
+import { Award, CheckCircle, Star, Users, Wrench, Car } from "lucide-react";
 
 const About = () => {
   return (
@@ -58,26 +58,102 @@ const About = () => {
             </div>
           </div>
           
-          {/* Right Content - Profile */}
-          <div className="bg-slate-700 rounded-2xl p-8 text-center" data-aos="fade-left">
-            <div className="w-32 h-32 bg-slate-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-              <Users className="w-16 h-16 text-slate-300" />
+          {/* Right Content - Professional Profile with Custom Badge */}
+          <div className="bg-slate-700 rounded-2xl p-8 text-center relative" data-aos="fade-left">
+            {/* Custom Professional Badge */}
+            <div className="absolute -top-4 -right-4 bg-white rounded-full p-2 shadow-xl border-4 border-slate-800">
+              <img 
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoEcLQ9q0FzEVmWIqNWDI-ZFfvlUbmYIe2ww&s"
+                alt="Professional Certification Badge"
+                className="w-12 h-12 rounded-full object-cover"
+              />
+            </div>
+            
+            {/* Profile Image with Professional Styling */}
+            <div className="relative w-32 h-32 mx-auto mb-6">
+              <div className="w-full h-full bg-gradient-to-br from-slate-600 to-slate-500 rounded-full flex items-center justify-center border-4 border-slate-500 shadow-xl">
+                <Users className="w-16 h-16 text-slate-200" />
+              </div>
+              {/* Credential Badge */}
+              <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full p-2 border-3 border-slate-700 shadow-lg">
+                <Wrench className="w-4 h-4 text-slate-900" />
+              </div>
             </div>
             
             <h3 className="text-2xl font-bold text-white mb-2">Satnam Singh Dhillon</h3>
             <p className="text-slate-400 mb-4 font-medium">Head Technician & Owner</p>
             
-            <div className="space-y-2 text-sm text-slate-300">
-              <p><strong className="text-white">Former Head Technician:</strong></p>
-              <p>• Dutton One (Porsche Centre)</p>
-              <p>• Dutton Garage (Premium Service)</p>
-              <p><strong className="text-white">Specialization:</strong> European Performance & All Vehicles</p>
+            {/* Professional Credentials */}
+            <div className="bg-slate-800 rounded-xl p-4 mb-4">
+              <div className="flex items-center justify-center mb-3">
+                <Car className="w-5 h-5 text-blue-400 mr-2" />
+                <span className="text-white font-semibold text-sm">FORMER HEAD TECHNICIAN</span>
+              </div>
+              <div className="space-y-2 text-sm text-slate-300">
+                <div className="flex items-center justify-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <span>Dutton One</span>
+                </div>
+                <div className="flex items-center justify-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <span>Dutton Garage</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Specialization Badge */}
+            <div className="bg-gradient-to-r from-slate-600 to-slate-700 rounded-lg p-3 mb-6 border border-slate-600">
+              <p className="text-white font-semibold text-sm mb-1">SPECIALIZATION</p>
+              <p className="text-slate-300 text-sm">European Performance & All Vehicles</p>
             </div>
             
             <div className="mt-6 pt-6 border-t border-slate-600">
               <p className="text-slate-400 italic">
                 "Every vehicle deserves the precision and care of a prestige dealership, 
                 regardless of make, model, or price point."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Digital Service Records Section */}
+        <div className="mt-16 bg-slate-700 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="500">
+          <div className="text-center mb-8">
+            <div className="inline-block bg-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-4 text-white">
+              Digital Service Records
+            </div>
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Warranty Protected Service History
+            </h3>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                We update and digitize your service book directly in the dealer's system. 
+                Any authorized dealer can see that <strong className="text-white">Grimshaw Automotive</strong> has 
+                performed your service, ensuring <strong className="text-blue-400">your warranty remains valid</strong>.
+              </p>
+              <div className="flex items-start space-x-3">
+                <CheckCircle className="h-6 w-6 text-green-400 mt-1 flex-shrink-0" />
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Complete Digital Integration</h4>
+                  <p className="text-slate-400">
+                    Full dealer system access means seamless service history tracking and warranty protection.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-slate-800 rounded-xl p-6 border border-slate-600">
+              <div className="flex items-center justify-center mb-4">
+                <div className="bg-blue-600 rounded-full p-3">
+                  <Award className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h4 className="text-white font-bold text-center mb-2">Warranty Guarantee</h4>
+              <p className="text-slate-300 text-center text-sm">
+                Professional service with full dealer system integration - your warranty stays intact.
               </p>
             </div>
           </div>

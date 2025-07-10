@@ -1,126 +1,149 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
+import BookingModal from "./BookingModal";
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const section = document.querySelector(sectionId) as HTMLElement;
-    if (section) {
-      const headerHeight = 80; // Header height
-      const targetPosition = section.offsetTop - headerHeight;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-    }
-    setIsMobileMenuOpen(false);
-  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   const handlePhoneCall = () => {
     window.location.href = 'tel:+61394676328';
   };
 
-  const navItems = [
-    { name: 'Services', onClick: () => scrollToSection('#services') },
-    { name: 'About', onClick: () => scrollToSection('#about') },
-    { name: 'Contact', onClick: () => scrollToSection('#contact') }
-  ];
+  const scrollToSection = (sectionId: string) => {
+    const section = document.querySelector(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-slate-900/95 backdrop-blur-md shadow-lg border-b border-slate-700' 
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div 
-            className="text-2xl font-bold text-white cursor-pointer hover:text-slate-300 transition-colors"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
-            Grimshaw Automotive
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item, index) => (
-              <button
-                key={index}
-                onClick={item.onClick}
-                className="text-slate-300 hover:text-white transition-colors font-medium relative group"
-              >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-              </button>
-            ))}
-          </nav>
-
-          {/* Desktop CTA Button */}
-          <div className="hidden md:block">
-            <Button 
-              onClick={handlePhoneCall}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
-            >
-              <Phone className="mr-2 h-4 w-4" />
-              Book Service
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white p-2 hover:text-slate-300 transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-slate-900/95 backdrop-blur-md border-t border-slate-700 animate-fade-in">
-            <div className="py-4 space-y-4">
-              {navItems.map((item, index) => (
-                <button
-                  key={index}
-                  onClick={item.onClick}
-                  className="block w-full text-left text-slate-300 hover:text-white transition-colors font-medium py-2 px-4 hover:bg-slate-800/50 rounded"
-                >
-                  {item.name}
-                </button>
-              ))}
-              <div className="px-4 pt-2">
-                <Button 
-                  onClick={handlePhoneCall}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300"
-                >
-                  <Phone className="mr-2 h-4 w-4" />
-                  Book Service
-                </Button>
-              </div>
+    <>
+      <header className="fixed top-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <div className="text-2xl font-bold text-white">
+              GRIMSHAW
+              <span className="text-slate-400 block text-xs font-normal tracking-wider">AUTOMOTIVE</span>
             </div>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-8">
+              <button 
+                onClick={() => scrollToSection('#hero')}
+                className="text-slate-300 hover:text-white transition-colors cursor-pointer"
+              >
+                Home
+              </button>
+              <button 
+                onClick={() => scrollToSection('#about')}
+                className="text-slate-300 hover:text-white transition-colors cursor-pointer"
+              >
+                About
+              </button>
+              <button 
+                onClick={() => scrollToSection('#services')}
+                className="text-slate-300 hover:text-white transition-colors cursor-pointer"
+              >
+                Services
+              </button>
+              <button 
+                onClick={() => scrollToSection('#contact')}
+                className="text-slate-300 hover:text-white transition-colors cursor-pointer"
+              >
+                Contact
+              </button>
+            </nav>
+
+            {/* Desktop Actions */}
+            <div className="hidden lg:flex items-center space-x-4">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handlePhoneCall}
+                className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white bg-transparent"
+              >
+                <Phone className="mr-2 h-4 w-4" />
+                (03) 9467 6328
+              </Button>
+              <Button 
+                size="sm"
+                onClick={() => setIsBookingModalOpen(true)}
+                className="bg-white text-slate-900 hover:bg-slate-100 font-semibold"
+              >
+                Book Service
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="lg:hidden text-white"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
-        )}
-      </div>
-    </header>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="lg:hidden mt-4 py-4 border-t border-slate-700">
+              <nav className="flex flex-col space-y-4">
+                <button 
+                  onClick={() => scrollToSection('#hero')}
+                  className="text-slate-300 hover:text-white transition-colors text-left cursor-pointer"
+                >
+                  Home
+                </button>
+                <button 
+                  onClick={() => scrollToSection('#about')}
+                  className="text-slate-300 hover:text-white transition-colors text-left cursor-pointer"
+                >
+                  About
+                </button>
+                <button 
+                  onClick={() => scrollToSection('#services')}
+                  className="text-slate-300 hover:text-white transition-colors text-left cursor-pointer"
+                >
+                  Services
+                </button>
+                <button 
+                  onClick={() => scrollToSection('#contact')}
+                  className="text-slate-300 hover:text-white transition-colors text-left cursor-pointer"
+                >
+                  Contact
+                </button>
+                <div className="pt-4 space-y-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handlePhoneCall}
+                    className="w-full border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white bg-transparent"
+                  >
+                    <Phone className="mr-2 h-4 w-4" />
+                    (03) 9467 6328
+                  </Button>
+                  <Button 
+                    size="sm"
+                    onClick={() => setIsBookingModalOpen(true)}
+                    className="w-full bg-white text-slate-900 hover:bg-slate-100 font-semibold"
+                  >
+                    Book Service
+                  </Button>
+                </div>
+              </nav>
+            </div>
+          )}
+        </div>
+      </header>
+
+      <BookingModal 
+        isOpen={isBookingModalOpen} 
+        onClose={() => setIsBookingModalOpen(false)} 
+      />
+    </>
   );
 };
 
