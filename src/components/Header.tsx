@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
 import BookingModal from "./BookingModal";
@@ -6,17 +7,39 @@ import BookingModal from "./BookingModal";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handlePhoneCall = () => {
     window.location.href = 'tel:+61394676328';
   };
 
   const scrollToSection = (sectionId: string) => {
-    const section = document.querySelector(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
+    // If we're not on the homepage, navigate to homepage first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        const section = document.querySelector(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      // We're on the homepage, just scroll
+      const section = document.querySelector(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
     }
+    setIsMenuOpen(false);
+  };
+
+  const handleHomeClick = () => {
+    navigate('/');
+    setIsMenuOpen(false);
+    // Scroll to top of page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -25,15 +48,19 @@ const Header = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="text-2xl font-bold text-white">
+            <button 
+              onClick={handleHomeClick} 
+              className="text-2xl font-bold text-white hover:text-slate-200 transition-colors cursor-pointer"
+              aria-label="Go to homepage"
+            >
               GRIMSHAW
               <span className="text-slate-400 block text-xs font-normal tracking-wider">AUTOMOTIVE</span>
-            </div>
+            </button>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
               <button 
-                onClick={() => scrollToSection('#hero')}
+                onClick={handleHomeClick}
                 className="text-slate-300 hover:text-white transition-colors cursor-pointer"
               >
                 Home
@@ -92,7 +119,7 @@ const Header = () => {
             <div className="lg:hidden mt-4 py-4 border-t border-slate-700">
               <nav className="flex flex-col space-y-4">
                 <button 
-                  onClick={() => scrollToSection('#hero')}
+                  onClick={handleHomeClick}
                   className="text-slate-300 hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Home

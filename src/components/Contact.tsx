@@ -94,15 +94,6 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-
-            {/* Map Placeholder */}
-            <div className="bg-slate-800 rounded-xl p-8 text-center border border-slate-700 mt-12" data-aos="fade-up" data-aos-delay="200">
-              <MapPin className="w-12 h-12 mx-auto mb-4 text-slate-400" />
-              <h4 className="font-semibold mb-2">Find Us</h4>
-              <p className="text-slate-400 text-sm">
-                Located in Bundoora, easily accessible from surrounding suburbs
-              </p>
-            </div>
           </div>
         </div>
       </section>

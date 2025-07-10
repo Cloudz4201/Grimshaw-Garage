@@ -6,6 +6,7 @@ import CarBrands from "@/components/CarBrands";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
+import FindUs from "@/components/FindUs";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 
@@ -25,6 +26,7 @@ const Index = () => {
       </section>
       <Testimonials />
       <Contact />
+      <FindUs />
       <Footer />
       <FloatingCTA />
     </div>

@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import { 
   Wrench, 
   FileText, 
@@ -17,32 +18,38 @@ const Services = () => {
     {
       icon: Wrench,
       title: "Full Vehicle Servicing",
-      description: "Complete mechanical repairs for all makes and models with precision and care."
+      description: "Complete mechanical repairs for all makes and models with precision and care.",
+      link: "/vehicle-servicing"
     },
     {
       icon: FileText,
       title: "Logbook Servicing",
-      description: "Manufacturer-compliant servicing to protect your warranty and vehicle value."
+      description: "Manufacturer-compliant servicing to protect your warranty and vehicle value.",
+      link: "/logbook-service"
     },
     {
       icon: Search,
       title: "Diagnostics & Fault Finding",
-      description: "State-of-the-art diagnostic tools to identify and resolve complex issues."
+      description: "State-of-the-art diagnostic tools to identify and resolve complex issues.",
+      link: "/diagnostics"
     },
     {
       icon: Disc,
       title: "Brake & Suspension",
-      description: "Expert brake, suspension, and exhaust system repairs and maintenance."
+      description: "Expert brake, suspension, and exhaust system repairs and maintenance.",
+      link: "/brake-suspension"
     },
     {
       icon: Snowflake,
       title: "Air Conditioning",
-      description: "Professional A/C servicing, re-gassing, and climate control repairs."
+      description: "Professional A/C servicing, re-gassing, and climate control repairs.",
+      link: "/air-conditioning"
     },
     {
       icon: Eye,
       title: "Pre-Purchase Inspections",
-      description: "Comprehensive vehicle assessments before you buy, ensuring peace of mind."
+      description: "Comprehensive vehicle assessments before you buy, ensuring peace of mind.",
+      link: "/diagnostics" // Link to diagnostics for now
     }
   ];
 
@@ -88,9 +95,10 @@ const Services = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {mainServices.map((service, index) => (
-            <div 
+            <Link 
               key={index}
-              className="bg-slate-700 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-600"
+              to={service.link}
+              className="block bg-slate-700 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-600 hover:border-slate-500"
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
@@ -99,7 +107,10 @@ const Services = () => {
               </div>
               <h3 className="text-xl font-bold mb-4 text-white">{service.title}</h3>
               <p className="text-slate-300 leading-relaxed">{service.description}</p>
-            </div>
+              <div className="mt-4 text-blue-400 text-sm font-medium hover:text-blue-300 transition-colors">
+                Learn More →
+              </div>
+            </Link>
           ))}
         </div>
 

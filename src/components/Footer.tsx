@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import { 
   Phone, 
   Mail, 
@@ -10,6 +11,22 @@ import {
 } from "lucide-react";
 
 const Footer = () => {
+  const handlePhoneCall = (phoneNumber: string) => {
+    window.location.href = `tel:${phoneNumber}`;
+  };
+
+  const scrollToServices = () => {
+    // Navigate to homepage and scroll to services section
+    if (window.location.pathname !== '/') {
+      window.location.href = '/#services';
+    } else {
+      const section = document.querySelector('#services');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <footer className="bg-black text-white py-16">
       <div className="container mx-auto px-6">
@@ -38,12 +55,36 @@ const Footer = () => {
           <div data-aos="fade-up" data-aos-delay="100">
             <h4 className="font-bold mb-4">Services</h4>
             <ul className="space-y-2 text-slate-400">
-              <li><a href="#" className="hover:text-white transition-colors">Vehicle Servicing</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Logbook Service</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Diagnostics</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Brake & Suspension</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Air Conditioning</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Porsche Retrofitting</a></li>
+              <li>
+                <Link to="/vehicle-servicing" className="hover:text-white transition-colors">
+                  Vehicle Servicing
+                </Link>
+              </li>
+              <li>
+                <Link to="/logbook-service" className="hover:text-white transition-colors">
+                  Logbook Service
+                </Link>
+              </li>
+              <li>
+                <Link to="/diagnostics" className="hover:text-white transition-colors">
+                  Diagnostics
+                </Link>
+              </li>
+              <li>
+                <Link to="/brake-suspension" className="hover:text-white transition-colors">
+                  Brake & Suspension
+                </Link>
+              </li>
+              <li>
+                <Link to="/air-conditioning" className="hover:text-white transition-colors">
+                  Air Conditioning
+                </Link>
+              </li>
+              <li>
+                <button onClick={scrollToServices} className="hover:text-white transition-colors text-left">
+                  Porsche Retrofitting
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -51,11 +92,17 @@ const Footer = () => {
           <div data-aos="fade-up" data-aos-delay="200">
             <h4 className="font-bold mb-4">Contact Info</h4>
             <div className="space-y-3 text-slate-400">
-              <div className="flex items-center space-x-2">
+              <div 
+                className="flex items-center space-x-2 cursor-pointer hover:text-white transition-colors"
+                onClick={() => handlePhoneCall('+61394676328')}
+              >
                 <Phone className="w-4 h-4" />
                 <span>(03) 9467 6328</span>
               </div>
-              <div className="flex items-center space-x-2">
+              <div 
+                className="flex items-center space-x-2 cursor-pointer hover:text-white transition-colors"
+                onClick={() => handlePhoneCall('+61451431429')}
+              >
                 <Phone className="w-4 h-4" />
                 <span>+61 451 431 429</span>
               </div>
