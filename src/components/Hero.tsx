@@ -20,25 +20,26 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden max-w-full">
         {/* Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat max-w-full"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1580654712603-eb43273aff33?w=2560&q=80')`
           }}
         />
         
         {/* Background overlays */}
-        <div className="absolute inset-0 bg-black/60">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30"></div>
+        <div className="absolute inset-0 bg-black/60 max-w-full">
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30 max-w-full"></div>
         </div>
         
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-6 py-20 lg:py-32 pt-32">
-          <div className="max-w-4xl">
+        <div className="relative z-10 container mx-auto px-6 py-20 lg:py-32 pt-32 max-w-full overflow-x-hidden">
+          <div className="max-w-4xl overflow-x-hidden">
+            {/* Dutton Branding */}
             <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/20">
-              Ex-Dutton Head Technician • European Performance Specialists • All Vehicles Welcome
+              Dutton One • Dutton Automotive • Dutton Garage
             </div>
             
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">

@@ -48,14 +48,25 @@ const Header = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <button 
-              onClick={handleHomeClick} 
-              className="text-2xl font-bold text-white hover:text-slate-200 transition-colors cursor-pointer"
-              aria-label="Go to homepage"
-            >
-              GRIMSHAW
-              <span className="text-slate-400 block text-xs font-normal tracking-wider">AUTOMOTIVE</span>
-            </button>
+            <div className="flex items-center gap-4">
+              <button 
+                onClick={handleHomeClick} 
+                className="text-2xl font-bold text-white hover:text-slate-200 transition-colors cursor-pointer"
+                aria-label="Go to homepage"
+              >
+                GRIMSHAW
+                <span className="text-slate-400 block text-xs font-normal tracking-wider">AUTOMOTIVE</span>
+              </button>
+              
+              {/* Dutton Logos */}
+              <div className="flex items-center gap-3 ml-4">
+                <img 
+                  src="/dutton/Dutton_auto.png" 
+                  alt="Dutton Automotive" 
+                  className="h-8 w-auto object-contain"
+                />
+              </div>
+            </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">

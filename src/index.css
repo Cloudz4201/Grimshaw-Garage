@@ -5,6 +5,21 @@
 
 body {
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+}
+
+html {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 @layer base {
@@ -67,9 +82,48 @@ body {
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  /* Prevent horizontal overflow on all elements */
+  div, section, header, main, footer {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* Catch-all to prevent horizontal overflow */
+  * {
+    max-width: 100vw;
+  }
+  
+  /* Specific fixes for common overflow culprits */
+  img, video, iframe {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Ensure flex containers don't overflow */
+  .flex {
+    min-width: 0;
+  }
+  
+  /* Ensure containers are responsive */
+  .container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
   }
 }
 

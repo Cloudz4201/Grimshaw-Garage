@@ -12,7 +12,7 @@ import FloatingCTA from "@/components/FloatingCTA";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-slate-900 overflow-x-hidden max-w-full">
       <Header />
       <section id="hero">
         <Hero />

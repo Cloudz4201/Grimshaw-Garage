@@ -1,21 +1,28 @@
 
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 const CarBrands = () => {
+  const navigate = useNavigate();
+
   const premiumBrands = [
-    { name: "Porsche", specialty: "Factory Retrofitting", image: "/cars/PORCHE.png" },
-    { name: "BMW", specialty: "Performance Tuning", image: "/cars/BMW.png" },
-    { name: "Mercedes-Benz", specialty: "Luxury Service", image: "/cars/MERCEDES.png" },
-    { name: "Audi", specialty: "Advanced Diagnostics", image: "/cars/AUDI.png" },
-    { name: "Ferrari", specialty: "Supercar Care", image: "/cars/FERRARI.png" },
-    { name: "Lamborghini", specialty: "Exotic Service", image: "/cars/LAMBORHINI.png" },
-    { name: "Bentley", specialty: "Ultra-Luxury", image: "/cars/BENTLEY.png" },
-    { name: "McLaren", specialty: "Track Performance", image: "/cars/MCLAREN.png" },
-    { name: "Jaguar", specialty: "Heritage Service", image: "/cars/JAGUAR.png" },
-    { name: "Land Rover", specialty: "Off-Road Excellence", image: "/cars/LAND ROVER.png" },
-    { name: "Volkswagen", specialty: "German Engineering", image: "/cars/VOKLSWAGEN.png" },
-    { name: "Skoda", specialty: "European Reliability", image: "/cars/SKODA.png" }
+    { name: "Porsche", specialty: "Factory Retrofitting", image: "/cars/PORCHE.png", path: "/porsche" },
+    { name: "BMW", specialty: "Performance Tuning", image: "/cars/BMW.png", path: "/bmw" },
+    { name: "Mercedes-Benz", specialty: "Luxury Service", image: "/cars/MERCEDES.png", path: "/mercedes" },
+    { name: "Audi", specialty: "Advanced Diagnostics", image: "/cars/AUDI.png", path: "/audi" },
+    { name: "Ferrari", specialty: "Supercar Care", image: "/cars/FERRARI.png", path: "/ferrari" },
+    { name: "Lamborghini", specialty: "Exotic Service", image: "/cars/LAMBORHINI.png", path: "/lamborghini" },
+    { name: "Bentley", specialty: "Ultra-Luxury", image: "/cars/BENTLEY.png", path: "/bentley" },
+    { name: "McLaren", specialty: "Track Performance", image: "/cars/MCLAREN.png", path: "/mclaren" },
+    { name: "Jaguar", specialty: "Heritage Service", image: "/cars/JAGUAR.png", path: "/jaguar" },
+    { name: "Land Rover", specialty: "Off-Road Excellence", image: "/cars/LAND ROVER.png", path: "/land-rover" },
+    { name: "Volkswagen", specialty: "German Engineering", image: "/cars/VOKLSWAGEN.png", path: "/volkswagen" },
+    { name: "Maserati", specialty: "Italian Excellence", image: "/cars/MASERATI.png", path: "/maserati" }
   ];
+
+  const handleBrandClick = (path: string) => {
+    navigate(path);
+  };
 
   return (
     <section className="py-20 bg-slate-700">
@@ -39,15 +46,16 @@ const CarBrands = () => {
           {premiumBrands.map((brand, index) => (
             <Card 
               key={index}
-              className="p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-slate-600 bg-slate-800 hover:bg-slate-750"
+              onClick={() => handleBrandClick(brand.path)}
+              className="p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-slate-600 bg-slate-800 hover:bg-slate-750 cursor-pointer"
               data-aos="fade-up"
               data-aos-delay={index * 50}
             >
-              <div className="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4 bg-slate-700 border border-slate-600">
+              <div className="w-28 h-28 rounded-xl flex items-center justify-center mx-auto mb-4 bg-slate-600 border border-slate-500">
                 <img 
                   src={brand.image} 
                   alt={`${brand.name} logo`}
-                  className="w-12 h-12 object-contain"
+                  className="w-24 h-24 object-contain"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';

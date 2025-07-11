@@ -12,6 +12,18 @@ import BrakeSuspension from "./pages/BrakeSuspension";
 import AirConditioning from "./pages/AirConditioning";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import Porsche from "./pages/Porsche";
+import BMW from "./pages/BMW";
+import Mercedes from "./pages/Mercedes";
+import Audi from "./pages/Audi";
+import Ferrari from "./pages/Ferrari";
+import Lamborghini from "./pages/Lamborghini";
+import Bentley from "./pages/Bentley";
+import McLaren from "./pages/McLaren";
+import Jaguar from "./pages/Jaguar";
+import LandRover from "./pages/LandRover";
+import Volkswagen from "./pages/Volkswagen";
+import Maserati from "./pages/Maserati";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +42,19 @@ const App = () => (
           <Route path="/air-conditioning" element={<AirConditioning />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
+          {/* Car Brand Pages */}
+          <Route path="/porsche" element={<Porsche />} />
+          <Route path="/bmw" element={<BMW />} />
+          <Route path="/mercedes" element={<Mercedes />} />
+          <Route path="/audi" element={<Audi />} />
+          <Route path="/ferrari" element={<Ferrari />} />
+          <Route path="/lamborghini" element={<Lamborghini />} />
+          <Route path="/bentley" element={<Bentley />} />
+          <Route path="/mclaren" element={<McLaren />} />
+          <Route path="/jaguar" element={<Jaguar />} />
+          <Route path="/land-rover" element={<LandRover />} />
+          <Route path="/volkswagen" element={<Volkswagen />} />
+          <Route path="/maserati" element={<Maserati />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
