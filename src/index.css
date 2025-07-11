@@ -3,8 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+html, body {
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 @layer base {
@@ -71,6 +73,38 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Prevent horizontal scrollbar on main sections */
+  #root > div {
+    overflow-x: hidden;
+  }
+  
+  /* Fix for container widths on mobile */
+  @media (max-width: 640px) {
+    .container {
+      max-width: 100vw;
+    }
+  }
+  
+  /* Prevent AOS animations from causing overflow */
+  [data-aos] {
+    overflow-anchor: none;
+  }
+}
+
+/* Hide scrollbars but keep functionality where needed */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Ensure sections don't overflow */
+section {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Leaflet Map Styles */
