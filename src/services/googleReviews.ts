@@ -20,7 +20,7 @@ export interface PlaceDetails {
 export const fetchGoogleReviews = async (): Promise<PlaceDetails | null> => {
   try {
     // Call your Netlify function
-    const response = await fetch('/.netlify/functions/reviews.cjs', {
+    const response = await fetch('/.netlify/functions/reviews', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
