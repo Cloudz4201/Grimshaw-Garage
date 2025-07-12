@@ -48,10 +48,10 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Use the reliable legacy Google Places API
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=name,rating,reviews,user_ratings_total&key=${GOOGLE_API_KEY}`;
+    // Use the new Google Places API (New) instead of legacy
+    const url = `https://places.googleapis.com/v1/places/${PLACE_ID}?fields=displayName,rating,reviews,userRatingCount&key=${GOOGLE_API_KEY}`;
 
-    console.log('Making request to:', url.replace(GOOGLE_API_KEY, 'API_KEY_HIDDEN'));
+    console.log('Making request to new Places API:', url.replace(GOOGLE_API_KEY, 'API_KEY_HIDDEN'));
 
     // Make request to Google Places API
     const response = await new Promise((resolve, reject) => {
@@ -73,31 +73,29 @@ exports.handler = async (event, context) => {
       });
     });
 
-    console.log('Google API response status:', response.status);
-    console.log('Google API response keys:', Object.keys(response));
+    console.log('Google API response:', response);
 
-    // Check if the API call was successful
-    if (response.status === 'OK' && response.result) {
-      const result = response.result;
-      
+    // New Google Places API returns data directly (no "result" wrapper)
+    if (response.displayName) {
       // Transform the response to match frontend expectations
+      // New API returns objects with {text, languageCode} format
       const transformedResponse = {
-        name: result.name || 'Grimshaw Automotive',
-        rating: result.rating || 5.0,
-        reviews: (result.reviews || [])
+        name: response.displayName?.text || response.displayName || 'Grimshaw Automotive',
+        rating: response.rating || 5.0,
+        reviews: (response.reviews || [])
           .map(review => ({
-            author_name: review.author_name || 'Anonymous',
-            author_url: review.author_url || '',
-            language: review.language || 'en',
-            profile_photo_url: review.profile_photo_url || '',
+            author_name: review.authorAttribution?.displayName || 'Anonymous',
+            author_url: review.authorAttribution?.uri || '',
+            language: review.originalText?.languageCode || 'en',
+            profile_photo_url: review.authorAttribution?.photoUri || '',
             rating: review.rating || 5,
-            relative_time_description: review.relative_time_description || 'Recent',
-            text: review.text || 'Great service!',
-            time: review.time || Date.now()
+            relative_time_description: review.relativePublishTimeDescription || 'Recent',
+            text: review.text?.text || review.originalText?.text || 'Great service!',
+            time: review.publishTime ? new Date(review.publishTime).getTime() : Date.now()
           }))
           .sort((a, b) => b.time - a.time) // Sort by most recent first
           .slice(0, 6), // Show only the 6 most recent reviews
-        user_ratings_total: result.user_ratings_total || 0
+        user_ratings_total: response.userRatingCount || 0
       };
       
       console.log('Returning transformed response with', transformedResponse.reviews.length, 'reviews');
@@ -114,8 +112,8 @@ exports.handler = async (event, context) => {
         headers,
         body: JSON.stringify({ 
           error: 'Google Places API error',
-          details: response.error_message || response.status || 'No data returned',
-          status: response.status
+          details: response.error?.message || response.error_message || 'No data returned',
+          status: response.error?.code || 'UNKNOWN_ERROR'
         })
       };
     }
