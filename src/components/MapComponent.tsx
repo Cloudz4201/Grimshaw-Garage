@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
-import { MapPin, ExternalLink, Phone } from 'lucide-react';
+import { MapPin, Phone } from 'lucide-react';
 
 const MapComponent = () => {
   const mapRef = useRef<HTMLDivElement>(null);
@@ -59,11 +59,6 @@ const MapComponent = () => {
     initMap();
   }, []);
 
-  const handleGetDirections = () => {
-    const encodedAddress = encodeURIComponent(businessInfo.address);
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`, '_blank');
-  };
-
   const handlePhoneCall = () => {
     window.location.href = `tel:${businessInfo.phone}`;
   };
@@ -115,14 +110,7 @@ const MapComponent = () => {
             </div>
           </div>
           
-          <div className="flex flex-col gap-3">
-            <button
-              onClick={handleGetDirections}
-              className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-            >
-              <ExternalLink className="w-4 h-4" />
-              Get Directions
-            </button>
+          <div className="flex justify-center md:justify-end">
             <button
               onClick={handlePhoneCall}
               className="flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-500 text-white px-6 py-3 rounded-lg font-medium transition-colors"
