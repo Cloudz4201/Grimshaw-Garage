@@ -36,7 +36,17 @@ const MapComponent = () => {
         await loader.load();
         console.log('Google Maps loaded successfully');
 
+        // Small delay to ensure DOM is ready
+        await new Promise(resolve => setTimeout(resolve, 100));
+
         if (mapRef.current) {
+          console.log('Map container found, creating map...');
+          console.log('Position:', position);
+          console.log('Container dimensions:', {
+            width: mapRef.current.offsetWidth,
+            height: mapRef.current.offsetHeight
+          });
+
           // Create map
           const map = new google.maps.Map(mapRef.current, {
             center: position,
@@ -70,6 +80,8 @@ const MapComponent = () => {
             ]
           });
 
+          console.log('Map created, adding marker...');
+
           // Create marker
           const marker = new google.maps.Marker({
             position: position,
@@ -80,6 +92,8 @@ const MapComponent = () => {
               scaledSize: new google.maps.Size(40, 40)
             }
           });
+
+          console.log('Marker created, adding info window...');
 
           // Create info window
           const infoWindow = new google.maps.InfoWindow({
@@ -101,6 +115,8 @@ const MapComponent = () => {
             `
           });
 
+          console.log('Info window created, adding event listeners...');
+
           // Add click listener to marker
           marker.addListener('click', () => {
             infoWindow.open(map, marker);
@@ -109,9 +125,13 @@ const MapComponent = () => {
           // Open info window by default
           infoWindow.open(map, marker);
 
+          console.log('Setting map instance and loaded state...');
           mapInstance.current = map;
           setIsLoaded(true);
           console.log('Map initialized successfully');
+        } else {
+          console.error('Map container not found!');
+          throw new Error('Map container not found');
         }
       } catch (err) {
         console.error('Error loading Google Maps:', err);
@@ -250,7 +270,12 @@ const MapComponent = () => {
       <div 
         ref={mapRef}
         className="w-full h-full"
-        style={{ minHeight: '384px' }}
+        style={{ 
+          minHeight: '384px',
+          width: '100%',
+          height: '100%',
+          display: 'block'
+        }}
       />
     </div>
   );
