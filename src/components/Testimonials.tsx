@@ -44,14 +44,13 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8" style={{ touchAction: 'manipulation' }}>
+        <div className="grid md:grid-cols-2 gap-8">
           {reviews.map((review, index) => (
             <div 
               key={index}
               className="bg-slate-800 p-8 rounded-xl relative hover:shadow-xl transition-shadow duration-300 border border-slate-600"
               data-aos="fade-up"
               data-aos-delay={index * 100}
-              style={{ touchAction: 'manipulation' }}
             >
               <Quote className="absolute top-6 right-6 w-8 h-8 text-slate-500" />
               

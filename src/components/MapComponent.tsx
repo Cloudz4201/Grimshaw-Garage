@@ -1,132 +1,125 @@
 import { useState, useEffect, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
+import { MapPin, ExternalLink, Phone, AlertCircle } from 'lucide-react';
 
 const MapComponent = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstance = useRef<google.maps.Map | null>(null);
+  const mapInstanceRef = useRef<google.maps.Map | null>(null);
 
-  // Coordinates for Unit 3, 30 Clements Avenue, Bundoora VIC 3083
-  const position = { lat: -37.7007, lng: 145.0575 };
+  // Business location - Unit 3, 30 Clements Avenue, Bundoora VIC 3083
+  const businessLocation = { 
+    lat: -37.7007, 
+    lng: 145.0575 
+  };
+
+  const businessInfo = {
+    name: 'Grimshaw Automotive',
+    address: 'Unit 3, 30 Clements Avenue, Bundoora VIC 3083',
+    phone: '(03) 9467 6328',
+    hours: 'Mon-Fri: 8AM-6PM, Sat: 8AM-4PM'
+  };
 
   useEffect(() => {
     const initMap = async () => {
       try {
-        // Debug: Check what API key we're getting
-        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-        console.log('Environment check:', {
-          hasViteKey: !!apiKey,
-          keyLength: apiKey?.length || 0,
-          keyPreview: apiKey ? `${apiKey.substring(0, 10)}...` : 'No key found'
-        });
+        setIsLoading(true);
+        setError(null);
 
-        if (!apiKey || apiKey === 'YOUR_GOOGLE_MAPS_API_KEY') {
-          throw new Error('Google Maps API key not configured. Please set VITE_GOOGLE_MAPS_API_KEY in your environment variables.');
+        // Get API key from environment variables
+        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+        
+        if (!apiKey) {
+          throw new Error('Google Maps API key not found. Please check your environment variables.');
         }
 
-        // Initialize Google Maps
+        console.log('Initializing Google Maps...');
+
         const loader = new Loader({
           apiKey: apiKey,
           version: 'weekly',
-          libraries: ['places']
+          libraries: ['places', 'geometry']
         });
 
-        console.log('Attempting to load Google Maps...');
         await loader.load();
-        console.log('Google Maps loaded successfully');
-
-        // Wait for the DOM element to be available with retries
-        let retries = 0;
-        const maxRetries = 20; // 2 seconds total (20 * 100ms)
-        
-        while (!mapRef.current && retries < maxRetries) {
-          await new Promise(resolve => setTimeout(resolve, 100));
-          retries++;
-          console.log(`Waiting for map container... attempt ${retries}`);
-        }
+        console.log('Google Maps API loaded successfully');
 
         if (!mapRef.current) {
-          console.error('Map container still not found after waiting!');
-          throw new Error('Map container not found after waiting');
+          throw new Error('Map container not found');
         }
 
-        console.log('Map container found, creating map...');
-        console.log('Position:', position);
-        console.log('Container dimensions:', {
-          width: mapRef.current.offsetWidth,
-          height: mapRef.current.offsetHeight
-        });
-
-        // Create map
+        // Create the map
         const map = new google.maps.Map(mapRef.current, {
-          center: position,
-          zoom: 15,
+          center: businessLocation,
+          zoom: 16,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
-          disableDefaultUI: false,
-          zoomControl: true,
-          streetViewControl: true,
-          fullscreenControl: true,
           styles: [
             {
-              featureType: 'all',
-              elementType: 'geometry.fill',
-              stylers: [{ color: '#f5f5f5' }]
+              featureType: "all",
+              elementType: "geometry.fill",
+              stylers: [{ saturation: -20 }]
             },
             {
-              featureType: 'road',
-              elementType: 'geometry',
-              stylers: [{ color: '#ffffff' }]
-            },
-            {
-              featureType: 'road',
-              elementType: 'labels.text.fill',
-              stylers: [{ color: '#616161' }]
-            },
-            {
-              featureType: 'poi',
-              elementType: 'labels.text.fill',
-              stylers: [{ color: '#757575' }]
+              featureType: "road",
+              elementType: "geometry.fill",
+              stylers: [{ color: "#ddd" }]
             }
-          ]
+          ],
+          mapTypeControl: true,
+          streetViewControl: true,
+          fullscreenControl: true,
+          zoomControl: true,
         });
 
-        console.log('Map created, adding marker...');
+        mapInstanceRef.current = map;
 
-        // Create marker
+        // Create custom marker
         const marker = new google.maps.Marker({
-          position: position,
+          position: businessLocation,
           map: map,
-          title: 'Grimshaw Automotive',
+          title: businessInfo.name,
           icon: {
-            url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
-            scaledSize: new google.maps.Size(40, 40)
-          }
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 10,
+            fillColor: '#DC2626',
+            fillOpacity: 1,
+            strokeColor: '#FFFFFF',
+            strokeWeight: 2,
+          },
+          animation: google.maps.Animation.DROP,
         });
-
-        console.log('Marker created, adding info window...');
 
         // Create info window
         const infoWindow = new google.maps.InfoWindow({
           content: `
-            <div style="padding: 10px; font-family: Arial, sans-serif;">
+            <div style="padding: 12px; max-width: 250px; font-family: Arial, sans-serif;">
               <h3 style="margin: 0 0 8px 0; color: #1f2937; font-size: 16px; font-weight: bold;">
-                Grimshaw Automotive
+                ${businessInfo.name}
               </h3>
-              <p style="margin: 0 0 4px 0; color: #374151; font-size: 14px;">
-                Unit 3, 30 Clements Avenue<br>
-                Bundoora VIC 3083
+              <p style="margin: 0 0 6px 0; color: #4b5563; font-size: 14px; line-height: 1.4;">
+                ${businessInfo.address}
               </p>
-              <p style="margin: 8px 0 0 0;">
-                <a href="tel:+61394676328" style="color: #2563eb; text-decoration: none; font-weight: 500;">
-                  (03) 9467 6328
+              <p style="margin: 0 0 8px 0; color: #4b5563; font-size: 14px;">
+                ${businessInfo.hours}
+              </p>
+              <div style="display: flex; gap: 8px; margin-top: 10px;">
+                <a href="tel:${businessInfo.phone.replace(/\s/g, '')}" 
+                   style="color: #dc2626; text-decoration: none; font-weight: 500; font-size: 14px;">
+                  📞 ${businessInfo.phone}
                 </a>
-              </p>
+              </div>
+              <div style="margin-top: 8px;">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(businessInfo.address)}" 
+                   target="_blank" 
+                   style="color: #2563eb; text-decoration: none; font-size: 13px;">
+                  🗺️ Get Directions
+                </a>
+              </div>
             </div>
           `
         });
-
-        console.log('Info window created, adding event listeners...');
 
         // Add click listener to marker
         marker.addListener('click', () => {
@@ -136,159 +129,98 @@ const MapComponent = () => {
         // Open info window by default
         infoWindow.open(map, marker);
 
-        console.log('Setting map instance and loaded state...');
-        mapInstance.current = map;
+        // Add click listener to map to close info window
+        map.addListener('click', () => {
+          infoWindow.close();
+        });
+
         setIsLoaded(true);
         console.log('Map initialized successfully');
 
       } catch (err) {
         console.error('Error loading Google Maps:', err);
-        
-        // More specific error messages
-        let errorMessage = 'Failed to load Google Maps.';
-        if (err instanceof Error) {
-          if (err.message.includes('API key')) {
-            errorMessage = 'Invalid API key. Please check your Google Maps API key configuration.';
-          } else if (err.message.includes('quota')) {
-            errorMessage = 'API quota exceeded. Please check your Google Cloud billing.';
-          } else if (err.message.includes('restricted')) {
-            errorMessage = 'API key restrictions. Please check your domain settings in Google Cloud.';
-          } else if (err.message.includes('container not found')) {
-            errorMessage = 'Map container initialization failed. Please refresh the page.';
-          } else {
-            errorMessage = `API Error: ${err.message}`;
-          }
-        }
-        
-        setError(errorMessage);
+        setError(err instanceof Error ? err.message : 'Failed to load Google Maps');
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    // Add a small delay before starting initialization to ensure component is mounted
-    const timeoutId = setTimeout(initMap, 100);
-    
-    return () => clearTimeout(timeoutId);
+    initMap();
   }, []);
+
+  const handleGetDirections = () => {
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(businessInfo.address)}`;
+    window.open(url, '_blank');
+  };
 
   const handleRetry = () => {
     setError(null);
     setIsLoaded(false);
-    // Retry after a short delay
-    setTimeout(() => {
-      const initMap = async () => {
-        try {
-          if (mapRef.current && !mapInstance.current) {
-            const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-            
-            if (!apiKey || apiKey === 'YOUR_GOOGLE_MAPS_API_KEY') {
-              throw new Error('Google Maps API key not configured. Please set VITE_GOOGLE_MAPS_API_KEY in your environment variables.');
-            }
-
-            const loader = new Loader({
-              apiKey: apiKey,
-              version: 'weekly',
-              libraries: ['places']
-            });
-
-            await loader.load();
-
-            const map = new google.maps.Map(mapRef.current, {
-              center: position,
-              zoom: 15,
-              mapTypeId: google.maps.MapTypeId.ROADMAP,
-            });
-
-            const marker = new google.maps.Marker({
-              position: position,
-              map: map,
-              title: 'Grimshaw Automotive',
-            });
-
-            const infoWindow = new google.maps.InfoWindow({
-              content: `
-                <div style="padding: 10px;">
-                  <strong>Grimshaw Automotive</strong><br>
-                  Unit 3, 30 Clements Avenue<br>
-                  Bundoora VIC 3083<br>
-                  <a href="tel:+61394676328" style="color: #2563eb;">
-                    (03) 9467 6328
-                  </a>
-                </div>
-              `
-            });
-
-            marker.addListener('click', () => {
-              infoWindow.open(map, marker);
-            });
-
-            infoWindow.open(map, marker);
-            mapInstance.current = map;
-            setIsLoaded(true);
-          }
-        } catch (err) {
-          console.error('Retry failed:', err);
-          let errorMessage = 'Failed to load Google Maps.';
-          if (err instanceof Error) {
-            if (err.message.includes('API key')) {
-              errorMessage = 'Invalid API key. Please check your Google Maps API key configuration.';
-            } else if (err.message.includes('quota')) {
-              errorMessage = 'API quota exceeded. Please check your Google Cloud billing.';
-            } else if (err.message.includes('restricted')) {
-              errorMessage = 'API key restrictions. Please check your domain settings in Google Cloud.';
-            } else {
-              errorMessage = `API Error: ${err.message}`;
-            }
-          }
-          setError(errorMessage);
-        }
-      };
-      initMap();
-    }, 100);
+    setIsLoading(true);
+    // Re-trigger the effect
+    window.location.reload();
   };
 
   if (error) {
     return (
-      <div className="w-full h-96 rounded-lg bg-slate-800 flex items-center justify-center">
-        <div className="text-center text-slate-300 p-6">
-          <div className="mb-4">
-            <svg className="w-12 h-12 mx-auto mb-2 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-            </svg>
+      <div className="w-full h-96 rounded-lg bg-slate-800 border border-slate-600 flex flex-col items-center justify-center p-6">
+        <AlertCircle className="h-12 w-12 text-red-500 mb-4" />
+        <div className="text-center">
+          <h3 className="text-white font-semibold mb-2">Unable to Load Map</h3>
+          <p className="text-slate-300 mb-4 text-sm max-w-md">
+            {error}
+          </p>
+          <div className="space-y-3">
+            <button 
+              onClick={handleRetry}
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+            >
+              Try Again
+            </button>
+            <div className="text-slate-400 text-sm">
+              <p className="mb-2">{businessInfo.name}</p>
+              <p className="mb-2">{businessInfo.address}</p>
+              <div className="flex flex-col sm:flex-row gap-2 justify-center">
+                <a 
+                  href={`tel:${businessInfo.phone.replace(/\s/g, '')}`}
+                  className="text-blue-400 hover:text-blue-300 transition-colors flex items-center justify-center gap-1"
+                >
+                  <Phone className="h-4 w-4" />
+                  {businessInfo.phone}
+                </a>
+                <button
+                  onClick={handleGetDirections}
+                  className="text-blue-400 hover:text-blue-300 transition-colors flex items-center justify-center gap-1"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Get Directions
+                </button>
+              </div>
+            </div>
           </div>
-          <p className="mb-4 text-sm">{error}</p>
-          <button 
-            onClick={handleRetry}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors"
-          >
-            Retry
-          </button>
         </div>
       </div>
     );
   }
 
-  if (!isLoaded) {
+  if (isLoading || !isLoaded) {
     return (
-      <div className="w-full h-96 rounded-lg bg-slate-800 flex items-center justify-center">
-        <div className="text-center text-slate-300">
+      <div className="w-full h-96 rounded-lg bg-slate-800 border border-slate-600 flex flex-col items-center justify-center">
+        <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-          <p className="text-sm">Loading Google Maps...</p>
+          <p className="text-slate-300 mb-2">Loading map...</p>
+          <p className="text-slate-400 text-sm">{businessInfo.name}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg">
+    <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg border border-slate-600">
       <div 
         ref={mapRef}
         className="w-full h-full"
-        style={{ 
-          minHeight: '384px',
-          width: '100%',
-          height: '100%',
-          display: 'block'
-        }}
+        style={{ minHeight: '384px' }}
       />
     </div>
   );

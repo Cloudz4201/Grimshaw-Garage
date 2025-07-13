@@ -42,7 +42,7 @@ const CarBrands = () => {
         </div>
 
         {/* Premium Brands Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 mb-12" style={{ touchAction: 'manipulation' }}>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 mb-12">
           {premiumBrands.map((brand, index) => (
             <Card 
               key={index}
@@ -50,7 +50,6 @@ const CarBrands = () => {
               className="p-6 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-slate-600 bg-slate-800 hover:bg-slate-750 cursor-pointer"
               data-aos="fade-up"
               data-aos-delay={index * 50}
-              style={{ touchAction: 'manipulation' }}
             >
               <div className="w-28 h-28 rounded-xl flex items-center justify-center mx-auto mb-4 bg-slate-600 border border-slate-500">
                 <img 

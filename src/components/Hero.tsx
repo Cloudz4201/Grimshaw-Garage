@@ -20,23 +20,23 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden max-w-full">
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
         {/* Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat max-w-full"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1580654712603-eb43273aff33?w=2560&q=80')`
           }}
         />
         
         {/* Background overlays */}
-        <div className="absolute inset-0 bg-black/60 max-w-full">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30 max-w-full"></div>
+        <div className="absolute inset-0 bg-black/60">
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30"></div>
         </div>
         
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-6 py-20 lg:py-32 pt-32 max-w-full overflow-x-hidden">
-          <div className="max-w-4xl overflow-x-hidden">
+        <div className="relative z-10 container mx-auto px-6 py-20 lg:py-32 pt-32">
+          <div className="max-w-4xl">
             {/* Dutton Branding */}
             <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/20">
               Dutton One • Dutton Automotive • Dutton Garage
@@ -58,12 +58,11 @@ const Hero = () => {
               Specializing in high-end Euro vehicles with dealership-level care for <strong>every make and model</strong>.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4" style={{ touchAction: 'manipulation' }}>
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
                 onClick={() => setIsBookingModalOpen(true)}
                 className="bg-white text-slate-900 hover:bg-slate-100 text-lg px-8 py-6 rounded-xl font-semibold shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
-                style={{ touchAction: 'manipulation' }}
               >
                 <Phone className="mr-2 h-5 w-5" />
                 Book Service Today
@@ -73,7 +72,6 @@ const Hero = () => {
                 size="lg"
                 onClick={scrollToContact}
                 className="border-white/50 text-white hover:bg-white hover:text-slate-900 backdrop-blur-sm text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent"
-                style={{ touchAction: 'manipulation' }}
               >
                 <MessageCircle className="mr-2 h-5 w-5" />
                 Porsche Retrofitting

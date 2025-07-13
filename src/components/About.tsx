@@ -5,9 +5,9 @@ const About = () => {
   return (
     <section className="py-20 bg-slate-800">
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center" style={{ touchAction: 'manipulation' }}>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
-          <div data-aos="fade-right" style={{ touchAction: 'manipulation' }}>
+          <div data-aos="fade-right">
             <div className="inline-block bg-slate-700 px-4 py-2 rounded-full text-sm font-medium mb-6 text-slate-300">
               About Grimshaw Automotive
             </div>
@@ -23,8 +23,8 @@ const About = () => {
               with transparent, friendly service for <strong className="text-white">all vehicle makes and models</strong>.
             </p>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8" style={{ touchAction: 'manipulation' }}>
-              <div className="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="100" style={{ touchAction: 'manipulation' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+              <div className="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="100">
                 <Award className="h-6 w-6 text-blue-400 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-white mb-1">Euro Performance Expert</h3>
@@ -32,7 +32,7 @@ const About = () => {
                 </div>
               </div>
               
-              <div className="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="300" style={{ touchAction: 'manipulation' }}>
+              <div className="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="300">
                 <Users className="h-6 w-6 text-purple-400 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-white mb-1">All Vehicles Welcome</h3>
@@ -40,7 +40,7 @@ const About = () => {
                 </div>
               </div>
               
-              <div className="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="400" style={{ touchAction: 'manipulation' }}>
+              <div className="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="400">
                 <Star className="h-6 w-6 text-yellow-400 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-white mb-1">Transparent Pricing</h3>
@@ -51,7 +51,7 @@ const About = () => {
           </div>
           
           {/* Right Content - Professional Profile with Custom Badge */}
-          <div className="bg-slate-700 rounded-2xl p-8 text-center relative" data-aos="fade-left" style={{ touchAction: 'manipulation' }}>
+          <div className="bg-slate-700 rounded-2xl p-8 text-center relative" data-aos="fade-left">
             {/* Custom Professional Badge - Positioned above image */}
             <div className="flex justify-end mb-3">
               <img 
@@ -111,7 +111,7 @@ const About = () => {
         </div>
 
         {/* Digital Service Records Section */}
-        <div className="mt-16 bg-slate-700 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="500" style={{ touchAction: 'manipulation' }}>
+        <div className="mt-16 bg-slate-700 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="500">
           <div className="text-center mb-8">
             <div className="inline-block bg-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-4 text-white">
               Digital Service Records
@@ -121,7 +121,7 @@ const About = () => {
             </h3>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 items-center" style={{ touchAction: 'manipulation' }}>
+          <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <p className="text-slate-300 text-lg leading-relaxed mb-6">
                 We update and digitize your service book directly in the dealer's system. 

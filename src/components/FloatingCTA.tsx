@@ -33,17 +33,16 @@ const FloatingCTA = () => {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50" style={{ touchAction: 'manipulation' }}>
+      <div className="fixed bottom-6 right-6 z-50">
         {isMinimized ? (
           <Button
             onClick={() => setIsMinimized(false)}
             className="bg-slate-900 text-white hover:bg-slate-800 rounded-full w-14 h-14 shadow-2xl transform hover:scale-110 transition-all duration-300"
-            style={{ touchAction: 'manipulation' }}
           >
             <Phone className="w-6 h-6" />
           </Button>
         ) : (
-          <div className="bg-slate-900 text-white p-4 rounded-2xl shadow-2xl max-w-sm transform hover:scale-105 transition-all duration-300 border border-slate-700" style={{ touchAction: 'manipulation' }}>
+          <div className="bg-slate-900 text-white p-4 rounded-2xl shadow-2xl max-w-sm transform hover:scale-105 transition-all duration-300 border border-slate-700">
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-bold text-lg">Book Your Service</h3>
               <button

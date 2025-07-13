@@ -93,7 +93,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20" style={{ touchAction: 'manipulation' }}>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {mainServices.map((service, index) => (
             <Link 
               key={index}
@@ -101,7 +101,6 @@ const Services = () => {
               className="block bg-slate-700 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-600 hover:border-slate-500"
               data-aos="fade-up"
               data-aos-delay={index * 100}
-              style={{ touchAction: 'manipulation' }}
             >
               <div className="bg-slate-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
                 <service.icon className="w-8 h-8 text-slate-300" />
@@ -127,14 +126,13 @@ const Services = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" style={{ touchAction: 'manipulation' }}>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {retrofittingServices.map((service, index) => (
               <div 
                 key={index}
                 className="text-center p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300"
                 data-aos="fade-up"
                 data-aos-delay={300 + (index * 100)}
-                style={{ touchAction: 'manipulation' }}
               >
                 <div className="bg-white/10 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <service.icon className="w-8 h-8 text-white" />
