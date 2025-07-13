@@ -1,14 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
-import { MapPin, ExternalLink, Phone, AlertCircle } from 'lucide-react';
+import { MapPin, ExternalLink, Phone } from 'lucide-react';
 
 const MapComponent = () => {
+  const mapRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<google.maps.Map | null>(null);
-  const isMountedRef = useRef(true);
 
   // Business location - Unit 3, 30 Clements Avenue, Bundoora VIC 3083
   const businessLocation = { 
@@ -19,249 +16,123 @@ const MapComponent = () => {
   const businessInfo = {
     name: 'Grimshaw Automotive',
     address: 'Unit 3, 30 Clements Avenue, Bundoora VIC 3083',
-    phone: '(03) 9467 6328',
-    hours: 'Mon-Fri: 8AM-6PM, Sat: 8AM-4PM'
+    phone: '+61 3 9467 6328',
   };
 
   useEffect(() => {
-    isMountedRef.current = true;
-    
     const initMap = async () => {
       try {
-        if (!isMountedRef.current) return;
-        
-        setIsLoading(true);
-        setError(null);
-
-        // Get API key from environment variables
         const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
         
         if (!apiKey) {
-          throw new Error('Google Maps API key not found. Please check your environment variables.');
+          setError('Google Maps API key not configured');
+          return;
         }
-
-        console.log('Initializing Google Maps...');
 
         const loader = new Loader({
           apiKey: apiKey,
           version: 'weekly',
-          libraries: ['places', 'geometry']
         });
 
         await loader.load();
-        console.log('Google Maps API loaded successfully');
 
-        // Check if component is still mounted and ref exists
-        if (!isMountedRef.current || !mapRef.current) {
-          console.log('Component unmounted or ref not available, aborting map initialization');
-          return;
-        }
+        if (mapRef.current) {
+          const map = new google.maps.Map(mapRef.current, {
+            center: businessLocation,
+            zoom: 15,
+          });
 
-        // Create the map
-        const map = new google.maps.Map(mapRef.current, {
-          center: businessLocation,
-          zoom: 16,
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          styles: [
-            {
-              featureType: "all",
-              elementType: "geometry.fill",
-              stylers: [{ saturation: -20 }]
-            },
-            {
-              featureType: "road",
-              elementType: "geometry.fill",
-              stylers: [{ color: "#ddd" }]
-            }
-          ],
-          mapTypeControl: true,
-          streetViewControl: true,
-          fullscreenControl: true,
-          zoomControl: true,
-        });
+          new google.maps.Marker({
+            position: businessLocation,
+            map: map,
+            title: businessInfo.name,
+          });
 
-        if (!isMountedRef.current) return;
-
-        mapInstanceRef.current = map;
-
-        // Create custom marker
-        const marker = new google.maps.Marker({
-          position: businessLocation,
-          map: map,
-          title: businessInfo.name,
-          icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 10,
-            fillColor: '#DC2626',
-            fillOpacity: 1,
-            strokeColor: '#FFFFFF',
-            strokeWeight: 2,
-          },
-          animation: google.maps.Animation.DROP,
-        });
-
-        // Create info window
-        const infoWindow = new google.maps.InfoWindow({
-          content: `
-            <div style="padding: 12px; max-width: 250px; font-family: Arial, sans-serif;">
-              <h3 style="margin: 0 0 8px 0; color: #1f2937; font-size: 16px; font-weight: bold;">
-                ${businessInfo.name}
-              </h3>
-              <p style="margin: 0 0 6px 0; color: #4b5563; font-size: 14px; line-height: 1.4;">
-                ${businessInfo.address}
-              </p>
-              <p style="margin: 0 0 8px 0; color: #4b5563; font-size: 14px;">
-                ${businessInfo.hours}
-              </p>
-              <div style="display: flex; gap: 8px; margin-top: 10px;">
-                <a href="tel:${businessInfo.phone.replace(/\s/g, '')}" 
-                   style="color: #dc2626; text-decoration: none; font-weight: 500; font-size: 14px;">
-                  📞 ${businessInfo.phone}
-                </a>
-              </div>
-              <div style="margin-top: 8px;">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(businessInfo.address)}" 
-                   target="_blank" 
-                   style="color: #2563eb; text-decoration: none; font-size: 13px;">
-                  🗺️ Get Directions
-                </a>
-              </div>
-            </div>
-          `
-        });
-
-        // Add click listener to marker
-        marker.addListener('click', () => {
-          if (isMountedRef.current) {
-            infoWindow.open(map, marker);
-          }
-        });
-
-        // Open info window by default
-        if (isMountedRef.current) {
-          infoWindow.open(map, marker);
-        }
-
-        // Add click listener to map to close info window
-        map.addListener('click', () => {
-          if (isMountedRef.current) {
-            infoWindow.close();
-          }
-        });
-
-        if (isMountedRef.current) {
           setIsLoaded(true);
-          console.log('Map initialized successfully');
         }
-
       } catch (err) {
-        console.error('Error loading Google Maps:', err);
-        if (isMountedRef.current) {
-          setError(err instanceof Error ? err.message : 'Failed to load Google Maps');
-        }
-      } finally {
-        if (isMountedRef.current) {
-          setIsLoading(false);
-        }
+        console.error('Error loading map:', err);
+        setError('Failed to load map');
       }
     };
 
-    // Add a small delay to ensure the DOM is ready
-    const timeoutId = setTimeout(() => {
-      if (isMountedRef.current) {
-        initMap();
-      }
-    }, 100);
-
-    return () => {
-      isMountedRef.current = false;
-      clearTimeout(timeoutId);
-      
-      // Clean up map instance
-      if (mapInstanceRef.current) {
-        mapInstanceRef.current = null;
-      }
-    };
+    initMap();
   }, []);
 
   const handleGetDirections = () => {
-    const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(businessInfo.address)}`;
-    window.open(url, '_blank');
+    const encodedAddress = encodeURIComponent(businessInfo.address);
+    window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`, '_blank');
   };
 
-  const handleRetry = () => {
-    setError(null);
-    setIsLoaded(false);
-    setIsLoading(true);
-    // Re-trigger the effect by changing state
-    setTimeout(() => {
-      if (isMountedRef.current) {
-        window.location.reload();
-      }
-    }, 100);
+  const handlePhoneCall = () => {
+    window.location.href = `tel:${businessInfo.phone}`;
   };
 
   if (error) {
     return (
-      <div className="w-full h-96 rounded-lg bg-slate-800 border border-slate-600 flex flex-col items-center justify-center p-6">
-        <AlertCircle className="h-12 w-12 text-red-500 mb-4" />
-        <div className="text-center">
-          <h3 className="text-white font-semibold mb-2">Unable to Load Map</h3>
-          <p className="text-slate-300 mb-4 text-sm max-w-md">
-            {error}
-          </p>
-          <div className="space-y-3">
-            <button 
-              onClick={handleRetry}
-              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-            >
-              Try Again
-            </button>
-            <div className="text-slate-400 text-sm">
-              <p className="mb-2">{businessInfo.name}</p>
-              <p className="mb-2">{businessInfo.address}</p>
-              <div className="flex flex-col sm:flex-row gap-2 justify-center">
-                <a 
-                  href={`tel:${businessInfo.phone.replace(/\s/g, '')}`}
-                  className="text-blue-400 hover:text-blue-300 transition-colors flex items-center justify-center gap-1"
-                >
-                  <Phone className="h-4 w-4" />
-                  {businessInfo.phone}
-                </a>
-                <button
-                  onClick={handleGetDirections}
-                  className="text-blue-400 hover:text-blue-300 transition-colors flex items-center justify-center gap-1"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  Get Directions
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (isLoading || !isLoaded) {
-    return (
-      <div className="w-full h-96 rounded-lg bg-slate-800 border border-slate-600 flex flex-col items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-          <p className="text-slate-300 mb-2">Loading map...</p>
-          <p className="text-slate-400 text-sm">{businessInfo.name}</p>
+      <div className="w-full h-[400px] bg-slate-700 rounded-lg flex items-center justify-center">
+        <div className="text-center text-slate-300">
+          <MapPin className="w-12 h-12 mx-auto mb-4 text-slate-400" />
+          <h3 className="text-lg font-semibold mb-2">Map Unavailable</h3>
+          <p className="text-sm">{error}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="w-full h-96 rounded-lg overflow-hidden shadow-lg border border-slate-600">
-      <div 
-        ref={mapRef}
-        className="w-full h-full"
-        style={{ minHeight: '384px' }}
-      />
+    <div className="w-full">
+      {/* Map Container */}
+      <div className="w-full h-[400px] rounded-lg overflow-hidden shadow-lg">
+        {!isLoaded && (
+          <div className="w-full h-full bg-slate-700 flex items-center justify-center">
+            <div className="text-center text-slate-300">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500 mx-auto mb-4"></div>
+              <p>Loading map...</p>
+            </div>
+          </div>
+        )}
+        <div ref={mapRef} className="w-full h-full" />
+      </div>
+
+      {/* Business Info Card */}
+      <div className="mt-6 bg-slate-800 rounded-lg p-6">
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 className="text-xl font-bold text-white mb-4">Visit Our Workshop</h3>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
+                <div>
+                  <p className="text-white font-medium">{businessInfo.name}</p>
+                  <p className="text-slate-300 text-sm">{businessInfo.address}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-red-500 flex-shrink-0" />
+                <p className="text-slate-300">{businessInfo.phone}</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex flex-col gap-3">
+            <button
+              onClick={handleGetDirections}
+              className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Get Directions
+            </button>
+            <button
+              onClick={handlePhoneCall}
+              className="flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-500 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              <Phone className="w-4 h-4" />
+              Call Us
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
