@@ -101,6 +101,7 @@ const Services = () => {
               className="block bg-slate-700 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-600 hover:border-slate-500"
               data-aos="fade-up"
               data-aos-delay={index * 100}
+              style={{ touchAction: 'manipulation' }}
             >
               <div className="bg-slate-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
                 <service.icon className="w-8 h-8 text-slate-300" />

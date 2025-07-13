@@ -29,6 +29,22 @@ Led by Satnam Singh Dhillon, former Head Technician at prestigious dealerships i
 - Shadcn/ui component library
 - React Router for navigation
 - Lucide React for icons
+- Google Maps JavaScript API for location services
+
+## Setup
+
+### Google Maps API Key
+
+This project uses Google Maps to display the shop location. You need to:
+
+1. Get a Google Maps API key from the [Google Cloud Console](https://console.cloud.google.com/google/maps-apis)
+2. Enable the **Maps JavaScript API** for your project
+3. Create a `.env` file in the project root with:
+   ```
+   REACT_APP_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
+   ```
+
+**Note**: The map will show an error message if the API key is not configured correctly.
 
 ## Development
 
