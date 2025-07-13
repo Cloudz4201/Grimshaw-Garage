@@ -36,103 +36,111 @@ const MapComponent = () => {
         await loader.load();
         console.log('Google Maps loaded successfully');
 
-        // Small delay to ensure DOM is ready
-        await new Promise(resolve => setTimeout(resolve, 100));
-
-        if (mapRef.current) {
-          console.log('Map container found, creating map...');
-          console.log('Position:', position);
-          console.log('Container dimensions:', {
-            width: mapRef.current.offsetWidth,
-            height: mapRef.current.offsetHeight
-          });
-
-          // Create map
-          const map = new google.maps.Map(mapRef.current, {
-            center: position,
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            disableDefaultUI: false,
-            zoomControl: true,
-            streetViewControl: true,
-            fullscreenControl: true,
-            styles: [
-              {
-                featureType: 'all',
-                elementType: 'geometry.fill',
-                stylers: [{ color: '#f5f5f5' }]
-              },
-              {
-                featureType: 'road',
-                elementType: 'geometry',
-                stylers: [{ color: '#ffffff' }]
-              },
-              {
-                featureType: 'road',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#616161' }]
-              },
-              {
-                featureType: 'poi',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#757575' }]
-              }
-            ]
-          });
-
-          console.log('Map created, adding marker...');
-
-          // Create marker
-          const marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title: 'Grimshaw Automotive',
-            icon: {
-              url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
-              scaledSize: new google.maps.Size(40, 40)
-            }
-          });
-
-          console.log('Marker created, adding info window...');
-
-          // Create info window
-          const infoWindow = new google.maps.InfoWindow({
-            content: `
-              <div style="padding: 10px; font-family: Arial, sans-serif;">
-                <h3 style="margin: 0 0 8px 0; color: #1f2937; font-size: 16px; font-weight: bold;">
-                  Grimshaw Automotive
-                </h3>
-                <p style="margin: 0 0 4px 0; color: #374151; font-size: 14px;">
-                  Unit 3, 30 Clements Avenue<br>
-                  Bundoora VIC 3083
-                </p>
-                <p style="margin: 8px 0 0 0;">
-                  <a href="tel:+61394676328" style="color: #2563eb; text-decoration: none; font-weight: 500;">
-                    (03) 9467 6328
-                  </a>
-                </p>
-              </div>
-            `
-          });
-
-          console.log('Info window created, adding event listeners...');
-
-          // Add click listener to marker
-          marker.addListener('click', () => {
-            infoWindow.open(map, marker);
-          });
-
-          // Open info window by default
-          infoWindow.open(map, marker);
-
-          console.log('Setting map instance and loaded state...');
-          mapInstance.current = map;
-          setIsLoaded(true);
-          console.log('Map initialized successfully');
-        } else {
-          console.error('Map container not found!');
-          throw new Error('Map container not found');
+        // Wait for the DOM element to be available with retries
+        let retries = 0;
+        const maxRetries = 20; // 2 seconds total (20 * 100ms)
+        
+        while (!mapRef.current && retries < maxRetries) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          retries++;
+          console.log(`Waiting for map container... attempt ${retries}`);
         }
+
+        if (!mapRef.current) {
+          console.error('Map container still not found after waiting!');
+          throw new Error('Map container not found after waiting');
+        }
+
+        console.log('Map container found, creating map...');
+        console.log('Position:', position);
+        console.log('Container dimensions:', {
+          width: mapRef.current.offsetWidth,
+          height: mapRef.current.offsetHeight
+        });
+
+        // Create map
+        const map = new google.maps.Map(mapRef.current, {
+          center: position,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          disableDefaultUI: false,
+          zoomControl: true,
+          streetViewControl: true,
+          fullscreenControl: true,
+          styles: [
+            {
+              featureType: 'all',
+              elementType: 'geometry.fill',
+              stylers: [{ color: '#f5f5f5' }]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{ color: '#ffffff' }]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{ color: '#616161' }]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{ color: '#757575' }]
+            }
+          ]
+        });
+
+        console.log('Map created, adding marker...');
+
+        // Create marker
+        const marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: 'Grimshaw Automotive',
+          icon: {
+            url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+            scaledSize: new google.maps.Size(40, 40)
+          }
+        });
+
+        console.log('Marker created, adding info window...');
+
+        // Create info window
+        const infoWindow = new google.maps.InfoWindow({
+          content: `
+            <div style="padding: 10px; font-family: Arial, sans-serif;">
+              <h3 style="margin: 0 0 8px 0; color: #1f2937; font-size: 16px; font-weight: bold;">
+                Grimshaw Automotive
+              </h3>
+              <p style="margin: 0 0 4px 0; color: #374151; font-size: 14px;">
+                Unit 3, 30 Clements Avenue<br>
+                Bundoora VIC 3083
+              </p>
+              <p style="margin: 8px 0 0 0;">
+                <a href="tel:+61394676328" style="color: #2563eb; text-decoration: none; font-weight: 500;">
+                  (03) 9467 6328
+                </a>
+              </p>
+            </div>
+          `
+        });
+
+        console.log('Info window created, adding event listeners...');
+
+        // Add click listener to marker
+        marker.addListener('click', () => {
+          infoWindow.open(map, marker);
+        });
+
+        // Open info window by default
+        infoWindow.open(map, marker);
+
+        console.log('Setting map instance and loaded state...');
+        mapInstance.current = map;
+        setIsLoaded(true);
+        console.log('Map initialized successfully');
+
       } catch (err) {
         console.error('Error loading Google Maps:', err);
         
@@ -145,6 +153,8 @@ const MapComponent = () => {
             errorMessage = 'API quota exceeded. Please check your Google Cloud billing.';
           } else if (err.message.includes('restricted')) {
             errorMessage = 'API key restrictions. Please check your domain settings in Google Cloud.';
+          } else if (err.message.includes('container not found')) {
+            errorMessage = 'Map container initialization failed. Please refresh the page.';
           } else {
             errorMessage = `API Error: ${err.message}`;
           }
@@ -154,7 +164,10 @@ const MapComponent = () => {
       }
     };
 
-    initMap();
+    // Add a small delay before starting initialization to ensure component is mounted
+    const timeoutId = setTimeout(initMap, 100);
+    
+    return () => clearTimeout(timeoutId);
   }, []);
 
   const handleRetry = () => {
