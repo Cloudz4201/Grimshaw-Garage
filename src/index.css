@@ -91,15 +91,22 @@ html {
   
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     max-width: 100vw;
     scroll-behavior: smooth;
   }
   
   html {
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     max-width: 100vw;
     scroll-behavior: smooth;
+  }
+  
+  /* Prevent horizontal overflow on all elements */
+  #root {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+    width: 100%;
   }
   
   /* Essential container constraints */
@@ -107,6 +114,7 @@ html {
     max-width: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
+    overflow-x: hidden;
   }
   
   /* Ensure images and media are responsive */
@@ -120,20 +128,43 @@ html {
     min-width: 0;
   }
   
+  /* Prevent all sections from horizontal overflow */
+  section, div, main, article, aside, header, footer {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+  }
+  
   @media (max-width: 768px) {
     .container {
       padding-left: 0.75rem;
       padding-right: 0.75rem;
+      max-width: 100vw;
+      overflow-x: hidden !important;
     }
     
     /* Ensure proper touch scrolling on mobile */
     body, html {
       -webkit-overflow-scrolling: touch;
+      overflow-x: hidden !important;
+      max-width: 100vw;
     }
     
-    /* Allow normal scrolling behavior on mobile */
+    /* Force all elements to respect viewport width on mobile */
+    * {
+      max-width: 100vw !important;
+    }
+    
+    /* Specific mobile constraints */
     section, div, main, article, aside, header, footer {
-      /* Removed overflow-x: hidden !important; to allow proper scrolling */
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+    
+    /* Prevent text from causing overflow */
+    h1, h2, h3, h4, h5, h6, p {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
     }
   }
 }
@@ -141,6 +172,8 @@ html {
 /* Leaflet Map Styles */
 .leaflet-container {
   font-family: inherit !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
 }
 
 .leaflet-popup-content-wrapper {
