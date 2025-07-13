@@ -71,9 +71,11 @@ const About = () => {
             
             {/* Profile Image with Professional Styling */}
             <div className="relative w-32 h-32 mx-auto mb-6">
-              <div className="w-full h-full bg-gradient-to-br from-slate-600 to-slate-500 rounded-full flex items-center justify-center border-4 border-slate-500 shadow-xl">
-                <Users className="w-16 h-16 text-slate-200" />
-              </div>
+              <img 
+                src="/satnam-profile.jpg" 
+                alt="Satnam Singh Dhillon - Head Technician & Owner"
+                className="w-full h-full rounded-full object-cover border-4 border-slate-500 shadow-xl"
+              />
               {/* Credential Badge */}
               <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full p-2 border-3 border-slate-700 shadow-lg">
                 <Wrench className="w-4 h-4 text-slate-900" />
