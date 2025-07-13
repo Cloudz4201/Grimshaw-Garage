@@ -42,7 +42,7 @@ const CarBrands = () => {
         </div>
 
         {/* Premium Brands Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 mb-12" style={{ touchAction: 'manipulation' }}>
           {premiumBrands.map((brand, index) => (
             <Card 
               key={index}

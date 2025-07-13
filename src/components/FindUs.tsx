@@ -25,14 +25,15 @@ const FindUs = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 items-start" style={{ touchAction: 'manipulation' }}>
           {/* Map */}
-          <div data-aos="fade-right">
+          <div data-aos="fade-right" style={{ touchAction: 'manipulation' }}>
             <MapComponent />
             <div className="mt-4">
               <button
                 onClick={handleGetDirections}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2"
+                style={{ touchAction: 'manipulation' }}
               >
                 <Car className="w-5 h-5" />
                 <span>Get Directions</span>
@@ -41,7 +42,7 @@ const FindUs = () => {
           </div>
 
           {/* Location Details */}
-          <div data-aos="fade-left">
+          <div data-aos="fade-left" style={{ touchAction: 'manipulation' }}>
             <div className="space-y-8">
               {/* Address */}
               <div className="bg-slate-800 p-6 rounded-xl">

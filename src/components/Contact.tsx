@@ -55,7 +55,7 @@ const Contact = () => {
 
           {/* Contact Information - Centered */}
           <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up" style={{ touchAction: 'manipulation' }}>
               {/* Phone Numbers */}
               <div className="text-center">
                 <div className="bg-white/10 p-4 rounded-xl w-16 h-16 flex items-center justify-center mx-auto mb-4">

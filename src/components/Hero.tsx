@@ -58,11 +58,12 @@ const Hero = () => {
               Specializing in high-end Euro vehicles with dealership-level care for <strong>every make and model</strong>.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4" style={{ touchAction: 'manipulation' }}>
               <Button 
                 size="lg" 
                 onClick={() => setIsBookingModalOpen(true)}
                 className="bg-white text-slate-900 hover:bg-slate-100 text-lg px-8 py-6 rounded-xl font-semibold shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
+                style={{ touchAction: 'manipulation' }}
               >
                 <Phone className="mr-2 h-5 w-5" />
                 Book Service Today
@@ -72,6 +73,7 @@ const Hero = () => {
                 size="lg"
                 onClick={scrollToContact}
                 className="border-white/50 text-white hover:bg-white hover:text-slate-900 backdrop-blur-sm text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent"
+                style={{ touchAction: 'manipulation' }}
               >
                 <MessageCircle className="mr-2 h-5 w-5" />
                 Porsche Retrofitting
