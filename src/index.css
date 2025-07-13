@@ -5,21 +5,19 @@
 
 body {
   font-family: "Inter", sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   width: 100%;
-  height: 100vh;
   margin: 0;
   padding: 0;
   max-width: 100vw;
-  max-height: 100vh;
 }
 
 html {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   width: 100%;
-  height: 100vh;
   max-width: 100vw;
-  max-height: 100vh;
 }
 
 * {
@@ -90,37 +88,42 @@ html {
   }
   body {
     @apply bg-background text-foreground;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     max-width: 100vw;
-    max-height: 100vh;
-    height: 100vh;
-    /* Disable all scrolling and touch actions */
-    touch-action: none;
-    -webkit-overflow-scrolling: auto;
+    /* Enable main page scrolling */
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
   }
   
-  /* Prevent ALL overflow on all elements */
+  /* Prevent individual sections from having their own scrollbars */
   div, section, header, main, footer {
     max-width: 100vw;
-    /* Prevent both horizontal and vertical overflow */
-    overflow: hidden;
+    /* Only prevent horizontal overflow on sections */
+    overflow-x: hidden;
   }
   
-  /* Catch-all to prevent ALL overflow */
+  /* Prevent specific elements from having internal scrollbars */
+  .bg-slate-800, .bg-slate-700, .bg-slate-600,
+  .rounded-2xl, .rounded-xl, .rounded-lg,
+  .p-6, .p-8, .p-4 {
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+  
+  /* Catch-all to prevent horizontal overflow only */
   * {
     max-width: 100vw;
-    /* Force no overflow on all elements */
-    overflow: hidden !important;
   }
   
-  /* Specific overrides for scrollable components */
-  .overflow-auto,
-  .overflow-y-auto,
+  /* Prevent specific scrollable components from having internal scrollbars */
+  .overflow-auto:not(body):not(html),
+  .overflow-y-auto:not(body):not(html),
   .overflow-x-auto,
-  .overflow-scroll,
-  .overflow-y-scroll,
+  .overflow-scroll:not(body):not(html),
+  .overflow-y-scroll:not(body):not(html),
   .overflow-x-scroll {
-    overflow: hidden !important;
+    overflow-x: hidden !important;
   }
   
   /* Override specific UI component scrolling */
@@ -128,7 +131,7 @@ html {
   [role="listbox"],
   [role="menu"],
   [role="dialog"] [data-radix-scroll-area-viewport] {
-    overflow: hidden !important;
+    overflow-x: hidden !important;
   }
   
   /* Specific fixes for common overflow culprits */
@@ -156,25 +159,26 @@ html {
     }
   }
 
-  /* Fix mobile scrolling issues - DISABLE ALL SCROLLING */
+  /* Fix mobile touch scrolling issues */
   @media (max-width: 768px) {
-    /* Disable all scrolling behavior */
+    /* Ensure proper touch scrolling behavior for main page */
     body, html {
-      touch-action: none;
-      -webkit-overflow-scrolling: auto;
-      overflow: hidden !important;
+      touch-action: pan-y;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
     }
     
     /* Remove problematic overflow properties on mobile */
     .grid {
-      touch-action: none;
-      overflow: hidden !important;
+      touch-action: pan-y;
+      overflow-x: hidden !important;
     }
     
     /* Ensure cards don't interfere with scrolling */
     .card, [role="button"], button, a {
       touch-action: manipulation;
-      overflow: hidden !important;
+      overflow-x: hidden !important;
     }
     
     /* Prevent transforms from interfering with scroll */
@@ -190,15 +194,15 @@ html {
       transform: none !important;
     }
     
-    /* Ensure all interactive elements have no overflow */
+    /* Ensure all interactive elements allow proper scrolling */
     [data-aos], .transform {
       touch-action: manipulation;
-      overflow: hidden !important;
+      overflow-x: hidden !important;
     }
     
-    /* Force no overflow on all mobile elements */
-    * {
-      overflow: hidden !important;
+    /* Prevent horizontal overflow on mobile elements */
+    div:not(body), section, header, main, footer {
+      overflow-x: hidden !important;
     }
   }
 }
