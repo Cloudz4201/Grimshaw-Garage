@@ -53,26 +53,26 @@ const Services = () => {
     }
   ];
 
-  const porsheServices = [
+  const retrofittingServices = [
     {
       icon: Camera,
       title: "360° Camera Integration",
-      description: "Complete surround-view camera system with seamless OEM integration."
+      description: "Complete surround-view camera system with seamless OEM integration for any vehicle."
     },
     {
       icon: Zap,
       title: "Adaptive Cruise Control",
-      description: "Factory-grade ACC retrofitting for enhanced driving comfort and safety."
+      description: "Factory-grade ACC retrofitting for enhanced driving comfort and safety across all makes."
     },
     {
       icon: Navigation,
       title: "Lane Change Assist",
-      description: "Advanced driver assistance with genuine Porsche components."
+      description: "Advanced driver assistance systems with genuine OEM components for all vehicles."
     },
     {
       icon: Shield,
       title: "Blind Spot Detection",
-      description: "Professional BSM installation using only authentic OEM parts."
+      description: "Professional BSM installation using authentic OEM parts for any car make and model."
     }
   ];
 
@@ -115,20 +115,20 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Porsche Retrofitting Section */}
+        {/* Vehicle Retrofitting Section */}
         <div className="bg-slate-900 rounded-3xl p-12 text-white border border-slate-700" data-aos="fade-up" data-aos-delay="200">
           <div className="text-center mb-12">
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              Porsche Factory Retrofitting
+              Advanced Vehicle Retrofitting
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Transform your Porsche with genuine OEM retrofits. Advanced features, 
-              seamless integration, factory-level precision.
+              Transform any vehicle with advanced technology retrofits. Premium features, 
+              seamless integration, factory-level precision for all makes and models.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" style={{ touchAction: 'manipulation' }}>
-            {porsheServices.map((service, index) => (
+            {retrofittingServices.map((service, index) => (
               <div 
                 key={index}
                 className="text-center p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300"
@@ -147,7 +147,7 @@ const Services = () => {
 
           <div className="text-center mt-12" data-aos="fade-up" data-aos-delay="700">
             <div className="inline-block bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full text-sm font-medium border border-white/20">
-              ✅ Genuine OEM Parts • ✅ Factory Integration • ✅ Warranty Preserved
+              ✅ Genuine OEM Parts • ✅ Factory Integration • ✅ All Makes & Models
             </div>
           </div>
         </div>
