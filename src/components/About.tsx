@@ -60,21 +60,23 @@ const About = () => {
           
           {/* Right Content - Professional Profile with Custom Badge */}
           <div className="bg-slate-700 rounded-2xl p-8 text-center relative" data-aos="fade-left" style={{ touchAction: 'manipulation' }}>
-            {/* Custom Professional Badge */}
-            <div className="absolute -top-4 -right-4 bg-white rounded-full p-2 shadow-xl border-4 border-slate-800">
-              <img 
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoEcLQ9q0FzEVmWIqNWDI-ZFfvlUbmYIe2ww&s"
-                alt="Professional Certification Badge"
-                className="w-12 h-12 rounded-full object-cover"
-              />
+            {/* Custom Professional Badge - Positioned above image */}
+            <div className="flex justify-end mb-4">
+              <div className="bg-white rounded-full p-2 shadow-xl border-4 border-slate-800">
+                <img 
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoEcLQ9q0FzEVmWIqNWDI-ZFfvlUbmYIe2ww&s"
+                  alt="Professional Certification Badge"
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+              </div>
             </div>
             
             {/* Profile Image with Professional Styling */}
-            <div className="relative w-32 h-32 mx-auto mb-6">
+            <div className="relative w-48 h-48 mx-auto mb-6">
               <img 
                 src="/satnam-profile.jpg" 
                 alt="Satnam Singh Dhillon - Head Technician & Owner"
-                className="w-full h-full rounded-full object-cover border-4 border-slate-500 shadow-xl"
+                className="w-full h-full rounded-xl object-cover border-4 border-slate-500 shadow-xl"
               />
               {/* Credential Badge */}
               <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full p-2 border-3 border-slate-700 shadow-lg">
