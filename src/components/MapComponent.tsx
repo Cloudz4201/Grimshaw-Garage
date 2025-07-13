@@ -65,7 +65,7 @@ const MapComponent = () => {
 
   if (error) {
     return (
-      <div className="w-full h-[400px] bg-slate-700 rounded-lg flex items-center justify-center overflow-hidden">
+      <div className="w-full h-[400px] bg-slate-700 rounded-lg flex items-center justify-center">
         <div className="text-center text-slate-300">
           <MapPin className="w-12 h-12 mx-auto mb-4 text-slate-400" />
           <h3 className="text-lg font-semibold mb-2">Map Unavailable</h3>
@@ -76,9 +76,9 @@ const MapComponent = () => {
   }
 
   return (
-    <div className="w-full max-w-full overflow-hidden">
+    <div className="w-full">
       {/* Map Container */}
-      <div className="w-full h-[400px] rounded-lg overflow-hidden shadow-lg max-w-full">
+      <div className="w-full h-[400px] rounded-lg overflow-hidden shadow-lg">
         {!isLoaded && (
           <div className="w-full h-full bg-slate-700 flex items-center justify-center">
             <div className="text-center text-slate-300">
@@ -87,11 +87,11 @@ const MapComponent = () => {
             </div>
           </div>
         )}
-        <div ref={mapRef} className="w-full h-full max-w-full" />
+        <div ref={mapRef} className="w-full h-full" />
       </div>
 
       {/* Business Info Card */}
-      <div className="mt-6 bg-slate-800 rounded-lg p-6 w-full max-w-full overflow-hidden">
+      <div className="mt-6 bg-slate-800 rounded-lg p-6">
         <div className="grid md:grid-cols-2 gap-6">
           <div className="min-w-0">
             <h3 className="text-xl font-bold text-white mb-4">Visit Our Workshop</h3>
