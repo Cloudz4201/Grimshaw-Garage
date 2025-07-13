@@ -25,14 +25,6 @@ const About = () => {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8" style={{ touchAction: 'manipulation' }}>
               <div className="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="100" style={{ touchAction: 'manipulation' }}>
-                <CheckCircle className="h-6 w-6 text-green-400 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold text-white mb-1">No Fix, No Charge</h3>
-                  <p className="text-slate-400 text-sm">If we can't fix it, you don't pay. No exceptions.</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3" data-aos="fade-up" data-aos-delay="200" style={{ touchAction: 'manipulation' }}>
                 <Award className="h-6 w-6 text-blue-400 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-white mb-1">Euro Performance Expert</h3>
@@ -62,13 +54,11 @@ const About = () => {
           <div className="bg-slate-700 rounded-2xl p-8 text-center relative" data-aos="fade-left" style={{ touchAction: 'manipulation' }}>
             {/* Custom Professional Badge - Positioned above image */}
             <div className="flex justify-end mb-3">
-              <div className="bg-white rounded-full p-2 shadow-xl border-4 border-slate-800">
-                <img 
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoEcLQ9q0FzEVmWIqNWDI-ZFfvlUbmYIe2ww&s"
-                  alt="Professional Certification Badge"
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-              </div>
+              <img 
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoEcLQ9q0FzEVmWIqNWDI-ZFfvlUbmYIe2ww&s"
+                alt="Professional Certification Badge"
+                className="w-10 h-10 object-cover"
+              />
             </div>
             
             {/* Profile Image with Professional Styling */}
