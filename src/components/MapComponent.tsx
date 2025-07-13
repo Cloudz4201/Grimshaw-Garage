@@ -13,14 +13,28 @@ const MapComponent = () => {
   useEffect(() => {
     const initMap = async () => {
       try {
+        // Debug: Check what API key we're getting
+        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+        console.log('Environment check:', {
+          hasViteKey: !!apiKey,
+          keyLength: apiKey?.length || 0,
+          keyPreview: apiKey ? `${apiKey.substring(0, 10)}...` : 'No key found'
+        });
+
+        if (!apiKey || apiKey === 'YOUR_GOOGLE_MAPS_API_KEY') {
+          throw new Error('Google Maps API key not configured. Please set VITE_GOOGLE_MAPS_API_KEY in your environment variables.');
+        }
+
         // Initialize Google Maps
         const loader = new Loader({
-          apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'YOUR_GOOGLE_MAPS_API_KEY',
+          apiKey: apiKey,
           version: 'weekly',
           libraries: ['places']
         });
 
+        console.log('Attempting to load Google Maps...');
         await loader.load();
+        console.log('Google Maps loaded successfully');
 
         if (mapRef.current) {
           // Create map
@@ -97,10 +111,26 @@ const MapComponent = () => {
 
           mapInstance.current = map;
           setIsLoaded(true);
+          console.log('Map initialized successfully');
         }
       } catch (err) {
         console.error('Error loading Google Maps:', err);
-        setError('Failed to load Google Maps. Please check your API key.');
+        
+        // More specific error messages
+        let errorMessage = 'Failed to load Google Maps.';
+        if (err instanceof Error) {
+          if (err.message.includes('API key')) {
+            errorMessage = 'Invalid API key. Please check your Google Maps API key configuration.';
+          } else if (err.message.includes('quota')) {
+            errorMessage = 'API quota exceeded. Please check your Google Cloud billing.';
+          } else if (err.message.includes('restricted')) {
+            errorMessage = 'API key restrictions. Please check your domain settings in Google Cloud.';
+          } else {
+            errorMessage = `API Error: ${err.message}`;
+          }
+        }
+        
+        setError(errorMessage);
       }
     };
 
@@ -115,8 +145,14 @@ const MapComponent = () => {
       const initMap = async () => {
         try {
           if (mapRef.current && !mapInstance.current) {
+            const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+            
+            if (!apiKey || apiKey === 'YOUR_GOOGLE_MAPS_API_KEY') {
+              throw new Error('Google Maps API key not configured. Please set VITE_GOOGLE_MAPS_API_KEY in your environment variables.');
+            }
+
             const loader = new Loader({
-              apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'YOUR_GOOGLE_MAPS_API_KEY',
+              apiKey: apiKey,
               version: 'weekly',
               libraries: ['places']
             });
@@ -158,7 +194,19 @@ const MapComponent = () => {
           }
         } catch (err) {
           console.error('Retry failed:', err);
-          setError('Failed to load Google Maps. Please check your API key.');
+          let errorMessage = 'Failed to load Google Maps.';
+          if (err instanceof Error) {
+            if (err.message.includes('API key')) {
+              errorMessage = 'Invalid API key. Please check your Google Maps API key configuration.';
+            } else if (err.message.includes('quota')) {
+              errorMessage = 'API quota exceeded. Please check your Google Cloud billing.';
+            } else if (err.message.includes('restricted')) {
+              errorMessage = 'API key restrictions. Please check your domain settings in Google Cloud.';
+            } else {
+              errorMessage = `API Error: ${err.message}`;
+            }
+          }
+          setError(errorMessage);
         }
       };
       initMap();
