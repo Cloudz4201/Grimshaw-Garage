@@ -8,6 +8,7 @@ const MapComponent = () => {
   const [isLoading, setIsLoading] = useState(true);
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<google.maps.Map | null>(null);
+  const isMountedRef = useRef(true);
 
   // Business location - Unit 3, 30 Clements Avenue, Bundoora VIC 3083
   const businessLocation = { 
@@ -23,8 +24,12 @@ const MapComponent = () => {
   };
 
   useEffect(() => {
+    isMountedRef.current = true;
+    
     const initMap = async () => {
       try {
+        if (!isMountedRef.current) return;
+        
         setIsLoading(true);
         setError(null);
 
@@ -46,8 +51,10 @@ const MapComponent = () => {
         await loader.load();
         console.log('Google Maps API loaded successfully');
 
-        if (!mapRef.current) {
-          throw new Error('Map container not found');
+        // Check if component is still mounted and ref exists
+        if (!isMountedRef.current || !mapRef.current) {
+          console.log('Component unmounted or ref not available, aborting map initialization');
+          return;
         }
 
         // Create the map
@@ -72,6 +79,8 @@ const MapComponent = () => {
           fullscreenControl: true,
           zoomControl: true,
         });
+
+        if (!isMountedRef.current) return;
 
         mapInstanceRef.current = map;
 
@@ -123,29 +132,56 @@ const MapComponent = () => {
 
         // Add click listener to marker
         marker.addListener('click', () => {
-          infoWindow.open(map, marker);
+          if (isMountedRef.current) {
+            infoWindow.open(map, marker);
+          }
         });
 
         // Open info window by default
-        infoWindow.open(map, marker);
+        if (isMountedRef.current) {
+          infoWindow.open(map, marker);
+        }
 
         // Add click listener to map to close info window
         map.addListener('click', () => {
-          infoWindow.close();
+          if (isMountedRef.current) {
+            infoWindow.close();
+          }
         });
 
-        setIsLoaded(true);
-        console.log('Map initialized successfully');
+        if (isMountedRef.current) {
+          setIsLoaded(true);
+          console.log('Map initialized successfully');
+        }
 
       } catch (err) {
         console.error('Error loading Google Maps:', err);
-        setError(err instanceof Error ? err.message : 'Failed to load Google Maps');
+        if (isMountedRef.current) {
+          setError(err instanceof Error ? err.message : 'Failed to load Google Maps');
+        }
       } finally {
-        setIsLoading(false);
+        if (isMountedRef.current) {
+          setIsLoading(false);
+        }
       }
     };
 
-    initMap();
+    // Add a small delay to ensure the DOM is ready
+    const timeoutId = setTimeout(() => {
+      if (isMountedRef.current) {
+        initMap();
+      }
+    }, 100);
+
+    return () => {
+      isMountedRef.current = false;
+      clearTimeout(timeoutId);
+      
+      // Clean up map instance
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current = null;
+      }
+    };
   }, []);
 
   const handleGetDirections = () => {
@@ -157,8 +193,12 @@ const MapComponent = () => {
     setError(null);
     setIsLoaded(false);
     setIsLoading(true);
-    // Re-trigger the effect
-    window.location.reload();
+    // Re-trigger the effect by changing state
+    setTimeout(() => {
+      if (isMountedRef.current) {
+        window.location.reload();
+      }
+    }, 100);
   };
 
   if (error) {
