@@ -14,6 +14,13 @@ const Hero = () => {
     }
   };
 
+  const scrollToDigitalRecords = () => {
+    const digitalRecordsSection = document.querySelector('#digital-service-records');
+    if (digitalRecordsSection) {
+      digitalRecordsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const handlePhoneCall = () => {
     window.location.href = 'tel:+61394676328';
   };
@@ -37,11 +44,6 @@ const Hero = () => {
         {/* Content */}
         <div className="relative z-10 container mx-auto px-6 py-20 lg:py-32 pt-32 w-full max-w-full">
           <div className="max-w-4xl w-full">
-            {/* Dutton Branding */}
-            <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/20 max-w-full">
-              <span className="break-words">Dutton One • Dutton Automotive • Dutton Garage</span>
-            </div>
-            
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight break-words">
               <span className="block text-white">GRIMSHAW</span>
               <span className="block bg-gradient-to-r from-slate-300 to-slate-100 bg-clip-text text-transparent">
@@ -70,11 +72,11 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                onClick={scrollToContact}
+                onClick={scrollToDigitalRecords}
                 className="border-white/50 text-white hover:bg-white hover:text-slate-900 backdrop-blur-sm text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent w-full sm:w-auto"
               >
                 <MessageCircle className="mr-2 h-5 w-5" />
-                Porsche Retrofitting
+                Digital Service Updating
               </Button>
             </div>
           </div>

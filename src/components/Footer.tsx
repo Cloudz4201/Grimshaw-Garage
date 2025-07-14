@@ -53,8 +53,13 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div data-aos="fade-up" data-aos-delay="100">
-            <h4 className="font-bold mb-4">Services</h4>
+            <h4 className="font-bold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-slate-400">
+              <li>
+                <Link to="/about" className="hover:text-white transition-colors">
+                  About Us
+                </Link>
+              </li>
               <li>
                 <Link to="/vehicle-servicing" className="hover:text-white transition-colors">
                   Vehicle Servicing

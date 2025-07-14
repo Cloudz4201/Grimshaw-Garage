@@ -18,7 +18,7 @@ const About = () => {
             </h2>
             
             <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-              Led by <strong className="text-white">Satnam Singh Dhillon</strong>, former Head Technician at Australia's most 
+              Led by our experienced Head Technician, former Head Technician at Australia's most 
               prestigious dealerships—Dutton One and Dutton Garage. Decades of high-end European expertise 
               with transparent, friendly service for <strong className="text-white">all vehicle makes and models</strong>.
             </p>
@@ -50,22 +50,13 @@ const About = () => {
             </div>
           </div>
           
-          {/* Right Content - Professional Profile with Custom Badge */}
+          {/* Right Content - Professional Profile */}
           <div className="bg-slate-700 rounded-2xl p-8 text-center relative" data-aos="fade-left">
-            {/* Custom Professional Badge - Positioned above image */}
-            <div className="flex justify-end mb-3">
-              <img 
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoEcLQ9q0FzEVmWIqNWDI-ZFfvlUbmYIe2ww&s"
-                alt="Professional Certification Badge"
-                className="w-10 h-10 object-cover"
-              />
-            </div>
-            
             {/* Profile Image with Professional Styling */}
             <div className="relative w-36 h-36 mx-auto mb-4">
               <img 
                 src="/satnam-profile.jpg" 
-                alt="Satnam Singh Dhillon - Head Technician & Owner"
+                alt="Head Technician & Owner"
                 className="w-full h-full rounded-lg object-cover border-4 border-slate-500 shadow-xl"
               />
               {/* Credential Badge */}
@@ -74,14 +65,21 @@ const About = () => {
               </div>
             </div>
             
-            <h3 className="text-2xl font-bold text-white mb-2">Satnam Singh Dhillon</h3>
-            <p className="text-slate-400 mb-4 font-medium">Head Technician & Owner</p>
+            <h3 className="text-2xl font-bold text-white mb-2">Head Technician & Owner</h3>
+            <p className="text-slate-400 mb-4 font-medium">European Performance Specialist</p>
             
             {/* Professional Credentials */}
             <div className="bg-slate-800 rounded-xl p-4 mb-4">
-              <div className="flex items-center justify-center mb-3">
-                <Car className="w-5 h-5 text-blue-400 mr-2" />
-                <span className="text-white font-semibold text-sm">FORMER HEAD TECHNICIAN</span>
+              <div className="flex items-center justify-center mb-3 relative">
+                <div className="flex items-center">
+                  <Car className="w-5 h-5 text-blue-400 mr-2" />
+                  <span className="text-white font-semibold text-sm">FORMER HEAD TECHNICIAN</span>
+                </div>
+                <img 
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoEcLQ9q0FzEVmWIqNWDI-ZFfvlUbmYIe2ww&s"
+                  alt="Professional Certification Badge"
+                  className="w-8 h-8 object-cover absolute right-0"
+                />
               </div>
               <div className="space-y-2 text-sm text-slate-300">
                 <div className="flex items-center justify-center space-x-2">
@@ -111,7 +109,7 @@ const About = () => {
         </div>
 
         {/* Digital Service Records Section */}
-        <div className="mt-16 bg-slate-700 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="500">
+        <div id="digital-service-records" className="mt-16 bg-slate-700 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="500">
           <div className="text-center mb-8">
             <div className="inline-block bg-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-4 text-white">
               Digital Service Records

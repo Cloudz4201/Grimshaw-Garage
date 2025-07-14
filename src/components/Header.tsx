@@ -1,12 +1,24 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone } from "lucide-react";
+import { 
+  Menu, 
+  X, 
+  Phone, 
+  Wrench, 
+  FileText, 
+  Search, 
+  Disc, 
+  Snowflake, 
+  Zap, 
+  Volume2 
+} from "lucide-react";
 import BookingModal from "./BookingModal";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [isServicesHovered, setIsServicesHovered] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -38,13 +50,21 @@ const Header = () => {
   const handleHomeClick = () => {
     navigate('/');
     setIsMenuOpen(false);
-    // Scroll to top of page
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const services = [
+    { name: "Vehicle Servicing", icon: Wrench, path: "/vehicle-servicing", description: "Complete mechanical repairs and maintenance" },
+    { name: "Logbook Service", icon: FileText, path: "/logbook-service", description: "Manufacturer-compliant servicing" },
+    { name: "Diagnostics", icon: Search, path: "/diagnostics", description: "Advanced fault finding and analysis" },
+    { name: "Brake & Suspension", icon: Disc, path: "/brake-suspension", description: "Expert brake and suspension work" },
+    { name: "Air Conditioning", icon: Snowflake, path: "/air-conditioning", description: "A/C servicing and repairs" },
+    { name: "Performance Tuning", icon: Zap, path: "/performance-tuning", description: "ECU remapping and performance upgrades" },
+    { name: "Custom Exhausts", icon: Volume2, path: "/custom-exhausts", description: "Custom exhaust design and fabrication" },
+  ];
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -57,15 +77,6 @@ const Header = () => {
                 GRIMSHAW
                 <span className="text-slate-400 block text-xs font-normal tracking-wider">AUTOMOTIVE</span>
               </button>
-              
-              {/* Dutton Logos */}
-              <div className="flex items-center gap-3 ml-4">
-                <img 
-                  src="/dutton/Dutton_auto.png" 
-                  alt="Dutton Automotive" 
-                  className="h-8 w-auto object-contain"
-                />
-              </div>
             </div>
 
             {/* Desktop Navigation */}
@@ -77,17 +88,23 @@ const Header = () => {
                 Home
               </button>
               <button 
-                onClick={() => scrollToSection('#about')}
+                onClick={() => navigate('/about')}
                 className="text-slate-300 hover:text-white transition-colors cursor-pointer"
               >
                 About
               </button>
-              <button 
-                onClick={() => scrollToSection('#services')}
-                className="text-slate-300 hover:text-white transition-colors cursor-pointer"
+              
+              {/* Services with Hover */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setIsServicesHovered(true)}
+                onMouseLeave={() => setIsServicesHovered(false)}
               >
-                Services
-              </button>
+                <button className="text-slate-300 hover:text-white transition-colors cursor-pointer">
+                  Services
+                </button>
+              </div>
+              
               <button 
                 onClick={() => scrollToSection('#contact')}
                 className="text-slate-300 hover:text-white transition-colors cursor-pointer"
@@ -125,6 +142,73 @@ const Header = () => {
             </button>
           </div>
 
+          {/* Services Sub-Header - Slides down */}
+          <div 
+            className={`absolute top-full left-0 right-0 z-40 bg-slate-800/95 backdrop-blur-md border-b border-slate-700 transition-all duration-300 ease-in-out overflow-hidden shadow-lg ${
+              isServicesHovered ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            }`}
+            onMouseEnter={() => setIsServicesHovered(true)}
+            onMouseLeave={() => setIsServicesHovered(false)}
+          >
+            <div className="container mx-auto px-6 py-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {services.map((service, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      navigate(service.path);
+                      setIsServicesHovered(false);
+                    }}
+                    className="text-left p-4 rounded-lg bg-slate-700/50 hover:bg-slate-700 transition-all duration-200 border border-slate-600 hover:border-slate-500 group"
+                  >
+                    <div className="flex items-start space-x-3">
+                      <div className="bg-slate-600 p-2 rounded-lg group-hover:bg-slate-500 transition-colors">
+                        <service.icon className="w-5 h-5 text-slate-300 group-hover:text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-white text-sm mb-1 group-hover:text-blue-300 transition-colors">
+                          {service.name}
+                        </h3>
+                        <p className="text-slate-400 text-xs leading-tight group-hover:text-slate-300 transition-colors">
+                          {service.description}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+              
+              {/* Call to Action */}
+              <div className="mt-6 pt-6 border-t border-slate-600 text-center">
+                <p className="text-slate-300 text-sm mb-4">Need help choosing the right service?</p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      handlePhoneCall();
+                      setIsServicesHovered(false);
+                    }}
+                    className="border-slate-600 text-slate-300 hover:bg-slate-700 hover:text-white bg-transparent"
+                  >
+                    <Phone className="mr-2 h-4 w-4" />
+                    Call (03) 9467 6328
+                  </Button>
+                  <Button 
+                    size="sm"
+                    onClick={() => {
+                      setIsBookingModalOpen(true);
+                      setIsServicesHovered(false);
+                    }}
+                    className="bg-white text-slate-900 hover:bg-slate-100 font-semibold"
+                  >
+                    Book Service
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="lg:hidden mt-4 py-4 border-t border-slate-700">
@@ -136,17 +220,35 @@ const Header = () => {
                   Home
                 </button>
                 <button 
-                  onClick={() => scrollToSection('#about')}
+                  onClick={() => {
+                    navigate('/about');
+                    setIsMenuOpen(false);
+                  }}
                   className="text-slate-300 hover:text-white transition-colors text-left cursor-pointer"
                 >
                   About
                 </button>
-                <button 
-                  onClick={() => scrollToSection('#services')}
-                  className="text-slate-300 hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Services
-                </button>
+                
+                {/* Mobile Services */}
+                <div className="space-y-2">
+                  <div className="text-slate-300 font-medium text-left pl-2">Services</div>
+                  <div className="pl-4 space-y-2">
+                    {services.map((service, index) => (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          navigate(service.path);
+                          setIsMenuOpen(false);
+                        }}
+                        className="flex items-center space-x-3 text-slate-400 hover:text-white transition-colors text-left cursor-pointer w-full text-sm p-2 rounded hover:bg-slate-700/50"
+                      >
+                        <service.icon className="w-4 h-4 flex-shrink-0" />
+                        <span>{service.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
                 <button 
                   onClick={() => scrollToSection('#contact')}
                   className="text-slate-300 hover:text-white transition-colors text-left cursor-pointer"
