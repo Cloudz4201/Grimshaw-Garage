@@ -66,6 +66,7 @@ const LogbookService = () => {
         keywords="logbook service, warranty service, manufacturer service, genuine parts, vehicle warranty, automotive logbook, car service"
         canonicalUrl={window.location.href}
         schema={schema}
+        ogImage="/og-image.png"
       />
       
       <Header />

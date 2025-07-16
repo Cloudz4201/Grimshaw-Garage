@@ -65,17 +65,20 @@ const Header = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 py-4">
+          <div className="flex items-center justify-between min-h-[56px]">
             {/* Logo */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-shrink-0">
               <button 
                 onClick={handleHomeClick} 
-                className="text-2xl font-bold text-white hover:text-slate-200 transition-colors cursor-pointer"
+                className="flex items-center hover:opacity-80 transition-opacity cursor-pointer"
                 aria-label="Go to homepage"
               >
-                GRIMSHAW
-                <span className="text-slate-400 block text-xs font-normal tracking-wider">AUTOMOTIVE</span>
+                <img 
+                  src="/logo.png" 
+                  alt="Grimshaw Automotive Logo"
+                  className="h-10 sm:h-12 w-auto object-contain"
+                />
               </button>
             </div>
 
@@ -135,7 +138,7 @@ const Header = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden text-white"
+              className="lg:hidden text-white p-2 -mr-2 flex-shrink-0"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}

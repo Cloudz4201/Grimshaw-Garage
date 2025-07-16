@@ -90,6 +90,7 @@ const BrakeSuspension = () => {
         keywords="brake service, suspension repair, brake pads, shock absorbers, brake inspection, vehicle safety, brake replacement"
         canonicalUrl={window.location.href}
         schema={schema}
+        ogImage="/og-image.png"
       />
       
       <Header />

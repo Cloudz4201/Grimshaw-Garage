@@ -9,11 +9,20 @@ import Contact from "@/components/Contact";
 import FindUs from "@/components/FindUs";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import SEOHead from "@/components/SEOHead";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-slate-900">
-      <Header />
+    <>
+      <SEOHead 
+        title="Grimshaw Automotive - European Performance Specialists"
+        description="Premium automotive servicing, repairs, and Porsche retrofitting in Bundoora. Dealership-level expertise with transparent, friendly care for all makes and models."
+        keywords="automotive service, car repair, European cars, Porsche retrofit, vehicle servicing, Bundoora mechanic, BMW service, Mercedes repair, Audi service"
+        ogImage="/og-image.png"
+      />
+      
+      <div className="min-h-screen bg-slate-900">
+        <Header />
       <section id="hero">
         <Hero />
       </section>
@@ -27,9 +36,10 @@ const Index = () => {
       <Testimonials />
       <Contact />
       <FindUs />
-      <Footer />
-      <FloatingCTA />
-    </div>
+        <Footer />
+        <FloatingCTA />
+      </div>
+    </>
   );
 };
 

@@ -67,6 +67,7 @@ const VehicleServicing = () => {
         keywords="vehicle servicing, car service, auto maintenance, oil change, brake inspection, vehicle inspection, automotive service"
         canonicalUrl={window.location.href}
         schema={schema}
+        ogImage="/og-image.png"
       />
       
       <Header />

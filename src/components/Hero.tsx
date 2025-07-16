@@ -44,16 +44,12 @@ const Hero = () => {
         {/* Content */}
         <div className="relative z-10 container mx-auto px-6 py-20 lg:py-32 pt-32 w-full max-w-full">
           <div className="max-w-4xl w-full">
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight break-words">
-              <span className="block text-white">GRIMSHAW</span>
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight break-words">
+              <span className="block text-white">Precision. Performance.</span>
               <span className="block bg-gradient-to-r from-slate-300 to-slate-100 bg-clip-text text-transparent">
-                AUTOMOTIVE
+                Peace of Mind.
               </span>
             </h1>
-            
-            <p className="text-2xl lg:text-3xl font-light mb-4 text-slate-300 break-words">
-              Precision. Performance. Peace of Mind.
-            </p>
             
             <p className="text-lg lg:text-xl mb-12 text-slate-400 max-w-2xl leading-relaxed break-words">
               Premium European performance expertise meets everyday reliability. 

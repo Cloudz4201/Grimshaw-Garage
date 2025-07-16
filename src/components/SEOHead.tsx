@@ -6,9 +6,10 @@ interface SEOHeadProps {
   keywords?: string;
   canonicalUrl?: string;
   schema?: object;
+  ogImage?: string;
 }
 
-const SEOHead = ({ title, description, keywords, canonicalUrl, schema }: SEOHeadProps) => {
+const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }: SEOHeadProps) => {
   useEffect(() => {
     // Set document title
     document.title = `${title} | Grimshaw Garage - Professional Auto Services`;
@@ -53,6 +54,60 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema }: SEOHead
       document.head.appendChild(ogType);
     }
 
+    // Set Open Graph image
+    const imageUrl = ogImage || '/og-image.png';
+    const fullImageUrl = window.location.origin + imageUrl;
+    
+    const ogImageMeta = document.querySelector('meta[property="og:image"]') || document.createElement('meta');
+    ogImageMeta.setAttribute('property', 'og:image');
+    ogImageMeta.setAttribute('content', fullImageUrl);
+    if (!document.querySelector('meta[property="og:image"]')) {
+      document.head.appendChild(ogImageMeta);
+    }
+
+    const ogImageWidth = document.querySelector('meta[property="og:image:width"]') || document.createElement('meta');
+    ogImageWidth.setAttribute('property', 'og:image:width');
+    ogImageWidth.setAttribute('content', '1200');
+    if (!document.querySelector('meta[property="og:image:width"]')) {
+      document.head.appendChild(ogImageWidth);
+    }
+
+    const ogImageHeight = document.querySelector('meta[property="og:image:height"]') || document.createElement('meta');
+    ogImageHeight.setAttribute('property', 'og:image:height');
+    ogImageHeight.setAttribute('content', '630');
+    if (!document.querySelector('meta[property="og:image:height"]')) {
+      document.head.appendChild(ogImageHeight);
+    }
+
+    // Twitter Card meta tags
+    const twitterCard = document.querySelector('meta[name="twitter:card"]') || document.createElement('meta');
+    twitterCard.setAttribute('name', 'twitter:card');
+    twitterCard.setAttribute('content', 'summary_large_image');
+    if (!document.querySelector('meta[name="twitter:card"]')) {
+      document.head.appendChild(twitterCard);
+    }
+
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]') || document.createElement('meta');
+    twitterTitle.setAttribute('name', 'twitter:title');
+    twitterTitle.setAttribute('content', title);
+    if (!document.querySelector('meta[name="twitter:title"]')) {
+      document.head.appendChild(twitterTitle);
+    }
+
+    const twitterDescription = document.querySelector('meta[name="twitter:description"]') || document.createElement('meta');
+    twitterDescription.setAttribute('name', 'twitter:description');
+    twitterDescription.setAttribute('content', description);
+    if (!document.querySelector('meta[name="twitter:description"]')) {
+      document.head.appendChild(twitterDescription);
+    }
+
+    const twitterImage = document.querySelector('meta[name="twitter:image"]') || document.createElement('meta');
+    twitterImage.setAttribute('name', 'twitter:image');
+    twitterImage.setAttribute('content', fullImageUrl);
+    if (!document.querySelector('meta[name="twitter:image"]')) {
+      document.head.appendChild(twitterImage);
+    }
+
     // Set canonical URL
     if (canonicalUrl) {
       const canonical = document.querySelector('link[rel="canonical"]') || document.createElement('link');
@@ -74,7 +129,7 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema }: SEOHead
         document.head.removeChild(scriptTag);
       };
     }
-  }, [title, description, keywords, canonicalUrl, schema]);
+  }, [title, description, keywords, canonicalUrl, schema, ogImage]);
 
   return null;
 };

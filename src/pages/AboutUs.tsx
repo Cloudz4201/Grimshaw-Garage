@@ -33,6 +33,7 @@ const AboutUs = () => {
         title="About Us - Grimshaw Automotive"
         description="Learn about Grimshaw Automotive Bundoora - established in 1992, specializing in European, prestige & general automotive repairs. Experienced mechanics, honest service, dealer-level quality."
         keywords="about Grimshaw Automotive, Bundoora mechanics, European car service, prestige vehicle repairs, automotive workshop Melbourne"
+        ogImage="/og-image.png"
       />
       
       <Header />
