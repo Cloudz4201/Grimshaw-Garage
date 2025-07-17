@@ -37,89 +37,84 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden w-full max-w-full">
         {/* Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat max-w-full"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1580654712603-eb43273aff33?w=2560&q=80')`
           }}
         />
         
         {/* Background overlays */}
-        <div className="absolute inset-0 bg-black/60">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30"></div>
+        <div className="absolute inset-0 bg-black/60 max-w-full">
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30 max-w-full"></div>
         </div>
         
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 pt-24 sm:pt-28 lg:pt-32 min-h-screen flex items-center">
-          <div className="w-full max-w-5xl">
-            {/* Main heading with responsive typography */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+        <div className="relative z-10 container mx-auto px-6 py-20 lg:py-32 pt-32 w-full max-w-full">
+          <div className="max-w-4xl w-full">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight break-words">
               <span className="block text-white">Precision. Performance.</span>
-              <span className="block bg-gradient-to-r from-slate-300 to-slate-100 bg-clip-text text-transparent mt-2">
+              <span className="block bg-gradient-to-r from-slate-300 to-slate-100 bg-clip-text text-transparent">
                 Peace of Mind.
               </span>
             </h1>
             
-            {/* Subheading with responsive text */}
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-10 lg:mb-12 text-slate-300 max-w-3xl leading-relaxed">
+            <p className="text-lg lg:text-xl mb-12 text-slate-400 max-w-2xl leading-relaxed break-words">
               Premium European performance expertise meets everyday reliability. 
-              Specializing in high-end Euro vehicles with dealership-level care for <strong className="text-white">every make and model</strong>.
+              Specializing in high-end Euro vehicles with dealership-level care for <strong>every make and model</strong>.
             </p>
             
-            {/* Responsive button layout */}
+            {/* Updated button layout for 4 buttons */}
             <div className="w-full space-y-4">
-              {/* Primary CTA buttons - Stack on mobile, side-by-side on larger screens */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Primary CTA buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 w-full">
                 <Button 
                   size="lg" 
                   onClick={() => setIsBookingModalOpen(true)}
-                  className="bg-white text-slate-900 hover:bg-slate-100 text-base sm:text-lg px-6 py-4 sm:px-8 sm:py-6 rounded-xl font-semibold shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer w-full min-h-[48px]"
+                  className="bg-white text-slate-900 hover:bg-slate-100 text-lg px-8 py-6 rounded-xl font-semibold shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer w-full sm:flex-1"
                 >
-                  <Phone className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <Phone className="mr-2 h-5 w-5" />
                   Book Service Today
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg"
                   onClick={scrollToDigitalRecords}
-                  className="border-white/50 text-white hover:bg-white hover:text-slate-900 backdrop-blur-sm text-base sm:text-lg px-6 py-4 sm:px-8 sm:py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent w-full min-h-[48px]"
+                  className="border-white/50 text-white hover:bg-white hover:text-slate-900 backdrop-blur-sm text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent w-full sm:flex-1"
                 >
-                  <MessageCircle className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  <span className="hidden sm:inline">Digital Service Updating</span>
-                  <span className="sm:hidden">Digital Services</span>
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  Digital Service Updating
                 </Button>
               </div>
               
               {/* Secondary service buttons */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 w-full">
                 <Button 
                   variant="outline" 
                   size="lg"
                   onClick={handleElectricServicing}
-                  className="border-blue-500/50 text-blue-300 hover:bg-blue-600 hover:text-white backdrop-blur-sm text-base sm:text-lg px-6 py-4 sm:px-8 sm:py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent w-full min-h-[48px]"
+                  className="border-blue-500/50 text-blue-300 hover:bg-blue-600 hover:text-white backdrop-blur-sm text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent w-full sm:flex-1"
                 >
-                  <Zap className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  <span className="hidden sm:inline">Electric Car Servicing</span>
-                  <span className="sm:hidden">EV Service</span>
+                  <Zap className="mr-2 h-5 w-5" />
+                  Electric Car Servicing
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg"
                   onClick={handlePorscheRetrofitting}
-                  className="border-orange-500/50 text-orange-300 hover:bg-orange-600 hover:text-white backdrop-blur-sm text-base sm:text-lg px-6 py-4 sm:px-8 sm:py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent w-full min-h-[48px]"
+                  className="border-orange-500/50 text-orange-300 hover:bg-orange-600 hover:text-white backdrop-blur-sm text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent w-full sm:flex-1"
                 >
-                  <Wrench className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  <span className="hidden sm:inline">Porsche Retrofitting</span>
-                  <span className="sm:hidden">Porsche Retrofit</span>
+                  <Wrench className="mr-2 h-5 w-5" />
+                  Porsche Retrofitting
                 </Button>
               </div>
             </div>
           </div>
         </div>
         
-        {/* Floating elements - Hidden on mobile for cleaner look */}
+        {/* Floating elements */}
         <div className="absolute top-20 right-20 w-32 h-32 bg-white/5 rounded-full blur-xl hidden lg:block"></div>
         <div className="absolute bottom-40 right-40 w-20 h-20 bg-white/5 rounded-full blur-lg hidden lg:block"></div>
       </section>
