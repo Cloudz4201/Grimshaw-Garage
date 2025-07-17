@@ -30,6 +30,7 @@ import PerformanceTuning from "./pages/PerformanceTuning";
 import CustomExhausts from "./pages/CustomExhausts";
 import ElectricVehicleServicing from "./pages/ElectricVehicleServicing";
 import PorscheRetrofitting from "./pages/PorscheRetrofitting";
+import DigitalServices from "./pages/DigitalServices";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => (
           <Route path="/air-conditioning" element={<AirConditioning />} />
           <Route path="/performance-tuning" element={<PerformanceTuning />} />
           <Route path="/custom-exhausts" element={<CustomExhausts />} />
+          <Route path="/digital-services" element={<DigitalServices />} />
           <Route path="/electric-vehicle-servicing" element={<ElectricVehicleServicing />} />
           <Route path="/porsche-retrofitting" element={<PorscheRetrofitting />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />

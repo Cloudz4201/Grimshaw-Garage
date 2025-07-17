@@ -11,7 +11,10 @@ import {
   Disc, 
   Snowflake, 
   Zap, 
-  Volume2 
+  Volume2,
+  Monitor,
+  Settings,
+  Battery
 } from "lucide-react";
 import BookingModal from "./BookingModal";
 
@@ -60,6 +63,9 @@ const Header = () => {
     { name: "Air Conditioning", icon: Snowflake, path: "/air-conditioning", description: "A/C servicing and repairs" },
     { name: "Performance Tuning", icon: Zap, path: "/performance-tuning", description: "ECU remapping and performance upgrades" },
     { name: "Custom Exhausts", icon: Volume2, path: "/custom-exhausts", description: "Custom exhaust design and fabrication" },
+    { name: "Digital Services", icon: Monitor, path: "/digital-services", description: "Technology upgrades and digital solutions" },
+    { name: "Porsche Retrofitting", icon: Settings, path: "/porsche-retrofitting", description: "Factory-level Porsche upgrades and retrofits" },
+    { name: "Electric Vehicle Servicing", icon: Battery, path: "/electric-vehicle-servicing", description: "Expert EV and hybrid vehicle service" },
   ];
 
   return (

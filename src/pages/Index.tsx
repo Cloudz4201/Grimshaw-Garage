@@ -244,6 +244,14 @@ const Index = () => {
             "name": "Logbook Service",
             "description": "Manufacturer-compliant logbook servicing to maintain your warranty"
           }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Digital Services",
+            "description": "Technology upgrades, infotainment systems, and digital automotive solutions"
+          }
         }
       ]
     },
