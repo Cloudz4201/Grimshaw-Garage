@@ -56,6 +56,7 @@ const CarBrands = () => {
                   src={brand.image} 
                   alt={`${brand.name} logo`}
                   className="w-24 h-24 object-contain"
+                  style={brand.name === "Mercedes-Benz" ? { transform: 'rotate(180deg)' } : {}}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';

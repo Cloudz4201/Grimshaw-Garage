@@ -104,8 +104,9 @@ const Mercedes = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20">
                 <img 
                   src="/cars/MERCEDES.png" 
-                  alt="Mercedes-Benz Logo"
-                  className="w-64 h-64 object-contain filter drop-shadow-2xl"
+                  alt="Mercedes-Benz logo"
+                  className="w-32 h-32 object-contain"
+                  style={{ transform: 'rotate(180deg)' }}
                 />
               </div>
             </div>
