@@ -111,10 +111,30 @@ const FindUs = () => {
                   <p>• Thomastown</p>
                   <p>• Preston</p>
                   <p>• Reservoir</p>
-                  <p>• Heidelberg</p>
+                  <p>• Fawkner</p>
+                  <p>• Brunswick</p>
+                  <p>• Kew</p>
+                  <p>• Hawthorn</p>
+                  <p>• Balwyn</p>
+                  <p>• Box Hill</p>
+                  <p>• Surrey Hills</p>
+                  <p>• Blackburn</p>
+                  <p>• Ringwood</p>
+                  <p>• Ringwood North</p>
+                  <p>• Croydon</p>
+                  <p>• Croydon North</p>
+                  <p>• Mooroolbark</p>
+                  <p>• Kilsyth</p>
+                  <p>• Montrose</p>
+                  <p>• Epping</p>
+                  <p>• South Morang</p>
+                  <p>• Rosanna</p>
+                  <p>• Viewbank</p>
                   <p>• Macleod</p>
-                  <p>• Greensborough</p>
-                  <p>• Watsonia</p>
+                  <p>• Heidelberg</p>
+                  <p>• Ivanhoe</p>
+                  <p>• Bulleen</p>
+                  <p>• Doncaster</p>
                 </div>
               </div>
             </div>

@@ -12,7 +12,12 @@ interface SEOHeadProps {
 const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }: SEOHeadProps) => {
   useEffect(() => {
     // Set document title
-    document.title = `${title} | Grimshaw Garage - Professional Auto Services`;
+    document.title = `${title} | Grimshaw Automotive - Professional Auto Services`;
+    
+    // Enhanced suburb targeting keywords
+    const baseKeywords = keywords || '';
+    const suburbKeywords = 'Bundoora, Mill Park, Lalor, Thomastown, Preston, Reservoir, Fawkner, Brunswick, Kew, Hawthorn, Balwyn, Box Hill, Surrey Hills, Blackburn, Ringwood, Ringwood North, Croydon, Croydon North, Mooroolbark, Kilsyth, Montrose, Epping, South Morang, Rosanna, Viewbank, Macleod, Heidelberg, Ivanhoe, Bulleen, Doncaster, automotive service, car repair, European car service, BMW service, Mercedes service, Porsche service, Audi service, mechanic near me';
+    const combinedKeywords = baseKeywords ? `${baseKeywords}, ${suburbKeywords}` : suburbKeywords;
     
     // Set meta description
     const metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta');
@@ -22,20 +27,18 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
       document.head.appendChild(metaDescription);
     }
 
-    // Set meta keywords
-    if (keywords) {
-      const metaKeywords = document.querySelector('meta[name="keywords"]') || document.createElement('meta');
-      metaKeywords.setAttribute('name', 'keywords');
-      metaKeywords.setAttribute('content', keywords);
-      if (!document.querySelector('meta[name="keywords"]')) {
-        document.head.appendChild(metaKeywords);
-      }
+    // Set meta keywords with enhanced suburb targeting
+    const metaKeywords = document.querySelector('meta[name="keywords"]') || document.createElement('meta');
+    metaKeywords.setAttribute('name', 'keywords');
+    metaKeywords.setAttribute('content', combinedKeywords);
+    if (!document.querySelector('meta[name="keywords"]')) {
+      document.head.appendChild(metaKeywords);
     }
 
     // Set Open Graph tags
     const ogTitle = document.querySelector('meta[property="og:title"]') || document.createElement('meta');
     ogTitle.setAttribute('property', 'og:title');
-    ogTitle.setAttribute('content', title);
+    ogTitle.setAttribute('content', `${title} | Grimshaw Automotive`);
     if (!document.querySelector('meta[property="og:title"]')) {
       document.head.appendChild(ogTitle);
     }
@@ -54,8 +57,15 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
       document.head.appendChild(ogType);
     }
 
-    // Set Open Graph image
-    const imageUrl = ogImage || '/og-image.png';
+    const ogUrl = document.querySelector('meta[property="og:url"]') || document.createElement('meta');
+    ogUrl.setAttribute('property', 'og:url');
+    ogUrl.setAttribute('content', window.location.href);
+    if (!document.querySelector('meta[property="og:url"]')) {
+      document.head.appendChild(ogUrl);
+    }
+
+    // Set Open Graph image - use logo.png as default for social media previews
+    const imageUrl = ogImage || '/logo.png';
     const fullImageUrl = window.location.origin + imageUrl;
     
     const ogImageMeta = document.querySelector('meta[property="og:image"]') || document.createElement('meta');
@@ -63,6 +73,13 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
     ogImageMeta.setAttribute('content', fullImageUrl);
     if (!document.querySelector('meta[property="og:image"]')) {
       document.head.appendChild(ogImageMeta);
+    }
+
+    const ogImageSecure = document.querySelector('meta[property="og:image:secure_url"]') || document.createElement('meta');
+    ogImageSecure.setAttribute('property', 'og:image:secure_url');
+    ogImageSecure.setAttribute('content', fullImageUrl);
+    if (!document.querySelector('meta[property="og:image:secure_url"]')) {
+      document.head.appendChild(ogImageSecure);
     }
 
     const ogImageWidth = document.querySelector('meta[property="og:image:width"]') || document.createElement('meta');
@@ -79,7 +96,14 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
       document.head.appendChild(ogImageHeight);
     }
 
-    // Twitter Card meta tags
+    const ogImageAlt = document.querySelector('meta[property="og:image:alt"]') || document.createElement('meta');
+    ogImageAlt.setAttribute('property', 'og:image:alt');
+    ogImageAlt.setAttribute('content', 'Grimshaw Automotive - Premium Auto Service in Melbourne');
+    if (!document.querySelector('meta[property="og:image:alt"]')) {
+      document.head.appendChild(ogImageAlt);
+    }
+
+    // Enhanced Twitter Card meta tags
     const twitterCard = document.querySelector('meta[name="twitter:card"]') || document.createElement('meta');
     twitterCard.setAttribute('name', 'twitter:card');
     twitterCard.setAttribute('content', 'summary_large_image');
@@ -87,9 +111,16 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
       document.head.appendChild(twitterCard);
     }
 
+    const twitterSite = document.querySelector('meta[name="twitter:site"]') || document.createElement('meta');
+    twitterSite.setAttribute('name', 'twitter:site');
+    twitterSite.setAttribute('content', '@GrimshawAuto');
+    if (!document.querySelector('meta[name="twitter:site"]')) {
+      document.head.appendChild(twitterSite);
+    }
+
     const twitterTitle = document.querySelector('meta[name="twitter:title"]') || document.createElement('meta');
     twitterTitle.setAttribute('name', 'twitter:title');
-    twitterTitle.setAttribute('content', title);
+    twitterTitle.setAttribute('content', `${title} | Grimshaw Automotive`);
     if (!document.querySelector('meta[name="twitter:title"]')) {
       document.head.appendChild(twitterTitle);
     }
@@ -106,6 +137,13 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
     twitterImage.setAttribute('content', fullImageUrl);
     if (!document.querySelector('meta[name="twitter:image"]')) {
       document.head.appendChild(twitterImage);
+    }
+
+    const twitterImageAlt = document.querySelector('meta[name="twitter:image:alt"]') || document.createElement('meta');
+    twitterImageAlt.setAttribute('name', 'twitter:image:alt');
+    twitterImageAlt.setAttribute('content', 'Grimshaw Automotive - Premium Auto Service in Melbourne');
+    if (!document.querySelector('meta[name="twitter:image:alt"]')) {
+      document.head.appendChild(twitterImageAlt);
     }
 
     // Set canonical URL

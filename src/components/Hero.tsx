@@ -1,11 +1,13 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle, Zap, Wrench } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import BookingModal from "./BookingModal";
 
 const Hero = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const scrollToContact = () => {
     const contactSection = document.querySelector('#contact');
@@ -19,6 +21,14 @@ const Hero = () => {
     if (digitalRecordsSection) {
       digitalRecordsSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleElectricServicing = () => {
+    navigate('/electric-vehicle-servicing');
+  };
+
+  const handlePorscheRetrofitting = () => {
+    navigate('/porsche-retrofitting');
   };
 
   const handlePhoneCall = () => {
@@ -56,24 +66,50 @@ const Hero = () => {
               Specializing in high-end Euro vehicles with dealership-level care for <strong>every make and model</strong>.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 w-full">
-              <Button 
-                size="lg" 
-                onClick={() => setIsBookingModalOpen(true)}
-                className="bg-white text-slate-900 hover:bg-slate-100 text-lg px-8 py-6 rounded-xl font-semibold shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer w-full sm:w-auto"
-              >
-                <Phone className="mr-2 h-5 w-5" />
-                Book Service Today
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                onClick={scrollToDigitalRecords}
-                className="border-white/50 text-white hover:bg-white hover:text-slate-900 backdrop-blur-sm text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent w-full sm:w-auto"
-              >
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Digital Service Updating
-              </Button>
+            {/* Updated button layout for 4 buttons */}
+            <div className="w-full space-y-4">
+              {/* Primary CTA buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 w-full">
+                <Button 
+                  size="lg" 
+                  onClick={() => setIsBookingModalOpen(true)}
+                  className="bg-white text-slate-900 hover:bg-slate-100 text-lg px-8 py-6 rounded-xl font-semibold shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer w-full sm:flex-1"
+                >
+                  <Phone className="mr-2 h-5 w-5" />
+                  Book Service Today
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  onClick={scrollToDigitalRecords}
+                  className="border-white/50 text-white hover:bg-white hover:text-slate-900 backdrop-blur-sm text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent w-full sm:flex-1"
+                >
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  Digital Service Updating
+                </Button>
+              </div>
+              
+              {/* Secondary service buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 w-full">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  onClick={handleElectricServicing}
+                  className="border-blue-500/50 text-blue-300 hover:bg-blue-600 hover:text-white backdrop-blur-sm text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent w-full sm:flex-1"
+                >
+                  <Zap className="mr-2 h-5 w-5" />
+                  Electric Car Servicing
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  onClick={handlePorscheRetrofitting}
+                  className="border-orange-500/50 text-orange-300 hover:bg-orange-600 hover:text-white backdrop-blur-sm text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 cursor-pointer bg-transparent w-full sm:flex-1"
+                >
+                  <Wrench className="mr-2 h-5 w-5" />
+                  Porsche Retrofitting
+                </Button>
+              </div>
             </div>
           </div>
         </div>

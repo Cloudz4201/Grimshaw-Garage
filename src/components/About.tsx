@@ -8,8 +8,12 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div data-aos="fade-right">
-            <div className="inline-block bg-slate-700 px-4 py-2 rounded-full text-sm font-medium mb-6 text-slate-300">
-              About Grimshaw Automotive
+            <div className="inline-flex items-center bg-slate-700 px-4 py-2 rounded-full text-sm font-medium mb-6 text-slate-300">
+              <img 
+                src="/logo.png" 
+                alt="Grimshaw Automotive Logo"
+                className="h-6 w-auto object-contain"
+              />
             </div>
             
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">

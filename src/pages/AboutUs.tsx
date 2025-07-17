@@ -42,8 +42,12 @@ const AboutUs = () => {
       <section className="pt-24 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-              About Grimshaw Automotive
+            <div className="inline-flex items-center bg-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <img 
+                src="/logo.png" 
+                alt="Grimshaw Automotive Logo"
+                className="h-6 w-auto object-contain"
+              />
             </div>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
               Proudly Independent,

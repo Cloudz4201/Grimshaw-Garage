@@ -2,19 +2,54 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://grimshawgarage.com.au/sitemap.xml
+Sitemap: https://grimshawautomotive.com.au/sitemap.xml
 
-# Block crawling of development/admin areas if any exist
+# Block crawling of development/admin areas and sensitive files
 Disallow: /admin/
 Disallow: /.env
 Disallow: /api/internal/
+Disallow: /_next/
+Disallow: /src/
+Disallow: /node_modules/
 
-# Allow crawling of all public content
+# Allow crawling of all public content and services
+Allow: /
+Allow: /about
 Allow: /vehicle-servicing
 Allow: /logbook-service
 Allow: /diagnostics
 Allow: /brake-suspension
 Allow: /air-conditioning
+Allow: /performance-tuning
+Allow: /custom-exhausts
 
-# Crawl delay (optional - adjust based on server capacity)
+# Allow crawling of car brand pages
+Allow: /porsche
+Allow: /bmw
+Allow: /mercedes
+Allow: /audi
+Allow: /ferrari
+Allow: /lamborghini
+Allow: /bentley
+Allow: /mclaren
+Allow: /jaguar
+Allow: /land-rover
+Allow: /volkswagen
+Allow: /maserati
+
+# Allow legal pages
+Allow: /privacy-policy
+Allow: /terms-of-service
+
+# Allow static assets
+Allow: /logo.png
+Allow: /og-image.png
+Allow: /favicon.ico
+Allow: /cars/
+Allow: /dutton/
+
+# Crawl delay for respectful crawling
 Crawl-delay: 1
+
+# Host preference (remove www if applicable)
+Host: grimshawautomotive.com.au

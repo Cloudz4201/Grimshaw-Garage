@@ -6,50 +6,168 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://grimshawgarage.com.au/</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://grimshawautomotive.com.au/</loc>
+    <lastmod>2024-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Vehicle Servicing -->
+  <!-- About Us -->
   <url>
-    <loc>https://grimshawgarage.com.au/vehicle-servicing</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://grimshawautomotive.com.au/about</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Main Services -->
+  <url>
+    <loc>https://grimshawautomotive.com.au/vehicle-servicing</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/logbook-service</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/diagnostics</loc>
+    <lastmod>2024-12-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Logbook Service -->
   <url>
-    <loc>https://grimshawgarage.com.au/logbook-service</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://grimshawautomotive.com.au/brake-suspension</loc>
+    <lastmod>2024-12-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Diagnostics -->
   <url>
-    <loc>https://grimshawgarage.com.au/diagnostics</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://grimshawautomotive.com.au/air-conditioning</loc>
+    <lastmod>2024-12-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Brake & Suspension -->
   <url>
-    <loc>https://grimshawgarage.com.au/brake-suspension</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://grimshawautomotive.com.au/performance-tuning</loc>
+    <lastmod>2024-12-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Air Conditioning -->
   <url>
-    <loc>https://grimshawgarage.com.au/air-conditioning</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://grimshawautomotive.com.au/custom-exhausts</loc>
+    <lastmod>2024-12-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <!-- European Car Brand Pages -->
+  <url>
+    <loc>https://grimshawautomotive.com.au/porsche</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/bmw</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/mercedes</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/audi</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/ferrari</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/lamborghini</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/bentley</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/mclaren</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/jaguar</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/land-rover</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/volkswagen</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/maserati</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://grimshawautomotive.com.au/privacy-policy</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://grimshawautomotive.com.au/terms-of-service</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset> 

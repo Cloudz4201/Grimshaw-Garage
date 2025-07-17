@@ -33,7 +33,13 @@ const Footer = () => {
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
           {/* Company Info */}
           <div className="lg:col-span-2" data-aos="fade-up">
-            <h3 className="text-2xl font-bold mb-4">GRIMSHAW AUTOMOTIVE</h3>
+            <div className="mb-4">
+              <img 
+                src="/logo.png" 
+                alt="Grimshaw Automotive Logo"
+                className="h-12 w-auto object-contain"
+              />
+            </div>
             <p className="text-slate-400 mb-6 max-w-md">
               Premium automotive servicing, repairs, and Porsche retrofitting in Bundoora. 
               Dealership-level expertise with transparent, friendly care.
