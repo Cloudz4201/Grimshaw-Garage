@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import { trackServicePageVisit, trackPhoneClick, trackBookingModalOpen } from "@/lib/analytics";
 import { 
   Phone, 
   Zap, 
@@ -21,7 +22,12 @@ import BookingModal from "@/components/BookingModal";
 const ElectricVehicleServicing = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
+  useEffect(() => {
+    trackServicePageVisit('Electric Vehicle Servicing');
+  }, []);
+
   const handlePhoneCall = () => {
+    trackPhoneClick('+61394676328', 'electric_vehicle_page');
     window.location.href = 'tel:+61394676328';
   };
 

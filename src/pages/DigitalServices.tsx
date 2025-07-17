@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import { trackServicePageVisit, trackPhoneClick, trackBookingModalOpen } from "@/lib/analytics";
 import { 
   Phone, 
   Monitor, 
@@ -22,7 +23,12 @@ import BookingModal from "@/components/BookingModal";
 const DigitalServices = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
+  useEffect(() => {
+    trackServicePageVisit('Digital Services');
+  }, []);
+
   const handlePhoneCall = () => {
+    trackPhoneClick('+61394676328', 'digital_services_page');
     window.location.href = 'tel:+61394676328';
   };
 
@@ -127,7 +133,10 @@ const DigitalServices = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   size="lg"
-                  onClick={() => setIsBookingModalOpen(true)}
+                  onClick={() => {
+                    trackBookingModalOpen('digital_services_page');
+                    setIsBookingModalOpen(true);
+                  }}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg font-semibold"
                 >
                   <Monitor className="mr-2 h-5 w-5" />

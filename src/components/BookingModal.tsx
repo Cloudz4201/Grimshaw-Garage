@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import { useEffect } from "react";
+import { trackBookingModalClose, trackFormStart, trackPhoneClick } from "@/lib/analytics";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -11,6 +12,8 @@ const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
     // Simple approach - just prevent body scroll when modal is open
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      // Track form start when modal opens
+      trackFormStart('booking_form', 'modal');
     } else {
       document.body.style.overflow = '';
     }
@@ -40,46 +43,58 @@ const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={onClose}
       />
       
-      {/* Modal - Remove fixed height and allow natural scrolling */}
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl min-h-[600px] flex flex-col my-8">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-slate-200 bg-slate-50">
+      {/* Modal - Responsive design for all screens */}
+      <div className="relative bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full sm:max-w-4xl max-h-[90vh] sm:max-h-[85vh] flex flex-col m-0 sm:m-4 animate-in slide-in-from-bottom sm:slide-in-from-bottom-0 duration-300">
+        {/* Header - Responsive padding */}
+        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-slate-200 bg-slate-50 rounded-t-2xl sm:rounded-t-2xl">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900">Book Your Service</h2>
-            <p className="text-slate-600 mt-1">Schedule your appointment with Grimshaw Automotive</p>
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Book Your Service</h2>
+            <p className="text-sm sm:text-base text-slate-600 mt-1">Schedule your appointment with Grimshaw Automotive</p>
           </div>
           <button
-            onClick={onClose}
-            className="p-2 rounded-full hover:bg-slate-200 transition-colors text-slate-600 hover:text-slate-900"
+            onClick={() => {
+              trackBookingModalClose();
+              onClose();
+            }}
+            className="p-2 rounded-full hover:bg-slate-200 transition-colors text-slate-600 hover:text-slate-900 touch-target"
+            aria-label="Close modal"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </div>
         
-        {/* Iframe Container - Remove overflow hidden and fixed height */}
-        <div className="p-0 h-[800px]">
+        {/* Iframe Container - Responsive height */}
+        <div className="flex-1 overflow-hidden">
           <iframe 
             src="https://www.mechanicdesk.com.au/online-booking/a0b2800904275477787f88e7b7f2bfe3909390dc"
             width="100%"
             height="100%"
             frameBorder="0"
-            className="w-full h-full"
+            className="w-full h-full min-h-[400px] sm:min-h-[500px]"
             title="Book Service - Grimshaw Automotive"
             loading="lazy"
+            allow="geolocation"
           />
         </div>
         
-        {/* Footer */}
-        <div className="p-4 bg-slate-50 border-t border-slate-200 text-center">
-          <p className="text-sm text-slate-600">
-            Need help? Call us directly: <a href="tel:+61394676328" className="font-semibold text-slate-900 hover:underline">(03) 9467 6328</a>
+        {/* Footer - Mobile-optimized */}
+        <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-200 text-center rounded-b-none sm:rounded-b-2xl">
+          <p className="text-xs sm:text-sm text-slate-600">
+            Need help? Call us directly: 
+            <a 
+              href="tel:+61394676328" 
+              onClick={() => trackPhoneClick('+61394676328', 'booking_modal')}
+              className="font-semibold text-slate-900 hover:underline ml-1 whitespace-nowrap"
+            >
+              (03) 9467 6328
+            </a>
           </p>
         </div>
       </div>

@@ -17,6 +17,7 @@ import {
   Battery
 } from "lucide-react";
 import BookingModal from "./BookingModal";
+import { trackPhoneClick, trackBookingModalOpen, trackNavigationClick } from "@/lib/analytics";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,6 +27,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handlePhoneCall = () => {
+    trackPhoneClick('+61394676328', 'header');
     window.location.href = 'tel:+61394676328';
   };
 
@@ -135,7 +137,10 @@ const Header = () => {
               </Button>
               <Button 
                 size="sm"
-                onClick={() => setIsBookingModalOpen(true)}
+                onClick={() => {
+                  trackBookingModalOpen('header_desktop');
+                  setIsBookingModalOpen(true);
+                }}
                 className="bg-white text-slate-900 hover:bg-slate-100 font-semibold"
               >
                 Book Service
@@ -144,8 +149,10 @@ const Header = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden text-white p-2 -mr-2 flex-shrink-0"
+              className="lg:hidden text-white p-2 -mr-2 flex-shrink-0 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-slate-800 transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -165,6 +172,7 @@ const Header = () => {
                   <button
                     key={index}
                     onClick={() => {
+                      trackNavigationClick(service.name, 'header_services_menu');
                       navigate(service.path);
                       setIsServicesHovered(false);
                     }}
@@ -206,6 +214,7 @@ const Header = () => {
                   <Button 
                     size="sm"
                     onClick={() => {
+                      trackBookingModalOpen('header_services_menu');
                       setIsBookingModalOpen(true);
                       setIsServicesHovered(false);
                     }}
@@ -276,7 +285,10 @@ const Header = () => {
                   </Button>
                   <Button 
                     size="sm"
-                    onClick={() => setIsBookingModalOpen(true)}
+                    onClick={() => {
+                      trackBookingModalOpen('header_mobile');
+                      setIsBookingModalOpen(true);
+                    }}
                     className="w-full bg-white text-slate-900 hover:bg-slate-100 font-semibold"
                   >
                     Book Service

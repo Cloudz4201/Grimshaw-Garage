@@ -9,9 +9,11 @@ import {
   Instagram,
   Linkedin
 } from "lucide-react";
+import { trackPhoneClick, trackNavigationClick } from "@/lib/analytics";
 
 const Footer = () => {
   const handlePhoneCall = (phoneNumber: string) => {
+    trackPhoneClick(phoneNumber, 'footer');
     window.location.href = `tel:${phoneNumber}`;
   };
 

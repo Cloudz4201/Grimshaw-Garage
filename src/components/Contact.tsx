@@ -8,6 +8,7 @@ import {
   Car
 } from "lucide-react";
 import BookingModal from "./BookingModal";
+import { trackPhoneClick, trackBookingModalOpen, trackNavigationClick } from "@/lib/analytics";
 
 const Contact = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);

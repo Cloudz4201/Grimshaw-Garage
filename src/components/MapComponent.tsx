@@ -10,8 +10,8 @@ const MapComponent = () => {
   // Business location - Unit 3, 30 Clements Avenue, Bundoora VIC 3083
   // Updated coordinates for more accurate location
   const businessLocation = { 
-    lat: -37.6969, 
-    lng: 145.0532 
+    lat: -37.7044991, 
+    lng: 145.0734460 
   };
 
   const businessInfo = {

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Phone, X, Calendar } from "lucide-react";
 import BookingModal from "./BookingModal";
+import { trackPhoneClick, trackBookingModalOpen, trackScrollToSection } from "@/lib/analytics";
 
 const FloatingCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,10 +20,12 @@ const FloatingCTA = () => {
   }, []);
 
   const handlePhoneCall = () => {
+    trackPhoneClick('+61394676328', 'floating_cta');
     window.location.href = 'tel:+61394676328';
   };
 
   const scrollToContact = () => {
+    trackScrollToSection('contact');
     const contactSection = document.querySelector('#contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
@@ -59,7 +62,10 @@ const FloatingCTA = () => {
             
             <div className="space-y-2">
               <Button 
-                onClick={() => setIsBookingModalOpen(true)}
+                onClick={() => {
+                  trackBookingModalOpen('floating_cta');
+                  setIsBookingModalOpen(true);
+                }}
                 className="w-full bg-white text-slate-900 hover:bg-slate-100 font-semibold"
               >
                 <Calendar className="mr-2 h-4 w-4" />
