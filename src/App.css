@@ -14,6 +14,40 @@ body {
   overflow-x: hidden;
 }
 
+/* Touch target minimum size for all interactive elements */
+button, 
+a, 
+[role="button"], 
+input[type="submit"], 
+input[type="button"], 
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure clickable cards have proper touch targets */
+.card[onclick], 
+[class*="cursor-pointer"] {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Improve text selection on mobile */
+@media (max-width: 768px) {
+  body {
+    -webkit-touch-callout: none;
+  }
+  
+  /* Allow text selection only where needed */
+  p, span, h1, h2, h3, h4, h5, h6 {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+}
+
 /* Prevent horizontal overflow from specific elements */
 section, main, header, footer {
   overflow-x: hidden;
@@ -23,6 +57,37 @@ section, main, header, footer {
 .container {
   max-width: 100%;
   overflow-x: hidden;
+}
+
+/* Responsive image handling */
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* Prevent layout jump on image load */
+img[width][height] {
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 640px) {
+  /* Ensure proper spacing on small screens */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Stack flex items on mobile */
+  .flex-col-mobile {
+    flex-direction: column !important;
+  }
+  
+  /* Full width elements on mobile */
+  .w-full-mobile {
+    width: 100% !important;
+  }
 }
 
 /* Existing logo styles */
