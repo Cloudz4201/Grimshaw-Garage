@@ -52,9 +52,12 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
     // Current page URL with correct domain
     const currentUrl = canonicalUrl || `${SITE_DOMAIN}${window.location.pathname}`;
     
-    // Image URL with correct domain  
+    // Image URL with correct domain and cache busting
     const imageUrl = ogImage || '/og-image.png';
-    const fullImageUrl = imageUrl.startsWith('http') ? imageUrl : `${SITE_DOMAIN}${imageUrl}`;
+    const cacheBustingParam = `?v=${Date.now()}`; // Force social media to re-fetch image
+    const fullImageUrl = imageUrl.startsWith('http') ? 
+      `${imageUrl}${cacheBustingParam}` : 
+      `${SITE_DOMAIN}${imageUrl}${cacheBustingParam}`;
     
     // Debug logging for development
     if (import.meta.env.DEV) {
@@ -63,7 +66,17 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
         description,
         currentUrl,
         fullImageUrl,
-        domain: SITE_DOMAIN
+        domain: SITE_DOMAIN,
+        imageWithoutCache: imageUrl.startsWith('http') ? imageUrl : `${SITE_DOMAIN}${imageUrl}`,
+        cacheBusting: 'Active - forces social media re-fetch'
+      });
+      
+      // Also log what the actual meta tags will contain
+      console.log('📱 Social Media Meta Tags:', {
+        'og:image': fullImageUrl,
+        'og:url': currentUrl,
+        'og:title': `${title} | Grimshaw Automotive`,
+        'twitter:image': fullImageUrl
       });
     }
 

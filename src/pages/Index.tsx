@@ -10,6 +10,7 @@ import FindUs from "@/components/FindUs";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import SEOHead from "@/components/SEOHead";
+import SocialSharingTest from "@/components/SocialSharingTest";
 
 const Index = () => {
   // Enhanced structured data for better SEO
@@ -283,6 +284,7 @@ const Index = () => {
       <FindUs />
         <Footer />
         <FloatingCTA />
+        <SocialSharingTest />
       </div>
     </>
   );
