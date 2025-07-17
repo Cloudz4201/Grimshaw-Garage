@@ -3,19 +3,48 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Simple scroll fix - let the body scroll naturally */
-body {
-  font-family: "Inter", sans-serif;
+/* Fix horizontal overflow and white space issues */
+html, body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  position: relative;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+/* Prevent any element from causing horizontal overflow */
 * {
   box-sizing: border-box;
+  max-width: 100vw;
+}
+
+/* Ensure root element doesn't overflow */
+#root {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Fix for absolute positioned elements */
+.fixed, [class*="absolute"] {
+  max-width: 100vw;
+}
+
+/* Container constraints */
+.container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 @layer base {
@@ -78,11 +107,16 @@ html {
 @layer base {
   * {
     @apply border-border;
-    box-sizing: border-box;
   }
   
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Ensure all sections don't overflow */
+  section, main, header, footer {
+    max-width: 100vw;
+    overflow-x: hidden;
   }
   
   /* Ensure images and media are responsive */
