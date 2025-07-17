@@ -1,59 +1,42 @@
-/* Ensure no horizontal overflow anywhere */
-* {
-  max-width: 100% !important;
-}
-
+/* Basic reset for horizontal overflow prevention */
 html {
-  overflow-x: hidden !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
+  overflow-x: hidden;
 }
 
 body {
-  overflow-x: hidden !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 #root {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
-  position: relative !important;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* Fix for sections with absolute positioning */
-section {
-  overflow-x: hidden !important;
-  position: relative !important;
-  max-width: 100vw !important;
+/* Prevent horizontal overflow from specific elements */
+section, main, header, footer {
+  overflow-x: hidden;
 }
 
-/* Fix for absolute positioned backgrounds */
-.absolute {
-  left: 0 !important;
-  right: 0 !important;
-  max-width: 100vw !important;
-}
-
-/* Container should never exceed viewport */
+/* Container width control */
 .container {
-  max-width: 100% !important;
-  width: 100% !important;
-  overflow-x: hidden !important;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
+/* Existing logo styles */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -83,15 +66,9 @@ section {
   color: #888;
 }
 
-/* Additional mobile constraints */
+/* Mobile adjustments */
 @media (max-width: 768px) {
-  #root {
-    overflow-x: hidden !important;
-    max-width: 100vw !important;
-  }
-  
   .card {
     padding: 1em;
-    max-width: 100% !important;
   }
 }

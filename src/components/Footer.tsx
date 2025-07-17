@@ -45,12 +45,24 @@ const Footer = () => {
               Dealership-level expertise with transparent, friendly care.
             </p>
             <div className="flex space-x-4">
-              <div className="bg-slate-800 p-3 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer">
+              <a 
+                href="https://www.facebook.com/profile.php?id=61578039857268"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-slate-800 p-3 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer"
+                aria-label="Visit our Facebook page"
+              >
                 <Facebook className="w-5 h-5" />
-              </div>
-              <div className="bg-slate-800 p-3 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer">
+              </a>
+              <a 
+                href="https://www.instagram.com/grimshawautomotive/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-slate-800 p-3 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer"
+                aria-label="Visit our Instagram page"
+              >
                 <Instagram className="w-5 h-5" />
-              </div>
+              </a>
               <div className="bg-slate-800 p-3 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer">
                 <Linkedin className="w-5 h-5" />
               </div>
