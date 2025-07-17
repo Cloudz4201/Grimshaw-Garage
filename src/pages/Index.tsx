@@ -263,7 +263,7 @@ const Index = () => {
         keywords="car service Melbourne, European car service, BMW service Melbourne, Mercedes service Melbourne, Audi service Melbourne, Porsche service Melbourne, electric car service, automotive repair, logbook service, Porsche retrofitting, vehicle diagnostics, brake service, air conditioning service, performance tuning, car service Eltham, car service Templestowe, car service Doncaster, car service Diamond Creek, car service Plenty"
         canonicalUrl="https://grimshawautomotive.com"
         schema={structuredData}
-        ogImage="/og-image.png"
+        ogImage="/Logo-08.png"
       />
       
       <div className="min-h-screen bg-slate-900">

@@ -17,7 +17,7 @@ import { useEffect } from 'react';
  * <SEOHead 
  *   title="Page Title"
  *   description="Page description for social sharing"
- *   ogImage="/og-image.png" // Optional, defaults to /og-image.png
+ *   ogImage="/Logo-08.png" // Optional, defaults to /Logo-08.png
  *   canonicalUrl="https://grimshawautomotive.com/page" // Optional
  * />
  * 
@@ -54,8 +54,8 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
     const currentUrl = canonicalUrl || `${SITE_DOMAIN}${window.location.pathname}`;
     
     // Image URL with correct domain and cache busting
-    const imageUrl = ogImage || '/og-image.png';
-    const versionParam = `?v=2024.1`; // Update this version when image changes
+    const imageUrl = ogImage || '/Logo-08.png';
+    const versionParam = `?v=2024.2`; // Update this version when image changes
     const fullImageUrl = imageUrl.startsWith('http') ? 
       `${imageUrl}${versionParam}` : 
       `${SITE_DOMAIN}${imageUrl}${versionParam}`;
