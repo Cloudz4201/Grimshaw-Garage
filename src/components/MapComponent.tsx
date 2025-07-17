@@ -8,9 +8,10 @@ const MapComponent = () => {
   const [error, setError] = useState<string | null>(null);
 
   // Business location - Unit 3, 30 Clements Avenue, Bundoora VIC 3083
+  // Updated coordinates for more accurate location
   const businessLocation = { 
-    lat: -37.7007, 
-    lng: 145.0575 
+    lat: -37.6969, 
+    lng: 145.0532 
   };
 
   const businessInfo = {
@@ -39,13 +40,31 @@ const MapComponent = () => {
         if (mapRef.current) {
           const map = new google.maps.Map(mapRef.current, {
             center: businessLocation,
-            zoom: 15,
+            zoom: 16, // Increased zoom for better street-level view
+            mapTypeId: 'roadmap', // Ensure roadmap view
           });
 
-          new google.maps.Marker({
+          // Create marker with custom options
+          const marker = new google.maps.Marker({
             position: businessLocation,
             map: map,
             title: businessInfo.name,
+            animation: google.maps.Animation.DROP,
+          });
+
+          // Add info window
+          const infoWindow = new google.maps.InfoWindow({
+            content: `
+              <div style="padding: 10px;">
+                <h3 style="margin: 0 0 5px 0; font-weight: bold;">${businessInfo.name}</h3>
+                <p style="margin: 0 0 5px 0;">${businessInfo.address}</p>
+                <p style="margin: 0;"><a href="tel:${businessInfo.phone}">${businessInfo.phone}</a></p>
+              </div>
+            `
+          });
+
+          marker.addListener('click', () => {
+            infoWindow.open(map, marker);
           });
 
           setIsLoaded(true);
