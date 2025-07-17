@@ -88,7 +88,7 @@ const ElectricVehicleServicing = () => {
         title="Electric & Hybrid Vehicle Servicing"
         description="Expert electric and hybrid vehicle servicing in Melbourne. Fully certified technicians for all EV and hybrid systems. Tesla, BMW, Mercedes, Audi specialists."
         keywords="electric vehicle service Melbourne, EV repair, hybrid car service, Tesla service, BMW electric service, electric car maintenance, hybrid vehicle repair, EV battery service, electric vehicle specialist"
-        canonicalUrl="https://grimshawautomotive.com.au/electric-vehicle-servicing"
+        canonicalUrl="https://grimshawautomotive.com/electric-vehicle-servicing"
       />
       
       <Header />

@@ -1,5 +1,32 @@
 import { useEffect } from 'react';
 
+/**
+ * SEOHead Component - Comprehensive Social Media & SEO Meta Tags
+ * 
+ * Features:
+ * ✅ Open Graph (Facebook, WhatsApp, LinkedIn)
+ * ✅ Twitter Cards
+ * ✅ WhatsApp Preview Support
+ * ✅ Proper Domain Configuration (.com)
+ * ✅ Structured Data (Schema.org)
+ * ✅ Mobile Optimization
+ * ✅ Search Engine Optimization
+ * 
+ * Usage:
+ * <SEOHead 
+ *   title="Page Title"
+ *   description="Page description for social sharing"
+ *   ogImage="/og-image.png" // Optional, defaults to /og-image.png
+ *   canonicalUrl="https://grimshawautomotive.com/page" // Optional
+ * />
+ * 
+ * Test Your Social Sharing:
+ * 1. Facebook: https://developers.facebook.com/tools/debug/
+ * 2. Twitter: https://cards-dev.twitter.com/validator
+ * 3. LinkedIn: https://www.linkedin.com/post-inspector/
+ * 4. WhatsApp: Send a link to yourself and check the preview
+ */
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -14,11 +41,32 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
     // Set document title
     document.title = `${title} | Grimshaw Automotive - Professional Auto Services`;
     
+    // Define the correct domain
+    const SITE_DOMAIN = 'https://grimshawautomotive.com';
+    
     // Enhanced suburb targeting keywords
     const baseKeywords = keywords || '';
-    const suburbKeywords = 'Bundoora, Mill Park, Lalor, Thomastown, Preston, Reservoir, Fawkner, Brunswick, Kew, Hawthorn, Balwyn, Box Hill, Surrey Hills, Blackburn, Ringwood, Ringwood North, Croydon, Croydon North, Mooroolbark, Kilsyth, Montrose, Epping, South Morang, Rosanna, Viewbank, Macleod, Heidelberg, Ivanhoe, Bulleen, Doncaster, automotive service, car repair, European car service, BMW service, Mercedes service, Porsche service, Audi service, mechanic near me';
+    const suburbKeywords = 'Bundoora, Eltham, Templestowe, Doncaster, Mill Park, Diamond Creek, Plenty, Kalkallo, Mickleham, Donnybrook, Whittlesea, Doreen, Lower Templestowe, Hurstbridge, Montmorency, Balwyn, Preston, Reservoir, Fawkner, Brunswick, Kew, Hawthorn, Box Hill, Surrey Hills, Blackburn, Ringwood, automotive service, car repair, European car service, BMW service, Mercedes service, Porsche service, Audi service, mechanic near me';
     const combinedKeywords = baseKeywords ? `${baseKeywords}, ${suburbKeywords}` : suburbKeywords;
     
+    // Current page URL with correct domain
+    const currentUrl = canonicalUrl || `${SITE_DOMAIN}${window.location.pathname}`;
+    
+    // Image URL with correct domain  
+    const imageUrl = ogImage || '/og-image.png';
+    const fullImageUrl = imageUrl.startsWith('http') ? imageUrl : `${SITE_DOMAIN}${imageUrl}`;
+    
+    // Debug logging for development
+    if (import.meta.env.DEV) {
+      console.log('🔍 SEO Debug Info:', {
+        title: `${title} | Grimshaw Automotive`,
+        description,
+        currentUrl,
+        fullImageUrl,
+        domain: SITE_DOMAIN
+      });
+    }
+
     // Set meta description
     const metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta');
     metaDescription.setAttribute('name', 'description');
@@ -35,7 +83,15 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
       document.head.appendChild(metaKeywords);
     }
 
-    // Set Open Graph tags
+    // Set viewport for mobile optimization
+    const viewport = document.querySelector('meta[name="viewport"]') || document.createElement('meta');
+    viewport.setAttribute('name', 'viewport');
+    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+    if (!document.querySelector('meta[name="viewport"]')) {
+      document.head.appendChild(viewport);
+    }
+
+    // ===== Open Graph Tags for Facebook, WhatsApp, LinkedIn =====
     const ogTitle = document.querySelector('meta[property="og:title"]') || document.createElement('meta');
     ogTitle.setAttribute('property', 'og:title');
     ogTitle.setAttribute('content', `${title} | Grimshaw Automotive`);
@@ -59,15 +115,26 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
 
     const ogUrl = document.querySelector('meta[property="og:url"]') || document.createElement('meta');
     ogUrl.setAttribute('property', 'og:url');
-    ogUrl.setAttribute('content', window.location.href);
+    ogUrl.setAttribute('content', currentUrl);
     if (!document.querySelector('meta[property="og:url"]')) {
       document.head.appendChild(ogUrl);
     }
 
-    // Set Open Graph image - use logo.png as default for social media previews
-    const imageUrl = ogImage || '/logo.png';
-    const fullImageUrl = window.location.origin + imageUrl;
-    
+    const ogSiteName = document.querySelector('meta[property="og:site_name"]') || document.createElement('meta');
+    ogSiteName.setAttribute('property', 'og:site_name');
+    ogSiteName.setAttribute('content', 'Grimshaw Automotive');
+    if (!document.querySelector('meta[property="og:site_name"]')) {
+      document.head.appendChild(ogSiteName);
+    }
+
+    const ogLocale = document.querySelector('meta[property="og:locale"]') || document.createElement('meta');
+    ogLocale.setAttribute('property', 'og:locale');
+    ogLocale.setAttribute('content', 'en_AU');
+    if (!document.querySelector('meta[property="og:locale"]')) {
+      document.head.appendChild(ogLocale);
+    }
+
+    // Open Graph Image tags
     const ogImageMeta = document.querySelector('meta[property="og:image"]') || document.createElement('meta');
     ogImageMeta.setAttribute('property', 'og:image');
     ogImageMeta.setAttribute('content', fullImageUrl);
@@ -103,7 +170,14 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
       document.head.appendChild(ogImageAlt);
     }
 
-    // Enhanced Twitter Card meta tags
+    const ogImageType = document.querySelector('meta[property="og:image:type"]') || document.createElement('meta');
+    ogImageType.setAttribute('property', 'og:image:type');
+    ogImageType.setAttribute('content', 'image/png');
+    if (!document.querySelector('meta[property="og:image:type"]')) {
+      document.head.appendChild(ogImageType);
+    }
+
+    // ===== Twitter Card Tags =====
     const twitterCard = document.querySelector('meta[name="twitter:card"]') || document.createElement('meta');
     twitterCard.setAttribute('name', 'twitter:card');
     twitterCard.setAttribute('content', 'summary_large_image');
@@ -116,6 +190,13 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
     twitterSite.setAttribute('content', '@GrimshawAuto');
     if (!document.querySelector('meta[name="twitter:site"]')) {
       document.head.appendChild(twitterSite);
+    }
+
+    const twitterCreator = document.querySelector('meta[name="twitter:creator"]') || document.createElement('meta');
+    twitterCreator.setAttribute('name', 'twitter:creator');
+    twitterCreator.setAttribute('content', '@GrimshawAuto');
+    if (!document.querySelector('meta[name="twitter:creator"]')) {
+      document.head.appendChild(twitterCreator);
     }
 
     const twitterTitle = document.querySelector('meta[name="twitter:title"]') || document.createElement('meta');
@@ -146,25 +227,69 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
       document.head.appendChild(twitterImageAlt);
     }
 
-    // Set canonical URL
-    if (canonicalUrl) {
-      const canonical = document.querySelector('link[rel="canonical"]') || document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      canonical.setAttribute('href', canonicalUrl);
-      if (!document.querySelector('link[rel="canonical"]')) {
-        document.head.appendChild(canonical);
-      }
+    // ===== WhatsApp specific tags =====
+    const whatsappTitle = document.querySelector('meta[property="whatsapp:title"]') || document.createElement('meta');
+    whatsappTitle.setAttribute('property', 'whatsapp:title');
+    whatsappTitle.setAttribute('content', `${title} | Grimshaw Automotive`);
+    if (!document.querySelector('meta[property="whatsapp:title"]')) {
+      document.head.appendChild(whatsappTitle);
     }
 
-    // Add structured data
+    // ===== Theme and App Tags =====
+    const themeColor = document.querySelector('meta[name="theme-color"]') || document.createElement('meta');
+    themeColor.setAttribute('name', 'theme-color');
+    themeColor.setAttribute('content', '#1e293b'); // slate-800
+    if (!document.querySelector('meta[name="theme-color"]')) {
+      document.head.appendChild(themeColor);
+    }
+
+    const msappTileColor = document.querySelector('meta[name="msapplication-TileColor"]') || document.createElement('meta');
+    msappTileColor.setAttribute('name', 'msapplication-TileColor');
+    msappTileColor.setAttribute('content', '#1e293b');
+    if (!document.querySelector('meta[name="msapplication-TileColor"]')) {
+      document.head.appendChild(msappTileColor);
+    }
+
+    // ===== Additional Meta Tags =====
+    const author = document.querySelector('meta[name="author"]') || document.createElement('meta');
+    author.setAttribute('name', 'author');
+    author.setAttribute('content', 'Grimshaw Automotive');
+    if (!document.querySelector('meta[name="author"]')) {
+      document.head.appendChild(author);
+    }
+
+    const robots = document.querySelector('meta[name="robots"]') || document.createElement('meta');
+    robots.setAttribute('name', 'robots');
+    robots.setAttribute('content', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+    if (!document.querySelector('meta[name="robots"]')) {
+      document.head.appendChild(robots);
+    }
+
+    // Set canonical URL with correct domain
+    const canonical = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+    canonical.setAttribute('rel', 'canonical');
+    canonical.setAttribute('href', currentUrl);
+    if (!document.querySelector('link[rel="canonical"]')) {
+      document.head.appendChild(canonical);
+    }
+
+    // Add structured data with correct domain
     if (schema) {
+      // Update schema URL to use correct domain
+      const updatedSchema = JSON.parse(JSON.stringify(schema));
+      if (updatedSchema.url) {
+        updatedSchema.url = updatedSchema.url.replace('grimshawautomotive.com.au', 'grimshawautomotive.com');
+      }
+      
       const scriptTag = document.createElement('script');
       scriptTag.type = 'application/ld+json';
-      scriptTag.text = JSON.stringify(schema);
+      scriptTag.text = JSON.stringify(updatedSchema);
       document.head.appendChild(scriptTag);
 
       return () => {
-        document.head.removeChild(scriptTag);
+        if (document.head.contains(scriptTag)) {
+          document.head.removeChild(scriptTag);
+        }
       };
     }
   }, [title, description, keywords, canonicalUrl, schema, ogImage]);

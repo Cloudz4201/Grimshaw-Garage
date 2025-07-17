@@ -18,7 +18,7 @@ const Index = () => {
     "@type": "AutoRepair",
     "name": "Grimshaw Automotive",
     "description": "Premium automotive servicing, repairs, and Porsche retrofitting in Melbourne. European performance specialists serving Bundoora, Mill Park, Preston, Reservoir, and surrounding suburbs.",
-    "url": "https://grimshawautomotive.com.au",
+    "url": "https://grimshawautomotive.com",
     "telephone": "+61394676328",
     "address": {
       "@type": "PostalAddress",
@@ -261,9 +261,9 @@ const Index = () => {
         title="Grimshaw Automotive - European Car Service Melbourne | BMW, Mercedes, Audi, Porsche"
         description="Premium automotive servicing in Melbourne. European performance specialists serving Bundoora, Eltham, Templestowe, Doncaster, Mill Park, Diamond Creek, Plenty, Kalkallo, Mickleham, Donnybrook, Whittlesea, Doreen, Hurstbridge, Montmorency, Preston, Reservoir, Brunswick, Kew, Hawthorn, Balwyn & surrounding suburbs. Expert BMW, Mercedes, Audi & Porsche service with electric vehicle expertise."
         keywords="car service Melbourne, European car service, BMW service Melbourne, Mercedes service Melbourne, Audi service Melbourne, Porsche service Melbourne, electric car service, automotive repair, logbook service, Porsche retrofitting, vehicle diagnostics, brake service, air conditioning service, performance tuning, car service Eltham, car service Templestowe, car service Doncaster, car service Diamond Creek, car service Plenty"
-        canonicalUrl="https://grimshawautomotive.com.au"
+        canonicalUrl="https://grimshawautomotive.com"
         schema={structuredData}
-        ogImage="/logo.png"
+        ogImage="/og-image.png"
       />
       
       <div className="min-h-screen bg-slate-900">

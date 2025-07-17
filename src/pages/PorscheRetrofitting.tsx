@@ -114,7 +114,7 @@ const PorscheRetrofitting = () => {
         title="Porsche Retrofitting Services"
         description="Professional Porsche retrofitting in Melbourne. Factory-level installation of 360° cameras, adaptive cruise control, lane assist, and premium upgrades using genuine OEM parts."
         keywords="Porsche retrofit Melbourne, Porsche 360 camera installation, Porsche adaptive cruise control, Porsche lane assist, Porsche PCM upgrade, genuine Porsche parts, Porsche modification Melbourne"
-        canonicalUrl="https://grimshawautomotive.com.au/porsche-retrofitting"
+        canonicalUrl="https://grimshawautomotive.com/porsche-retrofitting"
       />
       
       <Header />
