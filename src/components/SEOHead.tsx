@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 /**
- * SEOHead Component - Comprehensive Social Media & SEO Meta Tags
+ * SEOHead Component - Production Social Media & SEO Meta Tags
  * 
  * Features:
  * ✅ Open Graph (Facebook, WhatsApp, LinkedIn)
@@ -11,6 +11,7 @@ import { useEffect } from 'react';
  * ✅ Structured Data (Schema.org)
  * ✅ Mobile Optimization
  * ✅ Search Engine Optimization
+ * ✅ Cache Busting for Social Media
  * 
  * Usage:
  * <SEOHead 
@@ -20,11 +21,11 @@ import { useEffect } from 'react';
  *   canonicalUrl="https://grimshawautomotive.com/page" // Optional
  * />
  * 
- * Test Your Social Sharing:
+ * To force social media cache refresh:
  * 1. Facebook: https://developers.facebook.com/tools/debug/
  * 2. Twitter: https://cards-dev.twitter.com/validator
  * 3. LinkedIn: https://www.linkedin.com/post-inspector/
- * 4. WhatsApp: Send a link to yourself and check the preview
+ * 4. WhatsApp: Delete conversation and resend link
  */
 
 interface SEOHeadProps {
@@ -54,32 +55,11 @@ const SEOHead = ({ title, description, keywords, canonicalUrl, schema, ogImage }
     
     // Image URL with correct domain and cache busting
     const imageUrl = ogImage || '/og-image.png';
-    const cacheBustingParam = `?v=${Date.now()}`; // Force social media to re-fetch image
+    const versionParam = `?v=2024.1`; // Update this version when image changes
     const fullImageUrl = imageUrl.startsWith('http') ? 
-      `${imageUrl}${cacheBustingParam}` : 
-      `${SITE_DOMAIN}${imageUrl}${cacheBustingParam}`;
+      `${imageUrl}${versionParam}` : 
+      `${SITE_DOMAIN}${imageUrl}${versionParam}`;
     
-    // Debug logging for development
-    if (import.meta.env.DEV) {
-      console.log('🔍 SEO Debug Info:', {
-        title: `${title} | Grimshaw Automotive`,
-        description,
-        currentUrl,
-        fullImageUrl,
-        domain: SITE_DOMAIN,
-        imageWithoutCache: imageUrl.startsWith('http') ? imageUrl : `${SITE_DOMAIN}${imageUrl}`,
-        cacheBusting: 'Active - forces social media re-fetch'
-      });
-      
-      // Also log what the actual meta tags will contain
-      console.log('📱 Social Media Meta Tags:', {
-        'og:image': fullImageUrl,
-        'og:url': currentUrl,
-        'og:title': `${title} | Grimshaw Automotive`,
-        'twitter:image': fullImageUrl
-      });
-    }
-
     // Set meta description
     const metaDescription = document.querySelector('meta[name="description"]') || document.createElement('meta');
     metaDescription.setAttribute('name', 'description');
