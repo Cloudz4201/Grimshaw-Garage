@@ -9,13 +9,23 @@ interface BookingModalProps {
 const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      // Instead of hiding body overflow, just prevent background interaction
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${window.scrollY}px`;
+      document.body.style.width = '100%';
     } else {
-      document.body.style.overflow = 'unset';
+      // Restore normal scrolling
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
     };
   }, [isOpen]);
 
@@ -38,15 +48,15 @@ const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={onClose}
       />
       
-      {/* Modal */}
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl mx-4 h-[90vh] max-h-[800px] flex flex-col overflow-hidden">
+      {/* Modal - Remove fixed height and allow natural scrolling */}
+      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl min-h-[600px] flex flex-col my-8">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-slate-200 bg-slate-50">
           <div>
@@ -61,8 +71,8 @@ const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
           </button>
         </div>
         
-        {/* Iframe Container */}
-        <div className="flex-1 p-0 overflow-hidden">
+        {/* Iframe Container - Remove overflow hidden and fixed height */}
+        <div className="p-0 h-[800px]">
           <iframe 
             src="https://www.mechanicdesk.com.au/online-booking/a0b2800904275477787f88e7b7f2bfe3909390dc"
             width="100%"
