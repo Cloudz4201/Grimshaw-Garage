@@ -9,18 +9,20 @@ interface BookingModalProps {
 
 const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
   useEffect(() => {
-    // Simple approach - just prevent body scroll when modal is open
+    // Better scroll management using CSS classes
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      // Add class to body to prevent scroll
+      document.body.classList.add('modal-open');
       // Track form start when modal opens
       trackFormStart('booking_form', 'modal');
     } else {
-      document.body.style.overflow = '';
+      // Remove class to restore scroll
+      document.body.classList.remove('modal-open');
     }
 
     // Cleanup on unmount
     return () => {
-      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
     };
   }, [isOpen]);
 
