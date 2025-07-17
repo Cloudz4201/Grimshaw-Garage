@@ -42,11 +42,127 @@ const Index = () => {
     "areaServed": [
       {
         "@type": "Place",
+        "name": "Balwyn, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Blackburn, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Box Hill, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Brunswick, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Bulleen, VIC"
+      },
+      {
+        "@type": "Place",
         "name": "Bundoora, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Croydon, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Croydon North, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Diamond Creek, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Doncaster, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Donnybrook, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Doreen, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Eltham, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Epping, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Fawkner, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Hawthorn, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Heidelberg, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Hurstbridge, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Ivanhoe, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Kalkallo, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Kew, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Kilsyth, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Lalor, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Lower Templestowe, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Macleod, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Mickleham, VIC"
       },
       {
         "@type": "Place", 
         "name": "Mill Park, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Montmorency, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Montrose, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Mooroolbark, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Plenty, VIC"
       },
       {
         "@type": "Place",
@@ -58,59 +174,15 @@ const Index = () => {
       },
       {
         "@type": "Place",
-        "name": "Lalor, VIC"
-      },
-      {
-        "@type": "Place",
-        "name": "Thomastown, VIC"
-      },
-      {
-        "@type": "Place",
-        "name": "Fawkner, VIC"
-      },
-      {
-        "@type": "Place",
-        "name": "Brunswick, VIC"
-      },
-      {
-        "@type": "Place",
-        "name": "Kew, VIC"
-      },
-      {
-        "@type": "Place",
-        "name": "Hawthorn, VIC"
-      },
-      {
-        "@type": "Place",
-        "name": "Balwyn, VIC"
-      },
-      {
-        "@type": "Place",
-        "name": "Box Hill, VIC"
-      },
-      {
-        "@type": "Place",
-        "name": "Surrey Hills, VIC"
-      },
-      {
-        "@type": "Place",
-        "name": "Blackburn, VIC"
-      },
-      {
-        "@type": "Place",
         "name": "Ringwood, VIC"
       },
       {
         "@type": "Place",
-        "name": "Croydon, VIC"
+        "name": "Ringwood North, VIC"
       },
       {
         "@type": "Place",
-        "name": "Mooroolbark, VIC"
-      },
-      {
-        "@type": "Place",
-        "name": "Epping, VIC"
+        "name": "Rosanna, VIC"
       },
       {
         "@type": "Place",
@@ -118,15 +190,23 @@ const Index = () => {
       },
       {
         "@type": "Place",
-        "name": "Macleod, VIC"
+        "name": "Surrey Hills, VIC"
       },
       {
         "@type": "Place",
-        "name": "Heidelberg, VIC"
+        "name": "Templestowe, VIC"
       },
       {
         "@type": "Place",
-        "name": "Ivanhoe, VIC"
+        "name": "Thomastown, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Viewbank, VIC"
+      },
+      {
+        "@type": "Place",
+        "name": "Whittlesea, VIC"
       }
     ],
     "hasOfferCatalog": {
@@ -179,8 +259,8 @@ const Index = () => {
     <>
       <SEOHead 
         title="Grimshaw Automotive - European Car Service Melbourne | BMW, Mercedes, Audi, Porsche"
-        description="Premium automotive servicing in Melbourne. European performance specialists serving Bundoora, Mill Park, Preston, Reservoir, Brunswick, Kew, Hawthorn, Box Hill & surrounding suburbs. Expert BMW, Mercedes, Audi & Porsche service with electric vehicle expertise."
-        keywords="car service Melbourne, European car service, BMW service Melbourne, Mercedes service Melbourne, Audi service Melbourne, Porsche service Melbourne, electric car service, automotive repair, logbook service, Porsche retrofitting, vehicle diagnostics, brake service, air conditioning service, performance tuning"
+        description="Premium automotive servicing in Melbourne. European performance specialists serving Bundoora, Eltham, Templestowe, Doncaster, Mill Park, Diamond Creek, Plenty, Kalkallo, Mickleham, Donnybrook, Whittlesea, Doreen, Hurstbridge, Montmorency, Preston, Reservoir, Brunswick, Kew, Hawthorn, Balwyn & surrounding suburbs. Expert BMW, Mercedes, Audi & Porsche service with electric vehicle expertise."
+        keywords="car service Melbourne, European car service, BMW service Melbourne, Mercedes service Melbourne, Audi service Melbourne, Porsche service Melbourne, electric car service, automotive repair, logbook service, Porsche retrofitting, vehicle diagnostics, brake service, air conditioning service, performance tuning, car service Eltham, car service Templestowe, car service Doncaster, car service Diamond Creek, car service Plenty"
         canonicalUrl="https://grimshawautomotive.com.au"
         schema={structuredData}
         ogImage="/logo.png"

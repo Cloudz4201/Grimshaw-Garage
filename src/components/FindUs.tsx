@@ -105,36 +105,48 @@ const FindUs = () => {
               <div className="bg-slate-800 p-6 rounded-xl">
                 <h3 className="text-xl font-bold text-white mb-3">We Service These Areas</h3>
                 <div className="grid grid-cols-2 gap-2 text-slate-300 text-sm">
-                  <p>• Bundoora</p>
-                  <p>• Mill Park</p>
-                  <p>• Lalor</p>
-                  <p>• Thomastown</p>
-                  <p>• Preston</p>
-                  <p>• Reservoir</p>
-                  <p>• Fawkner</p>
-                  <p>• Brunswick</p>
-                  <p>• Kew</p>
-                  <p>• Hawthorn</p>
                   <p>• Balwyn</p>
-                  <p>• Box Hill</p>
-                  <p>• Surrey Hills</p>
                   <p>• Blackburn</p>
-                  <p>• Ringwood</p>
-                  <p>• Ringwood North</p>
+                  <p>• Box Hill</p>
+                  <p>• Brunswick</p>
+                  <p>• Bulleen</p>
+                  <p>• Bundoora</p>
                   <p>• Croydon</p>
                   <p>• Croydon North</p>
-                  <p>• Mooroolbark</p>
-                  <p>• Kilsyth</p>
-                  <p>• Montrose</p>
-                  <p>• Epping</p>
-                  <p>• South Morang</p>
-                  <p>• Rosanna</p>
-                  <p>• Viewbank</p>
-                  <p>• Macleod</p>
-                  <p>• Heidelberg</p>
-                  <p>• Ivanhoe</p>
-                  <p>• Bulleen</p>
+                  <p>• Diamond Creek</p>
                   <p>• Doncaster</p>
+                  <p>• Donnybrook</p>
+                  <p>• Doreen</p>
+                  <p>• Eltham</p>
+                  <p>• Epping</p>
+                  <p>• Fawkner</p>
+                  <p>• Hawthorn</p>
+                  <p>• Heidelberg</p>
+                  <p>• Hurstbridge</p>
+                  <p>• Ivanhoe</p>
+                  <p>• Kalkallo</p>
+                  <p>• Kew</p>
+                  <p>• Kilsyth</p>
+                  <p>• Lalor</p>
+                  <p>• Lower Templestowe</p>
+                  <p>• Macleod</p>
+                  <p>• Mickleham</p>
+                  <p>• Mill Park</p>
+                  <p>• Montmorency</p>
+                  <p>• Montrose</p>
+                  <p>• Mooroolbark</p>
+                  <p>• Plenty</p>
+                  <p>• Preston</p>
+                  <p>• Reservoir</p>
+                  <p>• Ringwood</p>
+                  <p>• Ringwood North</p>
+                  <p>• Rosanna</p>
+                  <p>• South Morang</p>
+                  <p>• Surrey Hills</p>
+                  <p>• Templestowe</p>
+                  <p>• Thomastown</p>
+                  <p>• Viewbank</p>
+                  <p>• Whittlesea</p>
                 </div>
               </div>
             </div>
