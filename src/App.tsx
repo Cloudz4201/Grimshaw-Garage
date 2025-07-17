@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
@@ -34,47 +35,76 @@ import DigitalServices from "./pages/DigitalServices";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/vehicle-servicing" element={<VehicleServicing />} />
-          <Route path="/logbook-service" element={<LogbookService />} />
-          <Route path="/diagnostics" element={<Diagnostics />} />
-          <Route path="/brake-suspension" element={<BrakeSuspension />} />
-          <Route path="/air-conditioning" element={<AirConditioning />} />
-          <Route path="/performance-tuning" element={<PerformanceTuning />} />
-          <Route path="/custom-exhausts" element={<CustomExhausts />} />
-          <Route path="/digital-services" element={<DigitalServices />} />
-          <Route path="/electric-vehicle-servicing" element={<ElectricVehicleServicing />} />
-          <Route path="/porsche-retrofitting" element={<PorscheRetrofitting />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-of-service" element={<TermsOfService />} />
-          {/* Car Brand Pages */}
-          <Route path="/porsche" element={<Porsche />} />
-          <Route path="/bmw" element={<BMW />} />
-          <Route path="/mercedes" element={<Mercedes />} />
-          <Route path="/audi" element={<Audi />} />
-          <Route path="/ferrari" element={<Ferrari />} />
-          <Route path="/lamborghini" element={<Lamborghini />} />
-          <Route path="/bentley" element={<Bentley />} />
-          <Route path="/mclaren" element={<McLaren />} />
-          <Route path="/jaguar" element={<Jaguar />} />
-          <Route path="/land-rover" element={<LandRover />} />
-          <Route path="/volkswagen" element={<Volkswagen />} />
-          <Route path="/maserati" element={<Maserati />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  // Debug and fix scroll issues
+  useEffect(() => {
+    // Force remove any scroll-blocking styles on mount
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    document.body.style.height = '';
+    
+    // Ensure html can scroll too
+    document.documentElement.style.overflow = '';
+    document.documentElement.style.height = '';
+    document.documentElement.style.position = '';
+    
+    // Remove any fixed height from root
+    const root = document.getElementById('root');
+    if (root) {
+      root.style.height = '';
+      root.style.overflow = '';
+    }
+    
+    // Log what might be blocking scroll
+    console.log('Body styles cleared for scrolling');
+    console.log('Body computed height:', window.getComputedStyle(document.body).height);
+    console.log('HTML computed height:', window.getComputedStyle(document.documentElement).height);
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/vehicle-servicing" element={<VehicleServicing />} />
+            <Route path="/logbook-service" element={<LogbookService />} />
+            <Route path="/diagnostics" element={<Diagnostics />} />
+            <Route path="/brake-suspension" element={<BrakeSuspension />} />
+            <Route path="/air-conditioning" element={<AirConditioning />} />
+            <Route path="/performance-tuning" element={<PerformanceTuning />} />
+            <Route path="/custom-exhausts" element={<CustomExhausts />} />
+            <Route path="/digital-services" element={<DigitalServices />} />
+            <Route path="/electric-vehicle-servicing" element={<ElectricVehicleServicing />} />
+            <Route path="/porsche-retrofitting" element={<PorscheRetrofitting />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            {/* Car Brand Pages */}
+            <Route path="/porsche" element={<Porsche />} />
+            <Route path="/bmw" element={<BMW />} />
+            <Route path="/mercedes" element={<Mercedes />} />
+            <Route path="/audi" element={<Audi />} />
+            <Route path="/ferrari" element={<Ferrari />} />
+            <Route path="/lamborghini" element={<Lamborghini />} />
+            <Route path="/bentley" element={<Bentley />} />
+            <Route path="/mclaren" element={<McLaren />} />
+            <Route path="/jaguar" element={<Jaguar />} />
+            <Route path="/land-rover" element={<LandRover />} />
+            <Route path="/volkswagen" element={<Volkswagen />} />
+            <Route path="/maserati" element={<Maserati />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

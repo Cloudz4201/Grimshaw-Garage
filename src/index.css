@@ -3,24 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Simple scroll fix - let the body scroll naturally */
 body {
   font-family: "Inter", sans-serif;
-  overflow-x: hidden;
-  overflow-y: auto;
-  width: 100%;
   margin: 0;
   padding: 0;
-  max-width: 100vw;
-  scroll-behavior: smooth;
-  /* Prevent scrolling issues on mobile */
-  -webkit-overflow-scrolling: touch;
 }
 
 html {
-  overflow-x: hidden;
-  overflow-y: auto;
-  width: 100%;
-  max-width: 100vw;
   scroll-behavior: smooth;
 }
 
@@ -93,33 +83,6 @@ html {
   
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden !important;
-    max-width: 100vw;
-    scroll-behavior: smooth;
-    /* Ensure smooth scrolling on all devices */
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  html {
-    overflow-x: hidden !important;
-    max-width: 100vw;
-    scroll-behavior: smooth;
-  }
-  
-  /* Prevent horizontal overflow on root element */
-  #root {
-    overflow-x: hidden !important;
-    max-width: 100vw;
-    width: 100%;
-    min-height: 100vh;
-  }
-  
-  /* Essential container constraints */
-  .container {
-    max-width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    overflow-x: hidden;
   }
   
   /* Ensure images and media are responsive */
@@ -128,55 +91,11 @@ html {
     height: auto;
   }
   
-  /* Prevent flex containers from overflowing horizontally */
-  .flex {
-    min-width: 0;
-  }
-
-  /* Fix for scrolling issues - prevent components from trapping scroll */
-  section, main, article {
-    /* Allow content to flow naturally without creating scroll containers */
-    overflow: visible;
-  }
-
-  /* Ensure iframes don't create scroll traps */
-  iframe {
-    border: none;
-    /* Allow natural scrolling instead of creating nested scroll areas */
-    overflow: visible;
-  }
-  
+  /* Prevent text from causing overflow on mobile */
   @media (max-width: 768px) {
-    .container {
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
-      max-width: 100vw;
-      overflow-x: hidden !important;
-    }
-    
-    /* Ensure proper touch scrolling on mobile */
-    body, html {
-      -webkit-overflow-scrolling: touch;
-      overflow-x: hidden !important;
-      max-width: 100vw;
-    }
-    
-    /* Force all elements to respect viewport width on mobile */
-    * {
-      max-width: 100vw !important;
-    }
-    
-    /* Prevent text from causing overflow */
     h1, h2, h3, h4, h5, h6, p {
       word-wrap: break-word;
       overflow-wrap: break-word;
-      hyphens: auto;
-    }
-
-    /* Fix mobile scrolling issues */
-    section, main, article {
-      overflow-x: hidden;
-      overflow-y: visible;
     }
   }
 }

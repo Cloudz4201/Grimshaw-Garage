@@ -5,8 +5,8 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Scroll to top when route changes
-    window.scrollTo(0, 0);
+    // Only scroll to top on actual page navigation, not on normal scrolling
+    // Remove the aggressive window.scrollTo(0, 0) that was causing issues
     
     // Ensure body can scroll normally (fix for any lingering scroll issues)
     document.body.style.overflow = '';
@@ -18,7 +18,7 @@ const ScrollToTop = () => {
     const elementsWithFixedHeight = document.querySelectorAll('[style*="height"][style*="vh"]');
     elementsWithFixedHeight.forEach(el => {
       const element = el as HTMLElement;
-      // Only remove if it's causing scroll issues (you can customize this logic)
+      // Only remove if it's causing scroll issues
       if (element.style.height?.includes('vh') && element.style.overflow === 'hidden') {
         element.style.overflow = 'visible';
       }
