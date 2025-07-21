@@ -348,4 +348,21 @@ html::-webkit-scrollbar:horizontal {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+  
+  /* Fix mobile scroll issues */
+  section {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+  
+  /* Ensure content flows naturally on mobile */
+  .grid {
+    grid-template-rows: auto !important;
+  }
+  
+  /* Remove any fixed height constraints on mobile */
+  [class*="min-h-screen"] {
+    min-height: auto !important;
+  }
 }

@@ -3,7 +3,7 @@ import { Award, CheckCircle, Star, Users, Wrench, Car } from "lucide-react";
 
 const About = () => {
   return (
-    <section className="py-20 bg-slate-800 relative overflow-hidden">
+    <section className="py-16 bg-slate-800 relative">
       {/* Background Image with Dark Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -19,7 +19,7 @@ const About = () => {
       
       {/* Content - Add relative z-10 to ensure it appears above the background */}
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+                    <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Content */}
           <div data-aos="fade-right">
             <div className="inline-flex items-center bg-slate-700 px-4 py-2 rounded-full text-sm font-medium mb-6 text-slate-300">
@@ -69,7 +69,7 @@ const About = () => {
           </div>
           
           {/* Right Content - Professional Profile */}
-          <div className="bg-slate-700/90 backdrop-blur-sm rounded-2xl p-8 text-center relative" data-aos="fade-left">
+                      <div className="bg-slate-700/90 backdrop-blur-sm rounded-2xl p-6 text-center relative" data-aos="fade-left">
             {/* Profile Image with Professional Styling */}
             <div className="relative w-36 h-36 mx-auto mb-4">
               <img 
@@ -127,7 +127,7 @@ const About = () => {
         </div>
 
         {/* Digital Service Records Section */}
-        <div id="digital-service-records" className="mt-16 bg-slate-700/90 backdrop-blur-sm rounded-2xl p-8" data-aos="fade-up" data-aos-delay="500">
+        <div id="digital-service-records" className="mt-12 bg-slate-700/90 backdrop-blur-sm rounded-2xl p-6" data-aos="fade-up" data-aos-delay="500">
           <div className="text-center mb-8">
             <div className="inline-block bg-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-4 text-white">
               Digital Service Records
@@ -137,7 +137,7 @@ const About = () => {
             </h3>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="grid md:grid-cols-2 gap-6 items-start">
             <div>
               <p className="text-slate-300 text-lg leading-relaxed mb-6">
                 We update and digitize your service book directly in the dealer's system. 
@@ -155,7 +155,7 @@ const About = () => {
               </div>
             </div>
             
-            <div className="bg-slate-800/90 rounded-xl p-6 border border-slate-600">
+            <div className="bg-slate-800/90 rounded-xl p-4 border border-slate-600">
               <div className="flex items-center justify-center mb-4">
                 <div className="bg-blue-600 rounded-full p-3">
                   <Award className="w-8 h-8 text-white" />
