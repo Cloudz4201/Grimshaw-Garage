@@ -71,7 +71,7 @@ const Diagnostics = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-red-900 to-slate-900">
+      <section className="relative pt-20 pb-20 bg-gradient-to-r from-red-900 to-slate-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">

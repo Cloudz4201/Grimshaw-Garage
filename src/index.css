@@ -207,9 +207,6 @@ section, main, header, footer {
 /* Prevent body scroll when modal is open */
 body.modal-open {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
-  height: 100%;
 }
 
 /* Fix for fixed positioned elements */
@@ -321,5 +318,34 @@ html::-webkit-scrollbar:horizontal {
   
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .card {
+    padding: 1em;
+  }
+  
+  /* Ensure smooth scrolling on mobile */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent horizontal overflow on mobile */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Consistent hero section spacing */
+  section[class*="pt-20"] {
+    padding-top: 5rem !important; /* 80px */
+  }
+  
+  /* Simplified container spacing on mobile */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

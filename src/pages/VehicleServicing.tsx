@@ -73,22 +73,22 @@ const VehicleServicing = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-blue-900 to-slate-900">
+      <section className="relative pt-20 pb-12 bg-gradient-to-r from-blue-900 to-slate-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Professional Vehicle Servicing
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Complete Vehicle Servicing
             </h1>
-            <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-              Keep your vehicle running at peak performance with our comprehensive servicing solutions. 
-              From regular maintenance to major overhauls, our certified technicians ensure your car's reliability and safety.
+            <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+              Professional automotive servicing for all makes and models. 
+              From routine maintenance to complex repairs, we deliver quality you can trust.
             </p>
             <Button 
               size="lg" 
               className="bg-blue-600 hover:bg-blue-700 text-white"
               onClick={() => setIsBookingModalOpen(true)}
             >
-              Book Your Service Today
+              Book Vehicle Service
             </Button>
           </div>
         </div>

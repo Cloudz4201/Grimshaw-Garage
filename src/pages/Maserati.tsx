@@ -53,7 +53,7 @@ const Maserati = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
         </div>
         
-        <div className="relative z-10 container mx-auto px-6 py-20 lg:py-32 pt-32">
+        <div className="relative z-10 container mx-auto px-6 py-16 lg:py-20 pt-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium border border-white/20">

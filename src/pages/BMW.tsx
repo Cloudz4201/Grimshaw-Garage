@@ -58,25 +58,23 @@ const BMW = () => {
         </div>
         
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-6 py-20 lg:py-32 pt-32">
+        <div className="relative z-10 container mx-auto px-4 py-12 pt-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left Content */}
             <div className="space-y-8">
               <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium border border-white/20">
-                Performance Tuning Specialists
+                Performance & Innovation
               </div>
               
-              <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
+              <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
                 <span className="block text-white">BMW</span>
-                <span className="block bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                  PERFORMANCE
+                <span className="block bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">
+                  PRECISION
                 </span>
               </h1>
               
-              <p className="text-xl lg:text-2xl text-slate-300 leading-relaxed">
-                Ultimate driving machines deserve ultimate care. We specialize in BMW 
-                performance tuning and advanced diagnostics.
+              <p className="text-lg lg:text-xl text-slate-300 leading-relaxed">
+                The Ultimate Driving Machine deserves ultimate care. 
+                Experience precision engineering serviced with the same attention to detail.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
@@ -99,7 +97,6 @@ const BMW = () => {
               </div>
             </div>
 
-            {/* Right Content - BMW Logo */}
             <div className="flex justify-center lg:justify-end">
               <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-12 border border-white/20">
                 <img 

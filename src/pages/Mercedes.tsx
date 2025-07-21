@@ -58,7 +58,7 @@ const Mercedes = () => {
         </div>
         
         {/* Content */}
-        <div className="relative z-10 container mx-auto px-6 py-20 lg:py-32 pt-32">
+        <div className="relative z-10 container mx-auto px-6 py-16 lg:py-20 pt-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             
             {/* Left Content */}

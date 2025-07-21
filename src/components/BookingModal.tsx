@@ -9,21 +9,11 @@ interface BookingModalProps {
 
 const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
   useEffect(() => {
-    // Better scroll management using CSS classes
+    // Simplified scroll management
     if (isOpen) {
-      // Add class to body to prevent scroll
-      document.body.classList.add('modal-open');
       // Track form start when modal opens
       trackFormStart('booking_form', 'modal');
-    } else {
-      // Remove class to restore scroll
-      document.body.classList.remove('modal-open');
     }
-
-    // Cleanup on unmount
-    return () => {
-      document.body.classList.remove('modal-open');
-    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -42,10 +32,12 @@ const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!isOpen) {
+    return null;
+  }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
+    <div className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"

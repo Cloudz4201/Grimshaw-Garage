@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Phone, X, Calendar } from "lucide-react";
 import BookingModal from "./BookingModal";
-import { trackPhoneClick, trackBookingModalOpen, trackScrollToSection } from "@/lib/analytics";
+import { trackPhoneClick, trackBookingModalOpen } from "@/lib/analytics";
 
 const FloatingCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,7 +12,8 @@ const FloatingCTA = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 600);
+      // Show after scrolling 300px instead of 600px for better mobile experience
+      setIsVisible(window.scrollY > 300);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -24,59 +25,54 @@ const FloatingCTA = () => {
     window.location.href = 'tel:+61394676328';
   };
 
-  const scrollToContact = () => {
-    trackScrollToSection('contact');
-    const contactSection = document.querySelector('#contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   if (!isVisible) return null;
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-4 right-4 z-50">
         {isMinimized ? (
           <Button
             onClick={() => setIsMinimized(false)}
-            className="bg-slate-900 text-white hover:bg-slate-800 rounded-full w-14 h-14 shadow-2xl transform hover:scale-110 transition-all duration-300"
+            className="bg-slate-900 text-white hover:bg-slate-800 rounded-full w-12 h-12 shadow-lg transition-all duration-200"
           >
-            <Phone className="w-6 h-6" />
+            <Phone className="w-5 h-5" />
           </Button>
         ) : (
-          <div className="bg-slate-900 text-white p-4 rounded-2xl shadow-2xl max-w-sm transform hover:scale-105 transition-all duration-300 border border-slate-700">
+          <div className="bg-slate-900 text-white p-4 rounded-lg shadow-xl max-w-xs border border-slate-700">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="font-bold text-lg">Book Your Service</h3>
+              <h3 className="font-bold text-sm">Book Service</h3>
               <button
                 onClick={() => setIsMinimized(true)}
                 className="text-slate-400 hover:text-white transition-colors"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
             
-            <p className="text-slate-300 text-sm mb-4">
-              Ready for dealership-level care? Book online or call us now.
+            <p className="text-slate-300 text-xs mb-3">
+              Ready for expert automotive care?
             </p>
             
             <div className="space-y-2">
               <Button 
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
                   trackBookingModalOpen('floating_cta');
                   setIsBookingModalOpen(true);
                 }}
-                className="w-full bg-white text-slate-900 hover:bg-slate-100 font-semibold"
+                type="button"
+                className="w-full bg-white text-slate-900 hover:bg-slate-100 font-semibold text-sm py-2"
               >
-                <Calendar className="mr-2 h-4 w-4" />
+                <Calendar className="mr-2 h-3 w-3" />
                 Book Online
               </Button>
               <Button 
                 onClick={handlePhoneCall}
                 variant="outline" 
-                className="w-full border-white/50 text-white hover:bg-white hover:text-slate-900 backdrop-blur-sm text-sm bg-transparent"
+                className="w-full border-white/50 text-white hover:bg-white hover:text-slate-900 text-xs py-2 bg-transparent"
               >
-                <Phone className="mr-2 h-4 w-4" />
+                <Phone className="mr-2 h-3 w-3" />
                 (03) 9467 6328
               </Button>
             </div>
