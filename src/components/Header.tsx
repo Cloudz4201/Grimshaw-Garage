@@ -111,7 +111,10 @@ const Header = () => {
                 onMouseEnter={() => setIsServicesHovered(true)}
                 onMouseLeave={() => setIsServicesHovered(false)}
               >
-                <button className="text-slate-300 hover:text-white transition-colors cursor-pointer">
+                <button 
+                  onClick={() => scrollToSection('#services')}
+                  className="text-slate-300 hover:text-white transition-colors cursor-pointer"
+                >
                   Services
                 </button>
               </div>
