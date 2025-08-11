@@ -53,7 +53,11 @@ const Header = () => {
   };
 
   const handleHomeClick = () => {
-    navigate('/');
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    } else {
+      navigate('/');
+    }
     setIsMenuOpen(false);
   };
 
