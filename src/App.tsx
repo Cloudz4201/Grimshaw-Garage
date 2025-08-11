@@ -32,6 +32,7 @@ import CustomExhausts from "./pages/CustomExhausts";
 import ElectricVehicleServicing from "./pages/ElectricVehicleServicing";
 import PorscheRetrofitting from "./pages/PorscheRetrofitting";
 import DigitalServices from "./pages/DigitalServices";
+import ChatToggle from "./components/ChatToggle";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <ChatToggle />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutUs />} />

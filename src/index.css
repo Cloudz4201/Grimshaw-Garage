@@ -84,6 +84,24 @@ body {
   }
 }
 
+/* Chatbot visibility toggle (noupe embed) */
+html[data-chat-hidden] iframe[src*="noupe"],
+html[data-chat-hidden] iframe[src*="noupe.com"],
+html[data-chat-hidden] [id*="noupe"],
+html[data-chat-hidden] [class*="noupe"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 768px) {
+  /* Ensure the toggle stays above the chat on mobile */
+  .chat-toggle-on-top {
+    z-index: 9999 !important;
+  }
+}
+
 /* Responsive spacing */
 @layer utilities {
   /* Mobile-first responsive padding */
