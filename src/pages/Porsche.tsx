@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BookingModal from "@/components/BookingModal";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Porsche = () => {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -109,6 +110,22 @@ const Porsche = () => {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="bg-slate-900 py-16">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden border border-slate-700">
+            <AspectRatio ratio={16 / 9}>
+              <iframe
+                src="https://www.youtube.com/embed/d7J3LvcFcVQ?controls=0&disablekb=1&mute=1&modestbranding=1&rel=0&playsinline=1&fs=0"
+                title="Porsche video"
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              />
+            </AspectRatio>
           </div>
         </div>
       </section>
